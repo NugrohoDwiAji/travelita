@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client"
+  // provider        = "prisma-client-js"
+  // previewFeatures = ["driverAdapters"]
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
+enum TicketMode {
+  PLANE
+  TRAIN
+  BUS
+  FERRY
+}
+
+enum TicketClass {
+  ECONOMY
+  BUSINESS
+  FIRST
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  password  String   // hashed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shuttleBookings    ShuttleBooking[]
+  privateCarBookings PrivateCarBooking[]
+  ticketBookings     TicketBooking[]
+  spearFishBookings  SpearFishingBooking[]
+  travelBookings     TravelBooking[]
+}
+
+// ─── Shuttle Service ─────────────────────────────────────────────────────────
+
+model ShuttleBooking {
+  id           String        @id @default(cuid())
+  userId       String?
+  name         String
+  phone        String
+  origin       String
+  destination  String
+  date         DateTime
+  time         String
+  passengers   Int           @default(1)
+  amount       Int           // in IDR
+  status       BookingStatus @default(PENDING)
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+// ─── Private Car ─────────────────────────────────────────────────────────────
+
+model PrivateCarBooking {
+  id          String        @id @default(cuid())
+  userId      String?
+  name        String
+  phone       String
+  serviceType String        // e.g. "Airport Transfer", "City Tour"
+  carType     String        // e.g. "Avanza", "Alphard"
+  date        DateTime
+  duration    Int           // hours
+  amount      Int
+  status      BookingStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+// ─── Ticketing ───────────────────────────────────────────────────────────────
+
+model TicketBooking {
+  id          String        @id @default(cuid())
+  userId      String?
+  name        String
+  phone       String
+  mode        TicketMode
+  origin      String
+  destination String
+  date        DateTime
+  passengers  Int           @default(1)
+  ticketClass TicketClass   @default(ECONOMY)
+  amount      Int
+  status      BookingStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+// ─── Spear Fishing ───────────────────────────────────────────────────────────
+
+model SpearFishingBooking {
+  id           String        @id @default(cuid())
+  userId       String?
+  name         String
+  phone        String
+  location     String        // e.g. "Gili Trawangan"
+  packageName  String
+  date         DateTime
+  duration     Int           // days
+  participants Int           @default(1)
+  amount       Int
+  status       BookingStatus @default(PENDING)
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+// ─── Wisata Travel ───────────────────────────────────────────────────────────
+
+model TravelBooking {
+  id           String        @id @default(cuid())
+  userId       String?
+  name         String
+  phone        String
+  packageName  String
+  destination  String
+  date         DateTime
+  duration     Int           // days
+  participants Int           @default(1)
+  amount       Int
+  status       BookingStatus @default(PENDING)
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+}

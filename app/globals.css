@@ -1,11 +1,55 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────
+   Brand Color Variables – Travelita
+   Palet Royal Blue #1434A4 — Base Putih
+───────────────────────────────────────── */
 :root {
+  /* Brand Background – putih & tint sangat lembut */
+  --brand-navy-950: #eef0fb;   /* tint cobalt – section alternate bg */
+  --brand-navy-900: #ffffff;   /* pure white  – main bg */
+  --brand-navy-800: #ffffff;   /* pure white  – card surface */
+  --brand-navy-700: #e2e6f8;   /* cobalt hover tint */
+  --brand-navy-600: #b0bbeb;   /* cobalt border */
+
+  /* Brand Accent – Royal Blue */
+  --brand-accent-400: #3d52c6;  /* cobalt cerah */
+  --brand-accent-500: #1434A4;  /* PRIMARY brand color */
+  --brand-accent-600: #0d2280;  /* cobalt gelap / hover */
+
+  /* Brand Gold – repurposed ke cobalt untuk konsistensi */
+  --brand-gold-400: #3d52c6;
+  --brand-gold-500: #1434A4;
+  --brand-gold-600: #0d2280;
+
+  /* Neutral teks */
+  --brand-text-light: #1434A4;  /* teks utama = brand color */
+  --brand-text-muted: #4050b5;  /* teks sekunder sedikit lebih terang */
+  --brand-divider: rgba(20, 52, 164, 0.12);
+
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1434A4;
 }
 
 @theme inline {
+  /* Expose brand colors ke utility Tailwind */
+  --color-brand-navy-950: var(--brand-navy-950);
+  --color-brand-navy-900: var(--brand-navy-900);
+  --color-brand-navy-800: var(--brand-navy-800);
+  --color-brand-navy-700: var(--brand-navy-700);
+  --color-brand-navy-600: var(--brand-navy-600);
+
+  --color-brand-accent-400: var(--brand-accent-400);
+  --color-brand-accent-500: var(--brand-accent-500);
+  --color-brand-accent-600: var(--brand-accent-600);
+
+  --color-brand-gold-400: var(--brand-gold-400);
+  --color-brand-gold-500: var(--brand-gold-500);
+  --color-brand-gold-600: var(--brand-gold-600);
+
+  --color-brand-text-light: var(--brand-text-light);
+  --color-brand-text-muted: var(--brand-text-muted);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
