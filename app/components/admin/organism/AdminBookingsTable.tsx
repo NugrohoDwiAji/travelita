@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { IconSearch, IconFilter, IconEye, IconEdit } from "@/app/components/admin/atoms/AdminIcons";
 import { BookingRecord, BookingStatus, ColumnDef } from "@/app/types/booking";
-import { STATUS_STYLES, STATUS_OPTIONS, normalizeStatus } from "@/app/components/admin/atoms/bookingStatusConfig";
+import { STATUS_STYLES, normalizeStatus } from "@/app/components/admin/atoms/bookingStatusConfig";
 import BookingDetailPopup from "@/app/components/admin/moleculs/BookingDetailPopup";
 import BookingEditStatusPopup from "@/app/components/admin/moleculs/BookingEditStatusPopup";
 
@@ -26,6 +26,7 @@ export default function AdminBookingsTable({ columns, data, onStatusChange }: Ad
   const [editRow, setEditRow]     = useState<BookingRecord | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRows(data);
   }, [data]);
 

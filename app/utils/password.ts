@@ -10,7 +10,7 @@ export async function hashPassword(password: string, saltRounds: number = 10): P
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     return hashedPassword;
-  } catch (error) {
+  } catch {
     throw new Error("Failed to hash password");
   }
 }
@@ -25,7 +25,7 @@ export async function comparePassword(plainPassword: string, hashedPassword: str
   try {
     const match = await bcrypt.compare(plainPassword, hashedPassword);
     return match;
-  } catch (error) {
+  } catch {
     throw new Error("Failed to compare password");
   }
 }

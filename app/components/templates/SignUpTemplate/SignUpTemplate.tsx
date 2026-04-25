@@ -13,7 +13,6 @@ import {
   IconEyeOn,
   IconEyeOff,
   IconUser,
-  IconPhone,
   IconGoogle,
   IconCheck,
   IconGlobe,

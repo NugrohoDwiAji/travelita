@@ -30,6 +30,7 @@ export default function LanguageSwitcherBar() {
 
   useEffect(() => {
     const initial = getInitialLanguage();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLang(initial);
   }, []);
 

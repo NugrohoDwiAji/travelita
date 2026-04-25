@@ -176,6 +176,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                 onClick={() => isEditing && fileInputRef.current?.click()}
               >
                 {displayPicture ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={displayPicture}
                     alt={`Foto profil ${name}`}

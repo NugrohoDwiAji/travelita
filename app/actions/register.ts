@@ -52,7 +52,7 @@ export async function register(data: SignUpFormData) {
     });
 
     return { success: true, data: user };
-  } catch (error) {
+  } catch {
     return { error: "Terjadi kesalahan server." };
   }
 }

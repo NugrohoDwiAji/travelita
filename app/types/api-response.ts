@@ -8,5 +8,5 @@ export type ApiResponse<T> = {
 export type ApiErrorResponse = {
   success: false;
   message: string;
-  error?: any;
+  error?: unknown;
 };

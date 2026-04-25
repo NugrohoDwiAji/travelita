@@ -12,7 +12,7 @@ export function successResponse<T>(data: T, message?: string) {
 }
 
 // Fungsi untuk Respon Gagal (400, 404, 500)
-export function errorResponse(message: string = "Internal Server Error", statusCode: number = 500, errorDetails?: any) {
+export function errorResponse(message: string = "Internal Server Error", statusCode: number = 500, errorDetails?: unknown) {
   const response: ApiErrorResponse = {
     success: false,
     message: message,
