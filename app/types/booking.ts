@@ -40,3 +40,32 @@ export interface BookingTableProps {
   description?:string;
 }
 
+export interface ShuttleBookingUserProfile {
+  id: string;
+  coutry: string;
+  city: string;
+  profilePicture: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ShuttleBookingUser {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  role: "USER" | "ADMIN";
+  profile: ShuttleBookingUserProfile | null;
+}
+
+export interface ShuttleBookingListItem {
+  id: number;
+  userId: string;
+  details: number;
+  type: "SHUTTLE";
+  status: BookingStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  user: ShuttleBookingUser | null;
+}
+

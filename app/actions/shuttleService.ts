@@ -2,7 +2,7 @@
 
 import { prisma } from "@/app/lib/prisma";
 import { auth } from "@/auth";
-import type { BookingTableProps, BookingStatus } from "@/app/types/booking";
+import type { BookingTableProps, BookingStatus, ShuttleBookingListItem } from "@/app/types/booking";
 import { validateShuttleBookingData } from "@/app/utils/booking-validations";
 
 export async function postShuttleBooking(params:BookingTableProps) {
@@ -144,10 +144,10 @@ export async function getShuttleBookingsByUserAndStatus(status?: BookingStatus, 
 	}
 
 
-	const bookings = await prisma.booking.findMany({
+	const bookings   = await prisma.booking.findMany({
 		where: {
 			...(targetUserId ? { userId: targetUserId } : {}),
-			type: "SHUTTLE",
+			type: "SHUTTLE" ,
 			...(status ? { status } : {}),
 		},
 		select: {
@@ -179,7 +179,7 @@ export async function getShuttleBookingsByUserAndStatus(status?: BookingStatus, 
 			},
 		},
 		orderBy: { createdAt: "desc" },
-	});
+	}) as ShuttleBookingListItem[];
 
 	if (bookings.length === 0) {
 		return { success: true, data: [] };
