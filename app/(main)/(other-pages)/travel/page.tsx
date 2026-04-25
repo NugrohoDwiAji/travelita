@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import TravelTemplate from "@/app/components/templates/TravelTemplate/TravelTemplate";
+import TravelTemplate from "@/app/components/templates/TravelTemplate";
 
 export const metadata: Metadata = {
   title: "Paket Wisata Lombok – Travelita",

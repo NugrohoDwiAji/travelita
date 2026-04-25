@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import SignInTemplate from "@/app/components/templates/SignInTemplate/SignInTemplate";
+import SignInTemplate from "@/app/components/templates/SignInTemplate";
 
 export const metadata: Metadata = {
   title: "Masuk – Travelita",

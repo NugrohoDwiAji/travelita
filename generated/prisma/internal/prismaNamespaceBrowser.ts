@@ -24,37 +24,37 @@ export const Decimal = runtime.Decimal
 
 
 export const NullTypes = {
-  DbNull: runtime.objectEnumValues.classes.DbNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.DbNull),
-  JsonNull: runtime.objectEnumValues.classes.JsonNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.JsonNull),
-  AnyNull: runtime.objectEnumValues.classes.AnyNull as (new (secret: never) => typeof runtime.objectEnumValues.instances.AnyNull),
+  DbNull: runtime.NullTypes.DbNull as (new (secret: never) => typeof runtime.DbNull),
+  JsonNull: runtime.NullTypes.JsonNull as (new (secret: never) => typeof runtime.JsonNull),
+  AnyNull: runtime.NullTypes.AnyNull as (new (secret: never) => typeof runtime.AnyNull),
 }
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const DbNull = runtime.objectEnumValues.instances.DbNull
+export const DbNull = runtime.DbNull
+
 /**
  * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const JsonNull = runtime.objectEnumValues.instances.JsonNull
+export const JsonNull = runtime.JsonNull
+
 /**
  * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const AnyNull = runtime.objectEnumValues.instances.AnyNull
+export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
   User: 'User',
-  ShuttleBooking: 'ShuttleBooking',
-  PrivateCarBooking: 'PrivateCarBooking',
-  TicketBooking: 'TicketBooking',
-  SpearFishingBooking: 'SpearFishingBooking',
-  TravelBooking: 'TravelBooking'
+  Profile: 'Profile',
+  Booking: 'Booking',
+  ShuttleBooking: 'ShuttleBooking'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,9 +76,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  username: 'username',
   email: 'email',
-  phone: 'phone',
   password: 'password',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -86,104 +87,47 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const ShuttleBookingScalarFieldEnum = {
+export const ProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  origin: 'origin',
-  destination: 'destination',
-  date: 'date',
-  time: 'time',
-  passengers: 'passengers',
-  amount: 'amount',
+  coutry: 'coutry',
+  city: 'city',
+  profilePicture: 'profilePicture',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+export const BookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  details: 'details',
+  type: 'type',
   status: 'status',
-  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
+
+
+export const ShuttleBookingScalarFieldEnum = {
+  id: 'id',
+  shuttleType: 'shuttleType',
+  from: 'from',
+  to: 'to',
+  leavingTime: 'leavingTime',
+  returnTime: 'returnTime',
+  passengerCount: 'passengerCount',
+  price: 'price',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type ShuttleBookingScalarFieldEnum = (typeof ShuttleBookingScalarFieldEnum)[keyof typeof ShuttleBookingScalarFieldEnum]
-
-
-export const PrivateCarBookingScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  serviceType: 'serviceType',
-  carType: 'carType',
-  date: 'date',
-  duration: 'duration',
-  amount: 'amount',
-  status: 'status',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PrivateCarBookingScalarFieldEnum = (typeof PrivateCarBookingScalarFieldEnum)[keyof typeof PrivateCarBookingScalarFieldEnum]
-
-
-export const TicketBookingScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  mode: 'mode',
-  origin: 'origin',
-  destination: 'destination',
-  date: 'date',
-  passengers: 'passengers',
-  ticketClass: 'ticketClass',
-  amount: 'amount',
-  status: 'status',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TicketBookingScalarFieldEnum = (typeof TicketBookingScalarFieldEnum)[keyof typeof TicketBookingScalarFieldEnum]
-
-
-export const SpearFishingBookingScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  location: 'location',
-  packageName: 'packageName',
-  date: 'date',
-  duration: 'duration',
-  participants: 'participants',
-  amount: 'amount',
-  status: 'status',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type SpearFishingBookingScalarFieldEnum = (typeof SpearFishingBookingScalarFieldEnum)[keyof typeof SpearFishingBookingScalarFieldEnum]
-
-
-export const TravelBookingScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  packageName: 'packageName',
-  destination: 'destination',
-  date: 'date',
-  duration: 'duration',
-  participants: 'participants',
-  amount: 'amount',
-  status: 'status',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TravelBookingScalarFieldEnum = (typeof TravelBookingScalarFieldEnum)[keyof typeof TravelBookingScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -194,6 +138,17 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  username: 'username',
+  email: 'email',
+  password: 'password'
+} as const
+
+export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -202,79 +157,29 @@ export const NullsOrder = {
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-export const UserOrderByRelevanceFieldEnum = {
+export const ProfileOrderByRelevanceFieldEnum = {
   id: 'id',
-  name: 'name',
-  email: 'email',
-  phone: 'phone',
-  password: 'password'
+  userId: 'userId',
+  coutry: 'coutry',
+  city: 'city',
+  profilePicture: 'profilePicture'
 } as const
 
-export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+export type ProfileOrderByRelevanceFieldEnum = (typeof ProfileOrderByRelevanceFieldEnum)[keyof typeof ProfileOrderByRelevanceFieldEnum]
+
+
+export const BookingOrderByRelevanceFieldEnum = {
+  userId: 'userId'
+} as const
+
+export type BookingOrderByRelevanceFieldEnum = (typeof BookingOrderByRelevanceFieldEnum)[keyof typeof BookingOrderByRelevanceFieldEnum]
 
 
 export const ShuttleBookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  origin: 'origin',
-  destination: 'destination',
-  time: 'time',
-  notes: 'notes'
+  from: 'from',
+  to: 'to',
+  description: 'description'
 } as const
 
 export type ShuttleBookingOrderByRelevanceFieldEnum = (typeof ShuttleBookingOrderByRelevanceFieldEnum)[keyof typeof ShuttleBookingOrderByRelevanceFieldEnum]
-
-
-export const PrivateCarBookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  serviceType: 'serviceType',
-  carType: 'carType',
-  notes: 'notes'
-} as const
-
-export type PrivateCarBookingOrderByRelevanceFieldEnum = (typeof PrivateCarBookingOrderByRelevanceFieldEnum)[keyof typeof PrivateCarBookingOrderByRelevanceFieldEnum]
-
-
-export const TicketBookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  origin: 'origin',
-  destination: 'destination',
-  notes: 'notes'
-} as const
-
-export type TicketBookingOrderByRelevanceFieldEnum = (typeof TicketBookingOrderByRelevanceFieldEnum)[keyof typeof TicketBookingOrderByRelevanceFieldEnum]
-
-
-export const SpearFishingBookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  location: 'location',
-  packageName: 'packageName',
-  notes: 'notes'
-} as const
-
-export type SpearFishingBookingOrderByRelevanceFieldEnum = (typeof SpearFishingBookingOrderByRelevanceFieldEnum)[keyof typeof SpearFishingBookingOrderByRelevanceFieldEnum]
-
-
-export const TravelBookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  phone: 'phone',
-  packageName: 'packageName',
-  destination: 'destination',
-  notes: 'notes'
-} as const
-
-export type TravelBookingOrderByRelevanceFieldEnum = (typeof TravelBookingOrderByRelevanceFieldEnum)[keyof typeof TravelBookingOrderByRelevanceFieldEnum]
 

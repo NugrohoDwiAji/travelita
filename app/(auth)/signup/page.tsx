@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import SignUpTemplate from "@/app/components/templates/SignUpTemplate/SignUpTemplate";
+import SignUpTemplate from "@/app/components/templates/SignUpTemplate";
 
 export const metadata: Metadata = {
   title: "Daftar – Travelita",

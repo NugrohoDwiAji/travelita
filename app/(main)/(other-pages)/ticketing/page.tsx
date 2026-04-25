@@ -1,5 +1,5 @@
-﻿import { Metadata } from "next";
-import TicketingTemplate from "@/app/components/templates/TicketingTemplate/TicketingTemplate";
+import { Metadata } from "next";
+import TicketingTemplate from "@/app/components/templates/TicketingTemplate";
 
 export const metadata: Metadata = {
   title: "Ticketing  Travelita",

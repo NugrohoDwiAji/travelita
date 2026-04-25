@@ -8,7 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/library"
+import type * as runtime from "@prisma/client/runtime/client"
 import type * as $Enums from "../enums"
 import type * as Prisma from "../internal/prismaNamespace"
 
@@ -27,62 +27,55 @@ export type AggregateShuttleBooking = {
 }
 
 export type ShuttleBookingAvgAggregateOutputType = {
-  passengers: number | null
-  amount: number | null
+  id: number | null
+  passengerCount: number | null
+  price: number | null
 }
 
 export type ShuttleBookingSumAggregateOutputType = {
-  passengers: number | null
-  amount: number | null
+  id: number | null
+  passengerCount: number | null
+  price: number | null
 }
 
 export type ShuttleBookingMinAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  name: string | null
-  phone: string | null
-  origin: string | null
-  destination: string | null
-  date: Date | null
-  time: string | null
-  passengers: number | null
-  amount: number | null
-  status: $Enums.BookingStatus | null
-  notes: string | null
+  id: number | null
+  shuttleType: $Enums.ShuttleType | null
+  from: string | null
+  to: string | null
+  leavingTime: Date | null
+  returnTime: Date | null
+  passengerCount: number | null
+  price: number | null
+  description: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ShuttleBookingMaxAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  name: string | null
-  phone: string | null
-  origin: string | null
-  destination: string | null
-  date: Date | null
-  time: string | null
-  passengers: number | null
-  amount: number | null
-  status: $Enums.BookingStatus | null
-  notes: string | null
+  id: number | null
+  shuttleType: $Enums.ShuttleType | null
+  from: string | null
+  to: string | null
+  leavingTime: Date | null
+  returnTime: Date | null
+  passengerCount: number | null
+  price: number | null
+  description: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ShuttleBookingCountAggregateOutputType = {
   id: number
-  userId: number
-  name: number
-  phone: number
-  origin: number
-  destination: number
-  date: number
-  time: number
-  passengers: number
-  amount: number
-  status: number
-  notes: number
+  shuttleType: number
+  from: number
+  to: number
+  leavingTime: number
+  returnTime: number
+  passengerCount: number
+  price: number
+  description: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -90,62 +83,55 @@ export type ShuttleBookingCountAggregateOutputType = {
 
 
 export type ShuttleBookingAvgAggregateInputType = {
-  passengers?: true
-  amount?: true
+  id?: true
+  passengerCount?: true
+  price?: true
 }
 
 export type ShuttleBookingSumAggregateInputType = {
-  passengers?: true
-  amount?: true
+  id?: true
+  passengerCount?: true
+  price?: true
 }
 
 export type ShuttleBookingMinAggregateInputType = {
   id?: true
-  userId?: true
-  name?: true
-  phone?: true
-  origin?: true
-  destination?: true
-  date?: true
-  time?: true
-  passengers?: true
-  amount?: true
-  status?: true
-  notes?: true
+  shuttleType?: true
+  from?: true
+  to?: true
+  leavingTime?: true
+  returnTime?: true
+  passengerCount?: true
+  price?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type ShuttleBookingMaxAggregateInputType = {
   id?: true
-  userId?: true
-  name?: true
-  phone?: true
-  origin?: true
-  destination?: true
-  date?: true
-  time?: true
-  passengers?: true
-  amount?: true
-  status?: true
-  notes?: true
+  shuttleType?: true
+  from?: true
+  to?: true
+  leavingTime?: true
+  returnTime?: true
+  passengerCount?: true
+  price?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type ShuttleBookingCountAggregateInputType = {
   id?: true
-  userId?: true
-  name?: true
-  phone?: true
-  origin?: true
-  destination?: true
-  date?: true
-  time?: true
-  passengers?: true
-  amount?: true
-  status?: true
-  notes?: true
+  shuttleType?: true
+  from?: true
+  to?: true
+  leavingTime?: true
+  returnTime?: true
+  passengerCount?: true
+  price?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -238,18 +224,15 @@ export type ShuttleBookingGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type ShuttleBookingGroupByOutputType = {
-  id: string
-  userId: string | null
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date
-  time: string
-  passengers: number
-  amount: number
-  status: $Enums.BookingStatus
-  notes: string | null
+  id: number
+  shuttleType: $Enums.ShuttleType
+  from: string
+  to: string
+  leavingTime: Date
+  returnTime: Date | null
+  passengerCount: number
+  price: number
+  description: string
   createdAt: Date
   updatedAt: Date
   _count: ShuttleBookingCountAggregateOutputType | null
@@ -259,7 +242,7 @@ export type ShuttleBookingGroupByOutputType = {
   _max: ShuttleBookingMaxAggregateOutputType | null
 }
 
-type GetShuttleBookingGroupByPayload<T extends ShuttleBookingGroupByArgs> = Prisma.PrismaPromise<
+export type GetShuttleBookingGroupByPayload<T extends ShuttleBookingGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ShuttleBookingGroupByOutputType, T['by']> &
       {
@@ -278,76 +261,61 @@ export type ShuttleBookingWhereInput = {
   AND?: Prisma.ShuttleBookingWhereInput | Prisma.ShuttleBookingWhereInput[]
   OR?: Prisma.ShuttleBookingWhereInput[]
   NOT?: Prisma.ShuttleBookingWhereInput | Prisma.ShuttleBookingWhereInput[]
-  id?: Prisma.StringFilter<"ShuttleBooking"> | string
-  userId?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
-  name?: Prisma.StringFilter<"ShuttleBooking"> | string
-  phone?: Prisma.StringFilter<"ShuttleBooking"> | string
-  origin?: Prisma.StringFilter<"ShuttleBooking"> | string
-  destination?: Prisma.StringFilter<"ShuttleBooking"> | string
-  date?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  time?: Prisma.StringFilter<"ShuttleBooking"> | string
-  passengers?: Prisma.IntFilter<"ShuttleBooking"> | number
-  amount?: Prisma.IntFilter<"ShuttleBooking"> | number
-  status?: Prisma.EnumBookingStatusFilter<"ShuttleBooking"> | $Enums.BookingStatus
-  notes?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
+  id?: Prisma.IntFilter<"ShuttleBooking"> | number
+  shuttleType?: Prisma.EnumShuttleTypeFilter<"ShuttleBooking"> | $Enums.ShuttleType
+  from?: Prisma.StringFilter<"ShuttleBooking"> | string
+  to?: Prisma.StringFilter<"ShuttleBooking"> | string
+  leavingTime?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
+  returnTime?: Prisma.DateTimeNullableFilter<"ShuttleBooking"> | Date | string | null
+  passengerCount?: Prisma.IntFilter<"ShuttleBooking"> | number
+  price?: Prisma.FloatFilter<"ShuttleBooking"> | number
+  description?: Prisma.StringFilter<"ShuttleBooking"> | string
   createdAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type ShuttleBookingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  origin?: Prisma.SortOrder
-  destination?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  time?: Prisma.SortOrder
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  shuttleType?: Prisma.SortOrder
+  from?: Prisma.SortOrder
+  to?: Prisma.SortOrder
+  leavingTime?: Prisma.SortOrder
+  returnTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   _relevance?: Prisma.ShuttleBookingOrderByRelevanceInput
 }
 
 export type ShuttleBookingWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   AND?: Prisma.ShuttleBookingWhereInput | Prisma.ShuttleBookingWhereInput[]
   OR?: Prisma.ShuttleBookingWhereInput[]
   NOT?: Prisma.ShuttleBookingWhereInput | Prisma.ShuttleBookingWhereInput[]
-  userId?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
-  name?: Prisma.StringFilter<"ShuttleBooking"> | string
-  phone?: Prisma.StringFilter<"ShuttleBooking"> | string
-  origin?: Prisma.StringFilter<"ShuttleBooking"> | string
-  destination?: Prisma.StringFilter<"ShuttleBooking"> | string
-  date?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  time?: Prisma.StringFilter<"ShuttleBooking"> | string
-  passengers?: Prisma.IntFilter<"ShuttleBooking"> | number
-  amount?: Prisma.IntFilter<"ShuttleBooking"> | number
-  status?: Prisma.EnumBookingStatusFilter<"ShuttleBooking"> | $Enums.BookingStatus
-  notes?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
+  shuttleType?: Prisma.EnumShuttleTypeFilter<"ShuttleBooking"> | $Enums.ShuttleType
+  from?: Prisma.StringFilter<"ShuttleBooking"> | string
+  to?: Prisma.StringFilter<"ShuttleBooking"> | string
+  leavingTime?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
+  returnTime?: Prisma.DateTimeNullableFilter<"ShuttleBooking"> | Date | string | null
+  passengerCount?: Prisma.IntFilter<"ShuttleBooking"> | number
+  price?: Prisma.FloatFilter<"ShuttleBooking"> | number
+  description?: Prisma.StringFilter<"ShuttleBooking"> | string
   createdAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type ShuttleBookingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  origin?: Prisma.SortOrder
-  destination?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  time?: Prisma.SortOrder
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  shuttleType?: Prisma.SortOrder
+  from?: Prisma.SortOrder
+  to?: Prisma.SortOrder
+  leavingTime?: Prisma.SortOrder
+  returnTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ShuttleBookingCountOrderByAggregateInput
@@ -361,148 +329,112 @@ export type ShuttleBookingScalarWhereWithAggregatesInput = {
   AND?: Prisma.ShuttleBookingScalarWhereWithAggregatesInput | Prisma.ShuttleBookingScalarWhereWithAggregatesInput[]
   OR?: Prisma.ShuttleBookingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ShuttleBookingScalarWhereWithAggregatesInput | Prisma.ShuttleBookingScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  userId?: Prisma.StringNullableWithAggregatesFilter<"ShuttleBooking"> | string | null
-  name?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  phone?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  origin?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  destination?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  date?: Prisma.DateTimeWithAggregatesFilter<"ShuttleBooking"> | Date | string
-  time?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
-  passengers?: Prisma.IntWithAggregatesFilter<"ShuttleBooking"> | number
-  amount?: Prisma.IntWithAggregatesFilter<"ShuttleBooking"> | number
-  status?: Prisma.EnumBookingStatusWithAggregatesFilter<"ShuttleBooking"> | $Enums.BookingStatus
-  notes?: Prisma.StringNullableWithAggregatesFilter<"ShuttleBooking"> | string | null
+  id?: Prisma.IntWithAggregatesFilter<"ShuttleBooking"> | number
+  shuttleType?: Prisma.EnumShuttleTypeWithAggregatesFilter<"ShuttleBooking"> | $Enums.ShuttleType
+  from?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
+  to?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
+  leavingTime?: Prisma.DateTimeWithAggregatesFilter<"ShuttleBooking"> | Date | string
+  returnTime?: Prisma.DateTimeNullableWithAggregatesFilter<"ShuttleBooking"> | Date | string | null
+  passengerCount?: Prisma.IntWithAggregatesFilter<"ShuttleBooking"> | number
+  price?: Prisma.FloatWithAggregatesFilter<"ShuttleBooking"> | number
+  description?: Prisma.StringWithAggregatesFilter<"ShuttleBooking"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShuttleBooking"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShuttleBooking"> | Date | string
 }
 
 export type ShuttleBookingCreateInput = {
-  id?: string
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
+  shuttleType: $Enums.ShuttleType
+  from: string
+  to: string
+  leavingTime: Date | string
+  returnTime?: Date | string | null
+  passengerCount: number
+  price: number
+  description: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutShuttleBookingsInput
 }
 
 export type ShuttleBookingUncheckedCreateInput = {
-  id?: string
-  userId?: string | null
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
+  id?: number
+  shuttleType: $Enums.ShuttleType
+  from: string
+  to: string
+  leavingTime: Date | string
+  returnTime?: Date | string | null
+  passengerCount: number
+  price: number
+  description: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ShuttleBookingUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shuttleType?: Prisma.EnumShuttleTypeFieldUpdateOperationsInput | $Enums.ShuttleType
+  from?: Prisma.StringFieldUpdateOperationsInput | string
+  to?: Prisma.StringFieldUpdateOperationsInput | string
+  leavingTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  returnTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passengerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutShuttleBookingsNestedInput
 }
 
 export type ShuttleBookingUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  shuttleType?: Prisma.EnumShuttleTypeFieldUpdateOperationsInput | $Enums.ShuttleType
+  from?: Prisma.StringFieldUpdateOperationsInput | string
+  to?: Prisma.StringFieldUpdateOperationsInput | string
+  leavingTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  returnTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passengerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ShuttleBookingCreateManyInput = {
-  id?: string
-  userId?: string | null
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
+  id?: number
+  shuttleType: $Enums.ShuttleType
+  from: string
+  to: string
+  leavingTime: Date | string
+  returnTime?: Date | string | null
+  passengerCount: number
+  price: number
+  description: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ShuttleBookingUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shuttleType?: Prisma.EnumShuttleTypeFieldUpdateOperationsInput | $Enums.ShuttleType
+  from?: Prisma.StringFieldUpdateOperationsInput | string
+  to?: Prisma.StringFieldUpdateOperationsInput | string
+  leavingTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  returnTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passengerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ShuttleBookingUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  shuttleType?: Prisma.EnumShuttleTypeFieldUpdateOperationsInput | $Enums.ShuttleType
+  from?: Prisma.StringFieldUpdateOperationsInput | string
+  to?: Prisma.StringFieldUpdateOperationsInput | string
+  leavingTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  returnTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passengerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ShuttleBookingListRelationFilter = {
-  every?: Prisma.ShuttleBookingWhereInput
-  some?: Prisma.ShuttleBookingWhereInput
-  none?: Prisma.ShuttleBookingWhereInput
-}
-
-export type ShuttleBookingOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type ShuttleBookingOrderByRelevanceInput = {
@@ -513,108 +445,67 @@ export type ShuttleBookingOrderByRelevanceInput = {
 
 export type ShuttleBookingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  origin?: Prisma.SortOrder
-  destination?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  time?: Prisma.SortOrder
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  notes?: Prisma.SortOrder
+  shuttleType?: Prisma.SortOrder
+  from?: Prisma.SortOrder
+  to?: Prisma.SortOrder
+  leavingTime?: Prisma.SortOrder
+  returnTime?: Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ShuttleBookingAvgOrderByAggregateInput = {
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
 }
 
 export type ShuttleBookingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  origin?: Prisma.SortOrder
-  destination?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  time?: Prisma.SortOrder
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  notes?: Prisma.SortOrder
+  shuttleType?: Prisma.SortOrder
+  from?: Prisma.SortOrder
+  to?: Prisma.SortOrder
+  leavingTime?: Prisma.SortOrder
+  returnTime?: Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ShuttleBookingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  origin?: Prisma.SortOrder
-  destination?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  time?: Prisma.SortOrder
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  notes?: Prisma.SortOrder
+  shuttleType?: Prisma.SortOrder
+  from?: Prisma.SortOrder
+  to?: Prisma.SortOrder
+  leavingTime?: Prisma.SortOrder
+  returnTime?: Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ShuttleBookingSumOrderByAggregateInput = {
-  passengers?: Prisma.SortOrder
-  amount?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  passengerCount?: Prisma.SortOrder
+  price?: Prisma.SortOrder
 }
 
-export type ShuttleBookingCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput> | Prisma.ShuttleBookingCreateWithoutUserInput[] | Prisma.ShuttleBookingUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ShuttleBookingCreateOrConnectWithoutUserInput | Prisma.ShuttleBookingCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ShuttleBookingCreateManyUserInputEnvelope
-  connect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
+export type EnumShuttleTypeFieldUpdateOperationsInput = {
+  set?: $Enums.ShuttleType
 }
 
-export type ShuttleBookingUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput> | Prisma.ShuttleBookingCreateWithoutUserInput[] | Prisma.ShuttleBookingUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ShuttleBookingCreateOrConnectWithoutUserInput | Prisma.ShuttleBookingCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ShuttleBookingCreateManyUserInputEnvelope
-  connect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
-export type ShuttleBookingUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput> | Prisma.ShuttleBookingCreateWithoutUserInput[] | Prisma.ShuttleBookingUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ShuttleBookingCreateOrConnectWithoutUserInput | Prisma.ShuttleBookingCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ShuttleBookingUpsertWithWhereUniqueWithoutUserInput | Prisma.ShuttleBookingUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ShuttleBookingCreateManyUserInputEnvelope
-  set?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  disconnect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  delete?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  connect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  update?: Prisma.ShuttleBookingUpdateWithWhereUniqueWithoutUserInput | Prisma.ShuttleBookingUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ShuttleBookingUpdateManyWithWhereWithoutUserInput | Prisma.ShuttleBookingUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ShuttleBookingScalarWhereInput | Prisma.ShuttleBookingScalarWhereInput[]
-}
-
-export type ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput> | Prisma.ShuttleBookingCreateWithoutUserInput[] | Prisma.ShuttleBookingUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ShuttleBookingCreateOrConnectWithoutUserInput | Prisma.ShuttleBookingCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ShuttleBookingUpsertWithWhereUniqueWithoutUserInput | Prisma.ShuttleBookingUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ShuttleBookingCreateManyUserInputEnvelope
-  set?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  disconnect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  delete?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  connect?: Prisma.ShuttleBookingWhereUniqueInput | Prisma.ShuttleBookingWhereUniqueInput[]
-  update?: Prisma.ShuttleBookingUpdateWithWhereUniqueWithoutUserInput | Prisma.ShuttleBookingUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ShuttleBookingUpdateManyWithWhereWithoutUserInput | Prisma.ShuttleBookingUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ShuttleBookingScalarWhereInput | Prisma.ShuttleBookingScalarWhereInput[]
-}
-
-export type IntFieldUpdateOperationsInput = {
+export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
@@ -622,214 +513,53 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type EnumBookingStatusFieldUpdateOperationsInput = {
-  set?: $Enums.BookingStatus
-}
-
-export type ShuttleBookingCreateWithoutUserInput = {
-  id?: string
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ShuttleBookingUncheckedCreateWithoutUserInput = {
-  id?: string
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ShuttleBookingCreateOrConnectWithoutUserInput = {
-  where: Prisma.ShuttleBookingWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput>
-}
-
-export type ShuttleBookingCreateManyUserInputEnvelope = {
-  data: Prisma.ShuttleBookingCreateManyUserInput | Prisma.ShuttleBookingCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type ShuttleBookingUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ShuttleBookingWhereUniqueInput
-  update: Prisma.XOR<Prisma.ShuttleBookingUpdateWithoutUserInput, Prisma.ShuttleBookingUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ShuttleBookingCreateWithoutUserInput, Prisma.ShuttleBookingUncheckedCreateWithoutUserInput>
-}
-
-export type ShuttleBookingUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ShuttleBookingWhereUniqueInput
-  data: Prisma.XOR<Prisma.ShuttleBookingUpdateWithoutUserInput, Prisma.ShuttleBookingUncheckedUpdateWithoutUserInput>
-}
-
-export type ShuttleBookingUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ShuttleBookingScalarWhereInput
-  data: Prisma.XOR<Prisma.ShuttleBookingUpdateManyMutationInput, Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserInput>
-}
-
-export type ShuttleBookingScalarWhereInput = {
-  AND?: Prisma.ShuttleBookingScalarWhereInput | Prisma.ShuttleBookingScalarWhereInput[]
-  OR?: Prisma.ShuttleBookingScalarWhereInput[]
-  NOT?: Prisma.ShuttleBookingScalarWhereInput | Prisma.ShuttleBookingScalarWhereInput[]
-  id?: Prisma.StringFilter<"ShuttleBooking"> | string
-  userId?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
-  name?: Prisma.StringFilter<"ShuttleBooking"> | string
-  phone?: Prisma.StringFilter<"ShuttleBooking"> | string
-  origin?: Prisma.StringFilter<"ShuttleBooking"> | string
-  destination?: Prisma.StringFilter<"ShuttleBooking"> | string
-  date?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  time?: Prisma.StringFilter<"ShuttleBooking"> | string
-  passengers?: Prisma.IntFilter<"ShuttleBooking"> | number
-  amount?: Prisma.IntFilter<"ShuttleBooking"> | number
-  status?: Prisma.EnumBookingStatusFilter<"ShuttleBooking"> | $Enums.BookingStatus
-  notes?: Prisma.StringNullableFilter<"ShuttleBooking"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"ShuttleBooking"> | Date | string
-}
-
-export type ShuttleBookingCreateManyUserInput = {
-  id?: string
-  name: string
-  phone: string
-  origin: string
-  destination: string
-  date: Date | string
-  time: string
-  passengers?: number
-  amount: number
-  status?: $Enums.BookingStatus
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ShuttleBookingUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ShuttleBookingUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ShuttleBookingUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  origin?: Prisma.StringFieldUpdateOperationsInput | string
-  destination?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time?: Prisma.StringFieldUpdateOperationsInput | string
-  passengers?: Prisma.IntFieldUpdateOperationsInput | number
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
 
 
 export type ShuttleBookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  name?: boolean
-  phone?: boolean
-  origin?: boolean
-  destination?: boolean
-  date?: boolean
-  time?: boolean
-  passengers?: boolean
-  amount?: boolean
-  status?: boolean
-  notes?: boolean
+  shuttleType?: boolean
+  from?: boolean
+  to?: boolean
+  leavingTime?: boolean
+  returnTime?: boolean
+  passengerCount?: boolean
+  price?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.ShuttleBooking$userArgs<ExtArgs>
 }, ExtArgs["result"]["shuttleBooking"]>
 
 
 
 export type ShuttleBookingSelectScalar = {
   id?: boolean
-  userId?: boolean
-  name?: boolean
-  phone?: boolean
-  origin?: boolean
-  destination?: boolean
-  date?: boolean
-  time?: boolean
-  passengers?: boolean
-  amount?: boolean
-  status?: boolean
-  notes?: boolean
+  shuttleType?: boolean
+  from?: boolean
+  to?: boolean
+  leavingTime?: boolean
+  returnTime?: boolean
+  passengerCount?: boolean
+  price?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ShuttleBookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "phone" | "origin" | "destination" | "date" | "time" | "passengers" | "amount" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["shuttleBooking"]>
-export type ShuttleBookingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.ShuttleBooking$userArgs<ExtArgs>
-}
+export type ShuttleBookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shuttleType" | "from" | "to" | "leavingTime" | "returnTime" | "passengerCount" | "price" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["shuttleBooking"]>
 
 export type $ShuttleBookingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShuttleBooking"
-  objects: {
-    user: Prisma.$UserPayload<ExtArgs> | null
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    userId: string | null
-    name: string
-    phone: string
-    origin: string
-    destination: string
-    date: Date
-    time: string
-    passengers: number
-    amount: number
-    status: $Enums.BookingStatus
-    notes: string | null
+    id: number
+    shuttleType: $Enums.ShuttleType
+    from: string
+    to: string
+    leavingTime: Date
+    returnTime: Date | null
+    passengerCount: number
+    price: number
+    description: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["shuttleBooking"]>
@@ -1172,7 +902,6 @@ readonly fields: ShuttleBookingFieldRefs;
  */
 export interface Prisma__ShuttleBookingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.ShuttleBooking$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShuttleBooking$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1202,18 +931,15 @@ export interface Prisma__ShuttleBookingClient<T, Null = never, ExtArgs extends r
  * Fields of the ShuttleBooking model
  */
 export interface ShuttleBookingFieldRefs {
-  readonly id: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly userId: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly name: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly phone: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly origin: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly destination: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly date: Prisma.FieldRef<"ShuttleBooking", 'DateTime'>
-  readonly time: Prisma.FieldRef<"ShuttleBooking", 'String'>
-  readonly passengers: Prisma.FieldRef<"ShuttleBooking", 'Int'>
-  readonly amount: Prisma.FieldRef<"ShuttleBooking", 'Int'>
-  readonly status: Prisma.FieldRef<"ShuttleBooking", 'BookingStatus'>
-  readonly notes: Prisma.FieldRef<"ShuttleBooking", 'String'>
+  readonly id: Prisma.FieldRef<"ShuttleBooking", 'Int'>
+  readonly shuttleType: Prisma.FieldRef<"ShuttleBooking", 'ShuttleType'>
+  readonly from: Prisma.FieldRef<"ShuttleBooking", 'String'>
+  readonly to: Prisma.FieldRef<"ShuttleBooking", 'String'>
+  readonly leavingTime: Prisma.FieldRef<"ShuttleBooking", 'DateTime'>
+  readonly returnTime: Prisma.FieldRef<"ShuttleBooking", 'DateTime'>
+  readonly passengerCount: Prisma.FieldRef<"ShuttleBooking", 'Int'>
+  readonly price: Prisma.FieldRef<"ShuttleBooking", 'Float'>
+  readonly description: Prisma.FieldRef<"ShuttleBooking", 'String'>
   readonly createdAt: Prisma.FieldRef<"ShuttleBooking", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShuttleBooking", 'DateTime'>
 }
@@ -1233,10 +959,6 @@ export type ShuttleBookingFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * Filter, which ShuttleBooking to fetch.
    */
   where: Prisma.ShuttleBookingWhereUniqueInput
@@ -1255,10 +977,6 @@ export type ShuttleBookingFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * Filter, which ShuttleBooking to fetch.
    */
   where: Prisma.ShuttleBookingWhereUniqueInput
@@ -1276,10 +994,6 @@ export type ShuttleBookingFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the ShuttleBooking
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
   /**
    * Filter, which ShuttleBooking to fetch.
    */
@@ -1329,10 +1043,6 @@ export type ShuttleBookingFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * Filter, which ShuttleBooking to fetch.
    */
   where?: Prisma.ShuttleBookingWhereInput
@@ -1381,10 +1091,6 @@ export type ShuttleBookingFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * Filter, which ShuttleBookings to fetch.
    */
   where?: Prisma.ShuttleBookingWhereInput
@@ -1412,6 +1118,11 @@ export type ShuttleBookingFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Skip the first `n` ShuttleBookings.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ShuttleBookings.
+   */
   distinct?: Prisma.ShuttleBookingScalarFieldEnum | Prisma.ShuttleBookingScalarFieldEnum[]
 }
 
@@ -1427,10 +1138,6 @@ export type ShuttleBookingCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ShuttleBooking
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
   /**
    * The data needed to create a ShuttleBooking.
    */
@@ -1460,10 +1167,6 @@ export type ShuttleBookingUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ShuttleBooking
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
   /**
    * The data needed to update a ShuttleBooking.
    */
@@ -1505,10 +1208,6 @@ export type ShuttleBookingUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * The filter to search for the ShuttleBooking to update in case it exists.
    */
   where: Prisma.ShuttleBookingWhereUniqueInput
@@ -1535,10 +1234,6 @@ export type ShuttleBookingDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  /**
    * Filter which ShuttleBooking to delete.
    */
   where: Prisma.ShuttleBookingWhereUniqueInput
@@ -1559,25 +1254,6 @@ export type ShuttleBookingDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * ShuttleBooking.user
- */
-export type ShuttleBooking$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-}
-
-/**
  * ShuttleBooking without action
  */
 export type ShuttleBookingDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1589,8 +1265,4 @@ export type ShuttleBookingDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the ShuttleBooking
    */
   omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
 }

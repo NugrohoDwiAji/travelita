@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import SpearFishingTemplate from "@/app/components/templates/SpearFishingTemplate/SpearFishingTemplate";
+import SpearFishingTemplate from "@/app/components/templates/SpearFishingTemplate";
 
 export const metadata: Metadata = {
   title: "Spear Fishing Adventure – Travelita",

@@ -1,5 +1,5 @@
-﻿import { Metadata } from "next";
-import PrivateCarTemplate from "@/app/components/templates/PrivateCarTemplate/PrivateCarTemplate";
+import { Metadata } from "next";
+import PrivateCarTemplate from "@/app/components/templates/PrivateCarTemplate";
 
 export const metadata: Metadata = {
   title: "Private Car  Travelita",

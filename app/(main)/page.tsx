@@ -1,9 +1,9 @@
-import HeroSection        from "@/app/components/templates/HeroSection/HeroSection";
-import ServicesSection    from "@/app/components/templates/ServicesSection/ServicesSection";
-import WhyChooseUsSection from "@/app/components/templates/WhyChooseUsSection/WhyChooseUsSection";
-import DestinationsSection from "@/app/components/templates/DestinationsSection/DestinationsSection";
-import ReviewsSection     from "@/app/components/templates/ReviewsSection/ReviewsSection";
-import CtaFooterSection   from "@/app/components/templates/CtaFooterSection/CtaFooterSection";
+import HeroSection        from "@/app/components/templates/HeroSection";
+import ServicesSection    from "@/app/components/templates/ServicesSection";
+import WhyChooseUsSection from "@/app/components/templates/WhyChooseUsSection";
+import DestinationsSection from "@/app/components/templates/DestinationsSection";
+import ReviewsSection     from "@/app/components/templates/ReviewsSection";
+import CtaFooterSection   from "@/app/components/templates/CtaFooterSection";
 
 export const metadata = {
   title: "Travelita – Travel & Adventure",

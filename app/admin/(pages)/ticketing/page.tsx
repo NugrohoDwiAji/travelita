@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import AdminServiceTemplate from "@/app/components/templates/AdminServiceTemplate/AdminServiceTemplate";
-import { BookingRecord, ColumnDef } from "@/app/components/organism/AdminBookingsTable/AdminBookingsTable";
+import AdminServiceTemplate from "@/app/components/admin/templates/AdminServiceTemplate";
+import { BookingRecord, ColumnDef } from "@/app/components/admin/organism/AdminBookingsTable";
 
 export const metadata: Metadata = { title: "Ticketing – Admin Travelita" };
 

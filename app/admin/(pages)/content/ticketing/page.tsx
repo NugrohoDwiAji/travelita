@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import AdminContentTemplate, {
   ServicePackage,
   FaqEntry,
-} from "@/app/components/templates/AdminContentTemplate/AdminContentTemplate";
+} from "@/app/components/admin/templates/AdminContentTemplate";
 
 export const metadata: Metadata = { title: "Konten Ticketing – Admin Travelita" };
 

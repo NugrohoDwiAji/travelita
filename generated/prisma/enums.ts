@@ -9,31 +9,39 @@
 * 🟢 You can import this file directly.
 */
 
+export const BookingType = {
+  SHUTTLE: 'SHUTTLE',
+  TRIP: 'TRIP',
+  PRIVATE_CAR: 'PRIVATE_CAR',
+  SPEAR_CAR: 'SPEAR_CAR',
+  TICKET: 'TICKET'
+} as const
+
+export type BookingType = (typeof BookingType)[keyof typeof BookingType]
+
+
 export const BookingStatus = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
-  PROCESSING: 'PROCESSING',
+  CANCELLED: 'CANCELLED',
   COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
+  PROCESSING: 'PROCESSING'
 } as const
 
 export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
 
 
-export const TicketMode = {
-  PLANE: 'PLANE',
-  TRAIN: 'TRAIN',
-  BUS: 'BUS',
-  FERRY: 'FERRY'
+export const ShuttleType = {
+  ONE_WAY: 'ONE_WAY',
+  ROUND_TRIP: 'ROUND_TRIP'
 } as const
 
-export type TicketMode = (typeof TicketMode)[keyof typeof TicketMode]
+export type ShuttleType = (typeof ShuttleType)[keyof typeof ShuttleType]
 
 
-export const TicketClass = {
-  ECONOMY: 'ECONOMY',
-  BUSINESS: 'BUSINESS',
-  FIRST: 'FIRST'
+export const UserRole = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
 } as const
 
-export type TicketClass = (typeof TicketClass)[keyof typeof TicketClass]
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]

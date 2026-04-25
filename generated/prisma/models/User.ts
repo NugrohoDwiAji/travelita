@@ -8,7 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/library"
+import type * as runtime from "@prisma/client/runtime/client"
 import type * as $Enums from "../enums"
 import type * as Prisma from "../internal/prismaNamespace"
 
@@ -27,9 +27,10 @@ export type AggregateUser = {
 export type UserMinAggregateOutputType = {
   id: string | null
   name: string | null
+  username: string | null
   email: string | null
-  phone: string | null
   password: string | null
+  role: $Enums.UserRole | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -37,9 +38,10 @@ export type UserMinAggregateOutputType = {
 export type UserMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  username: string | null
   email: string | null
-  phone: string | null
   password: string | null
+  role: $Enums.UserRole | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,9 +49,10 @@ export type UserMaxAggregateOutputType = {
 export type UserCountAggregateOutputType = {
   id: number
   name: number
+  username: number
   email: number
-  phone: number
   password: number
+  role: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -59,9 +62,10 @@ export type UserCountAggregateOutputType = {
 export type UserMinAggregateInputType = {
   id?: true
   name?: true
+  username?: true
   email?: true
-  phone?: true
   password?: true
+  role?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -69,9 +73,10 @@ export type UserMinAggregateInputType = {
 export type UserMaxAggregateInputType = {
   id?: true
   name?: true
+  username?: true
   email?: true
-  phone?: true
   password?: true
+  role?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -79,9 +84,10 @@ export type UserMaxAggregateInputType = {
 export type UserCountAggregateInputType = {
   id?: true
   name?: true
+  username?: true
   email?: true
-  phone?: true
   password?: true
+  role?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -162,9 +168,10 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: string
   name: string
+  username: string
   email: string
-  phone: string | null
   password: string
+  role: $Enums.UserRole
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -172,7 +179,7 @@ export type UserGroupByOutputType = {
   _max: UserMaxAggregateOutputType | null
 }
 
-type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+export type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<UserGroupByOutputType, T['by']> &
       {
@@ -193,31 +200,27 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
+  username?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  phone?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingListRelationFilter
-  privateCarBookings?: Prisma.PrivateCarBookingListRelationFilter
-  ticketBookings?: Prisma.TicketBookingListRelationFilter
-  spearFishBookings?: Prisma.SpearFishingBookingListRelationFilter
-  travelBookings?: Prisma.TravelBookingListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  booking?: Prisma.XOR<Prisma.BookingNullableScalarRelationFilter, Prisma.BookingWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  shuttleBookings?: Prisma.ShuttleBookingOrderByRelationAggregateInput
-  privateCarBookings?: Prisma.PrivateCarBookingOrderByRelationAggregateInput
-  ticketBookings?: Prisma.TicketBookingOrderByRelationAggregateInput
-  spearFishBookings?: Prisma.SpearFishingBookingOrderByRelationAggregateInput
-  travelBookings?: Prisma.TravelBookingOrderByRelationAggregateInput
+  profile?: Prisma.ProfileOrderByWithRelationInput
+  booking?: Prisma.BookingOrderByWithRelationInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -228,23 +231,22 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
-  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingListRelationFilter
-  privateCarBookings?: Prisma.PrivateCarBookingListRelationFilter
-  ticketBookings?: Prisma.TicketBookingListRelationFilter
-  spearFishBookings?: Prisma.SpearFishingBookingListRelationFilter
-  travelBookings?: Prisma.TravelBookingListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  booking?: Prisma.XOR<Prisma.BookingNullableScalarRelationFilter, Prisma.BookingWhereInput> | null
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -258,9 +260,10 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
+  username?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -268,69 +271,62 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserCreateInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  booking?: Prisma.BookingCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingUncheckedCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  booking?: Prisma.BookingUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  booking?: Prisma.BookingUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUncheckedUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  booking?: Prisma.BookingUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -338,9 +334,10 @@ export type UserCreateManyInput = {
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -348,9 +345,10 @@ export type UserUpdateManyMutationInput = {
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -364,9 +362,10 @@ export type UserOrderByRelevanceInput = {
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -374,9 +373,10 @@ export type UserCountOrderByAggregateInput = {
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -384,551 +384,200 @@ export type UserMaxOrderByAggregateInput = {
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type EnumUserRoleFieldUpdateOperationsInput = {
+  set?: $Enums.UserRole
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type UserCreateNestedOneWithoutShuttleBookingsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutShuttleBookingsInput, Prisma.UserUncheckedCreateWithoutShuttleBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShuttleBookingsInput
+export type UserCreateNestedOneWithoutProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutShuttleBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutShuttleBookingsInput, Prisma.UserUncheckedCreateWithoutShuttleBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShuttleBookingsInput
-  upsert?: Prisma.UserUpsertWithoutShuttleBookingsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
+export type UserUpdateOneRequiredWithoutProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
+  upsert?: Prisma.UserUpsertWithoutProfileInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutShuttleBookingsInput, Prisma.UserUpdateWithoutShuttleBookingsInput>, Prisma.UserUncheckedUpdateWithoutShuttleBookingsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
 }
 
-export type UserCreateNestedOneWithoutPrivateCarBookingsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedCreateWithoutPrivateCarBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivateCarBookingsInput
+export type UserCreateNestedOneWithoutBookingInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBookingInput, Prisma.UserUncheckedCreateWithoutBookingInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBookingInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutPrivateCarBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedCreateWithoutPrivateCarBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivateCarBookingsInput
-  upsert?: Prisma.UserUpsertWithoutPrivateCarBookingsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
+export type UserUpdateOneRequiredWithoutBookingNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBookingInput, Prisma.UserUncheckedCreateWithoutBookingInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBookingInput
+  upsert?: Prisma.UserUpsertWithoutBookingInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrivateCarBookingsInput, Prisma.UserUpdateWithoutPrivateCarBookingsInput>, Prisma.UserUncheckedUpdateWithoutPrivateCarBookingsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBookingInput, Prisma.UserUpdateWithoutBookingInput>, Prisma.UserUncheckedUpdateWithoutBookingInput>
 }
 
-export type UserCreateNestedOneWithoutTicketBookingsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTicketBookingsInput, Prisma.UserUncheckedCreateWithoutTicketBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTicketBookingsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutTicketBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTicketBookingsInput, Prisma.UserUncheckedCreateWithoutTicketBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTicketBookingsInput
-  upsert?: Prisma.UserUpsertWithoutTicketBookingsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTicketBookingsInput, Prisma.UserUpdateWithoutTicketBookingsInput>, Prisma.UserUncheckedUpdateWithoutTicketBookingsInput>
-}
-
-export type UserCreateNestedOneWithoutSpearFishBookingsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSpearFishBookingsInput, Prisma.UserUncheckedCreateWithoutSpearFishBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSpearFishBookingsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutSpearFishBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSpearFishBookingsInput, Prisma.UserUncheckedCreateWithoutSpearFishBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSpearFishBookingsInput
-  upsert?: Prisma.UserUpsertWithoutSpearFishBookingsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSpearFishBookingsInput, Prisma.UserUpdateWithoutSpearFishBookingsInput>, Prisma.UserUncheckedUpdateWithoutSpearFishBookingsInput>
-}
-
-export type UserCreateNestedOneWithoutTravelBookingsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTravelBookingsInput, Prisma.UserUncheckedCreateWithoutTravelBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTravelBookingsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneWithoutTravelBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTravelBookingsInput, Prisma.UserUncheckedCreateWithoutTravelBookingsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTravelBookingsInput
-  upsert?: Prisma.UserUpsertWithoutTravelBookingsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTravelBookingsInput, Prisma.UserUpdateWithoutTravelBookingsInput>, Prisma.UserUncheckedUpdateWithoutTravelBookingsInput>
-}
-
-export type UserCreateWithoutShuttleBookingsInput = {
+export type UserCreateWithoutProfileInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  privateCarBookings?: Prisma.PrivateCarBookingCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingCreateNestedManyWithoutUserInput
+  booking?: Prisma.BookingCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutShuttleBookingsInput = {
+export type UserUncheckedCreateWithoutProfileInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingUncheckedCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingUncheckedCreateNestedManyWithoutUserInput
+  booking?: Prisma.BookingUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutShuttleBookingsInput = {
+export type UserCreateOrConnectWithoutProfileInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutShuttleBookingsInput, Prisma.UserUncheckedCreateWithoutShuttleBookingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
 }
 
-export type UserUpsertWithoutShuttleBookingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutShuttleBookingsInput, Prisma.UserUncheckedUpdateWithoutShuttleBookingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutShuttleBookingsInput, Prisma.UserUncheckedCreateWithoutShuttleBookingsInput>
+export type UserUpsertWithoutProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutShuttleBookingsInput = {
+export type UserUpdateToOneWithWhereWithoutProfileInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutShuttleBookingsInput, Prisma.UserUncheckedUpdateWithoutShuttleBookingsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
 }
 
-export type UserUpdateWithoutShuttleBookingsInput = {
+export type UserUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  privateCarBookings?: Prisma.PrivateCarBookingUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUpdateManyWithoutUserNestedInput
+  booking?: Prisma.BookingUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutShuttleBookingsInput = {
+export type UserUncheckedUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUncheckedUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUncheckedUpdateManyWithoutUserNestedInput
+  booking?: Prisma.BookingUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutPrivateCarBookingsInput = {
+export type UserCreateWithoutBookingInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutPrivateCarBookingsInput = {
+export type UserUncheckedCreateWithoutBookingInput = {
   id?: string
   name: string
+  username: string
   email: string
-  phone?: string | null
   password: string
+  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingUncheckedCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutPrivateCarBookingsInput = {
+export type UserCreateOrConnectWithoutBookingInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedCreateWithoutPrivateCarBookingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBookingInput, Prisma.UserUncheckedCreateWithoutBookingInput>
 }
 
-export type UserUpsertWithoutPrivateCarBookingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedUpdateWithoutPrivateCarBookingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedCreateWithoutPrivateCarBookingsInput>
+export type UserUpsertWithoutBookingInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBookingInput, Prisma.UserUncheckedUpdateWithoutBookingInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBookingInput, Prisma.UserUncheckedCreateWithoutBookingInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutPrivateCarBookingsInput = {
+export type UserUpdateToOneWithWhereWithoutBookingInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPrivateCarBookingsInput, Prisma.UserUncheckedUpdateWithoutPrivateCarBookingsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBookingInput, Prisma.UserUncheckedUpdateWithoutBookingInput>
 }
 
-export type UserUpdateWithoutPrivateCarBookingsInput = {
+export type UserUpdateWithoutBookingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutPrivateCarBookingsInput = {
+export type UserUncheckedUpdateWithoutBookingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUncheckedUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutTicketBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTicketBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTicketBookingsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTicketBookingsInput, Prisma.UserUncheckedCreateWithoutTicketBookingsInput>
-}
-
-export type UserUpsertWithoutTicketBookingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTicketBookingsInput, Prisma.UserUncheckedUpdateWithoutTicketBookingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTicketBookingsInput, Prisma.UserUncheckedCreateWithoutTicketBookingsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTicketBookingsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTicketBookingsInput, Prisma.UserUncheckedUpdateWithoutTicketBookingsInput>
-}
-
-export type UserUpdateWithoutTicketBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTicketBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutSpearFishBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSpearFishBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingUncheckedCreateNestedManyWithoutUserInput
-  travelBookings?: Prisma.TravelBookingUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSpearFishBookingsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSpearFishBookingsInput, Prisma.UserUncheckedCreateWithoutSpearFishBookingsInput>
-}
-
-export type UserUpsertWithoutSpearFishBookingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSpearFishBookingsInput, Prisma.UserUncheckedUpdateWithoutSpearFishBookingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSpearFishBookingsInput, Prisma.UserUncheckedCreateWithoutSpearFishBookingsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSpearFishBookingsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSpearFishBookingsInput, Prisma.UserUncheckedUpdateWithoutSpearFishBookingsInput>
-}
-
-export type UserUpdateWithoutSpearFishBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSpearFishBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUncheckedUpdateManyWithoutUserNestedInput
-  travelBookings?: Prisma.TravelBookingUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutTravelBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTravelBookingsInput = {
-  id?: string
-  name: string
-  email: string
-  phone?: string | null
-  password: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedCreateNestedManyWithoutUserInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedCreateNestedManyWithoutUserInput
-  ticketBookings?: Prisma.TicketBookingUncheckedCreateNestedManyWithoutUserInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTravelBookingsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTravelBookingsInput, Prisma.UserUncheckedCreateWithoutTravelBookingsInput>
-}
-
-export type UserUpsertWithoutTravelBookingsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTravelBookingsInput, Prisma.UserUncheckedUpdateWithoutTravelBookingsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTravelBookingsInput, Prisma.UserUncheckedCreateWithoutTravelBookingsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTravelBookingsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTravelBookingsInput, Prisma.UserUncheckedUpdateWithoutTravelBookingsInput>
-}
-
-export type UserUpdateWithoutTravelBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTravelBookingsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shuttleBookings?: Prisma.ShuttleBookingUncheckedUpdateManyWithoutUserNestedInput
-  privateCarBookings?: Prisma.PrivateCarBookingUncheckedUpdateManyWithoutUserNestedInput
-  ticketBookings?: Prisma.TicketBookingUncheckedUpdateManyWithoutUserNestedInput
-  spearFishBookings?: Prisma.SpearFishingBookingUncheckedUpdateManyWithoutUserNestedInput
-}
-
-
-/**
- * Count Type UserCountOutputType
- */
-
-export type UserCountOutputType = {
-  shuttleBookings: number
-  privateCarBookings: number
-  ticketBookings: number
-  spearFishBookings: number
-  travelBookings: number
-}
-
-export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shuttleBookings?: boolean | UserCountOutputTypeCountShuttleBookingsArgs
-  privateCarBookings?: boolean | UserCountOutputTypeCountPrivateCarBookingsArgs
-  ticketBookings?: boolean | UserCountOutputTypeCountTicketBookingsArgs
-  spearFishBookings?: boolean | UserCountOutputTypeCountSpearFishBookingsArgs
-  travelBookings?: boolean | UserCountOutputTypeCountTravelBookingsArgs
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserCountOutputType
-   */
-  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountShuttleBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShuttleBookingWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountPrivateCarBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PrivateCarBookingWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountTicketBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TicketBookingWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSpearFishBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SpearFishingBookingWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountTravelBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TravelBookingWhereInput
-}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  username?: boolean
   email?: boolean
-  phone?: boolean
   password?: boolean
+  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  shuttleBookings?: boolean | Prisma.User$shuttleBookingsArgs<ExtArgs>
-  privateCarBookings?: boolean | Prisma.User$privateCarBookingsArgs<ExtArgs>
-  ticketBookings?: boolean | Prisma.User$ticketBookingsArgs<ExtArgs>
-  spearFishBookings?: boolean | Prisma.User$spearFishBookingsArgs<ExtArgs>
-  travelBookings?: boolean | Prisma.User$travelBookingsArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  booking?: boolean | Prisma.User$bookingArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 
@@ -936,38 +585,33 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type UserSelectScalar = {
   id?: boolean
   name?: boolean
+  username?: boolean
   email?: boolean
-  phone?: boolean
   password?: boolean
+  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shuttleBookings?: boolean | Prisma.User$shuttleBookingsArgs<ExtArgs>
-  privateCarBookings?: boolean | Prisma.User$privateCarBookingsArgs<ExtArgs>
-  ticketBookings?: boolean | Prisma.User$ticketBookingsArgs<ExtArgs>
-  spearFishBookings?: boolean | Prisma.User$spearFishBookingsArgs<ExtArgs>
-  travelBookings?: boolean | Prisma.User$travelBookingsArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  booking?: boolean | Prisma.User$bookingArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    shuttleBookings: Prisma.$ShuttleBookingPayload<ExtArgs>[]
-    privateCarBookings: Prisma.$PrivateCarBookingPayload<ExtArgs>[]
-    ticketBookings: Prisma.$TicketBookingPayload<ExtArgs>[]
-    spearFishBookings: Prisma.$SpearFishingBookingPayload<ExtArgs>[]
-    travelBookings: Prisma.$TravelBookingPayload<ExtArgs>[]
+    profile: Prisma.$ProfilePayload<ExtArgs> | null
+    booking: Prisma.$BookingPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    username: string
     email: string
-    phone: string | null
     password: string
+    role: $Enums.UserRole
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1310,11 +954,8 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  shuttleBookings<T extends Prisma.User$shuttleBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shuttleBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShuttleBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  privateCarBookings<T extends Prisma.User$privateCarBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$privateCarBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrivateCarBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ticketBookings<T extends Prisma.User$ticketBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  spearFishBookings<T extends Prisma.User$spearFishBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$spearFishBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SpearFishingBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  travelBookings<T extends Prisma.User$travelBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$travelBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TravelBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  booking<T extends Prisma.User$bookingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bookingArgs<ExtArgs>>): Prisma.Prisma__BookingClient<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1346,9 +987,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly username: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly phone: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly role: Prisma.FieldRef<"User", 'UserRole'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1547,6 +1189,11 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Skip the first `n` Users.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Users.
+   */
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
@@ -1694,123 +1341,41 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.shuttleBookings
+ * User.profile
  */
-export type User$shuttleBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ShuttleBooking
+   * Select specific fields to fetch from the Profile
    */
-  select?: Prisma.ShuttleBookingSelect<ExtArgs> | null
+  select?: Prisma.ProfileSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ShuttleBooking
+   * Omit specific fields from the Profile
    */
-  omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
+  omit?: Prisma.ProfileOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ShuttleBookingInclude<ExtArgs> | null
-  where?: Prisma.ShuttleBookingWhereInput
-  orderBy?: Prisma.ShuttleBookingOrderByWithRelationInput | Prisma.ShuttleBookingOrderByWithRelationInput[]
-  cursor?: Prisma.ShuttleBookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShuttleBookingScalarFieldEnum | Prisma.ShuttleBookingScalarFieldEnum[]
+  include?: Prisma.ProfileInclude<ExtArgs> | null
+  where?: Prisma.ProfileWhereInput
 }
 
 /**
- * User.privateCarBookings
+ * User.booking
  */
-export type User$privateCarBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$bookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the PrivateCarBooking
+   * Select specific fields to fetch from the Booking
    */
-  select?: Prisma.PrivateCarBookingSelect<ExtArgs> | null
+  select?: Prisma.BookingSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the PrivateCarBooking
+   * Omit specific fields from the Booking
    */
-  omit?: Prisma.PrivateCarBookingOmit<ExtArgs> | null
+  omit?: Prisma.BookingOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PrivateCarBookingInclude<ExtArgs> | null
-  where?: Prisma.PrivateCarBookingWhereInput
-  orderBy?: Prisma.PrivateCarBookingOrderByWithRelationInput | Prisma.PrivateCarBookingOrderByWithRelationInput[]
-  cursor?: Prisma.PrivateCarBookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PrivateCarBookingScalarFieldEnum | Prisma.PrivateCarBookingScalarFieldEnum[]
-}
-
-/**
- * User.ticketBookings
- */
-export type User$ticketBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TicketBooking
-   */
-  select?: Prisma.TicketBookingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TicketBooking
-   */
-  omit?: Prisma.TicketBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TicketBookingInclude<ExtArgs> | null
-  where?: Prisma.TicketBookingWhereInput
-  orderBy?: Prisma.TicketBookingOrderByWithRelationInput | Prisma.TicketBookingOrderByWithRelationInput[]
-  cursor?: Prisma.TicketBookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TicketBookingScalarFieldEnum | Prisma.TicketBookingScalarFieldEnum[]
-}
-
-/**
- * User.spearFishBookings
- */
-export type User$spearFishBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SpearFishingBooking
-   */
-  select?: Prisma.SpearFishingBookingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SpearFishingBooking
-   */
-  omit?: Prisma.SpearFishingBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SpearFishingBookingInclude<ExtArgs> | null
-  where?: Prisma.SpearFishingBookingWhereInput
-  orderBy?: Prisma.SpearFishingBookingOrderByWithRelationInput | Prisma.SpearFishingBookingOrderByWithRelationInput[]
-  cursor?: Prisma.SpearFishingBookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SpearFishingBookingScalarFieldEnum | Prisma.SpearFishingBookingScalarFieldEnum[]
-}
-
-/**
- * User.travelBookings
- */
-export type User$travelBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TravelBooking
-   */
-  select?: Prisma.TravelBookingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TravelBooking
-   */
-  omit?: Prisma.TravelBookingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TravelBookingInclude<ExtArgs> | null
-  where?: Prisma.TravelBookingWhereInput
-  orderBy?: Prisma.TravelBookingOrderByWithRelationInput | Prisma.TravelBookingOrderByWithRelationInput[]
-  cursor?: Prisma.TravelBookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TravelBookingScalarFieldEnum | Prisma.TravelBookingScalarFieldEnum[]
+  include?: Prisma.BookingInclude<ExtArgs> | null
+  where?: Prisma.BookingWhereInput
 }
 
 /**

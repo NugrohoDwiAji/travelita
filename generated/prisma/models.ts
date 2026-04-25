@@ -9,9 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/Profile'
+export type * from './models/Booking'
 export type * from './models/ShuttleBooking'
-export type * from './models/PrivateCarBooking'
-export type * from './models/TicketBooking'
-export type * from './models/SpearFishingBooking'
-export type * from './models/TravelBooking'
 export type * from './commonInputTypes'
