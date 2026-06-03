@@ -13,7 +13,7 @@ export default async function TicketingPage() {
     getServiceRoutes("TICKET"),
   ]);
 
-  const routes = routesResult.data?.map(r => ({
+  const routes = routesResult.data?.map((r: any) => ({
     from: r.from,
     to: r.to,
     duration: r.duration,

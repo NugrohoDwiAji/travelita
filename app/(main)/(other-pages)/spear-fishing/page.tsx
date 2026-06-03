@@ -14,7 +14,7 @@ export default async function SpearFishingPage() {
     getServiceSpots("SPEAR_CAR"),
   ]);
 
-  const spots = spotsResult.data?.map((spot) => ({
+  const spots = spotsResult.data?.map((spot: any) => ({
     name: spot.name,
     region: spot.region,
     depth: spot.depth,
