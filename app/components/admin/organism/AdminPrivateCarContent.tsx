@@ -7,7 +7,6 @@ import AdminContentTemplate, {
   type FaqEntry,
 } from "@/app/components/admin/templates/AdminContentTemplate";
 import { getServiceContent, getPrivateCarPricing } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 import {
   DEFAULT_PRICING,
   type PrivateCarPricing,
@@ -22,7 +21,7 @@ export default function AdminPrivateCarContent() {
 
   useEffect(() => {
     Promise.all([
-      getServiceContent(BookingType.PRIVATE_CAR),
+      getServiceContent("PRIVATE_CAR"),
       getPrivateCarPricing(),
     ]).then(([contentRes, pricingRes]) => {
       const data = contentRes.data;
@@ -64,7 +63,7 @@ export default function AdminPrivateCarContent() {
 
   return (
     <AdminContentTemplate
-      serviceType={BookingType.PRIVATE_CAR}
+      serviceType="PRIVATE_CAR"
       serviceTitle="Private Car"
       serviceIcon="🚗"
       breadcrumb="Kelola Konten"

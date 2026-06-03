@@ -8,7 +8,6 @@ import AdminContentTemplate, {
   type ServiceRoute,
 } from "@/app/components/admin/templates/AdminContentTemplate";
 import { getServiceContent, getServiceRoutes } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 
 export default function AdminShuttleContent() {
   const [general, setGeneral] = useState<Partial<GeneralInfo>>({});
@@ -19,8 +18,8 @@ export default function AdminShuttleContent() {
 
   useEffect(() => {
     Promise.all([
-      getServiceContent(BookingType.SHUTTLE),
-      getServiceRoutes(BookingType.SHUTTLE),
+      getServiceContent("SHUTTLE"),
+      getServiceRoutes("SHUTTLE"),
     ]).then(([contentRes, routesRes]) => {
       const data = contentRes.data;
       if (data) {
@@ -67,7 +66,7 @@ export default function AdminShuttleContent() {
 
   return (
     <AdminContentTemplate
-      serviceType={BookingType.SHUTTLE}
+      serviceType="SHUTTLE"
       serviceTitle="Shuttle Service"
       serviceIcon="🚐"
       breadcrumb="Kelola Konten"

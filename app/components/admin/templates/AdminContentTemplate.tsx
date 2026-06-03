@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { BookingType } from "@prisma/client";
 import { updateServiceContent, updateServiceRoutes, updateServiceSpots, updatePrivateCarPricing, type ContentInput, type RouteInput, type SpotInput } from "@/app/actions/content";
 
 /* ─── Molecules ──────────────────────────────────────────── */
@@ -69,7 +68,7 @@ export interface ServiceSpot {
 }
 
 export interface AdminContentTemplateProps {
-  serviceType: BookingType;
+  serviceType: string;
   serviceTitle: string;
   serviceIcon: string;
   breadcrumb?: string;

@@ -70,10 +70,10 @@ type ServiceSpotRecord = SpotInput & {
   updatedAt: Date;
 };
 
-export async function getServiceContent(serviceType: BookingType) {
+export async function getServiceContent(serviceType: string) {
   try {
     const content = await prisma.serviceContent.findUnique({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       include: {
         packages: true,
         faqs: true,
@@ -87,15 +87,15 @@ export async function getServiceContent(serviceType: BookingType) {
   }
 }
 
-export async function getContent(serviceType: BookingType) {
+export async function getContent(serviceType: string) {
   return getServiceContent(serviceType);
 }
 
-export async function getServiceRoutes(serviceType: BookingType) {
+export async function getServiceRoutes(serviceType: string) {
   try {
     // Cari content ID dulu
     const content = await prisma.serviceContent.findUnique({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       select: { id: true },
     });
 
@@ -157,10 +157,10 @@ export async function getServiceRoutes(serviceType: BookingType) {
   }
 }
 
-export async function getServiceSpots(serviceType: BookingType) {
+export async function getServiceSpots(serviceType: string) {
   try {
     const content = await prisma.serviceContent.findUnique({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       select: { id: true },
     });
 
@@ -199,7 +199,7 @@ export async function getServiceSpots(serviceType: BookingType) {
   }
 }
 
-export async function updateServiceContent(serviceType: BookingType, data: ContentInput) {
+export async function updateServiceContent(serviceType: string, data: ContentInput) {
   const session = await auth();
 
   if (!session?.user || session.user.role !== "ADMIN") {
@@ -218,10 +218,10 @@ export async function updateServiceContent(serviceType: BookingType, data: Conte
     // Sequential queries tanpa $transaction (Neon PostgreSQL timeout issue)
     // 1. Upsert ServiceContent
     const upsertedContent = await prisma.serviceContent.upsert({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       create: {
         ...contentData,
-        serviceType,
+        serviceType: serviceType as any,
       },
       update: contentData,
     });
@@ -310,7 +310,7 @@ export async function updateServiceContent(serviceType: BookingType, data: Conte
   }
 }
 
-export async function updateServiceRoutes(serviceType: BookingType, routes: z.infer<typeof routeSchema>[]) {
+export async function updateServiceRoutes(serviceType: string, routes: z.infer<typeof routeSchema>[]) {
   const session = await auth();
 
   if (!session?.user || session.user.role !== "ADMIN") {
@@ -326,9 +326,9 @@ export async function updateServiceRoutes(serviceType: BookingType, routes: z.in
   try {
     // Sequential queries tanpa $transaction (Neon PostgreSQL timeout issue)
     const content = await prisma.serviceContent.upsert({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       create: {
-        serviceType,
+        serviceType: serviceType as any,
         title: "",
         description: "",
       },
@@ -392,7 +392,7 @@ export async function updateServiceRoutes(serviceType: BookingType, routes: z.in
 
 export type RouteInput = z.infer<typeof routeSchema>;
 
-export async function updateServiceSpots(serviceType: BookingType, spots: SpotInput[]) {
+export async function updateServiceSpots(serviceType: string, spots: SpotInput[]) {
   const session = await auth();
 
   if (!session?.user || session.user.role !== "ADMIN") {
@@ -407,9 +407,9 @@ export async function updateServiceSpots(serviceType: BookingType, spots: SpotIn
 
   try {
     const content = await prisma.serviceContent.upsert({
-      where: { serviceType },
+      where: { serviceType: serviceType as any },
       create: {
-        serviceType,
+        serviceType: serviceType as any,
         title: "",
         description: "",
       },
@@ -535,7 +535,7 @@ export type PrivateCarPricingInput = z.infer<typeof privateCarPricingSchema>;
 export async function getPrivateCarPricing() {
   try {
     const content = await prisma.serviceContent.findUnique({
-      where: { serviceType: BookingType.PRIVATE_CAR },
+      where: { serviceType: "PRIVATE_CAR" },
       select: { id: true },
     });
 
@@ -585,9 +585,9 @@ export async function updatePrivateCarPricing(data: PrivateCarPricingInput) {
   try {
     // Upsert content dulu
     const content = await prisma.serviceContent.upsert({
-      where: { serviceType: BookingType.PRIVATE_CAR },
+      where: { serviceType: "PRIVATE_CAR" },
       create: {
-        serviceType: BookingType.PRIVATE_CAR,
+        serviceType: "PRIVATE_CAR" as any,
         title: "Private Car",
         description: "Layanan private car untuk perjalanan Anda.",
       },

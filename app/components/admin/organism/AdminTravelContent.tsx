@@ -7,7 +7,6 @@ import AdminContentTemplate, {
   type FaqEntry,
 } from "@/app/components/admin/templates/AdminContentTemplate";
 import { getServiceContent } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 
 export default function AdminTravelContent() {
   const [general, setGeneral] = useState<Partial<GeneralInfo>>({});
@@ -16,7 +15,7 @@ export default function AdminTravelContent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getServiceContent(BookingType.TRIP).then((res) => {
+    getServiceContent("TRIP").then((res) => {
       const data = res.data;
       if (data) {
         setGeneral({
@@ -53,7 +52,7 @@ export default function AdminTravelContent() {
 
   return (
     <AdminContentTemplate
-      serviceType={BookingType.TRIP}
+      serviceType="TRIP"
       serviceTitle="Wisata Travel"
       serviceIcon="🗺️"
       breadcrumb="Kelola Konten"

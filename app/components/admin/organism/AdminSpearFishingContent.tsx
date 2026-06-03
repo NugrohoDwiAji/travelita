@@ -9,7 +9,6 @@ import AdminContentTemplate, {
   type ServiceSpot,
 } from "@/app/components/admin/templates/AdminContentTemplate";
 import { getServiceContent, getServiceRoutes, getServiceSpots } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 
 export default function AdminSpearFishingContent() {
   const [general, setGeneral] = useState<Partial<GeneralInfo>>({});
@@ -21,9 +20,9 @@ export default function AdminSpearFishingContent() {
 
   useEffect(() => {
     Promise.all([
-      getServiceContent(BookingType.SPEAR_CAR),
-      getServiceRoutes(BookingType.SPEAR_CAR),
-      getServiceSpots(BookingType.SPEAR_CAR),
+      getServiceContent("SPEAR_CAR"),
+      getServiceRoutes("SPEAR_CAR"),
+      getServiceSpots("SPEAR_CAR"),
     ]).then(([contentRes, routesRes, spotsRes]) => {
       const data = contentRes.data;
       if (data) {
@@ -79,7 +78,7 @@ export default function AdminSpearFishingContent() {
 
   return (
     <AdminContentTemplate
-      serviceType={BookingType.SPEAR_CAR}
+      serviceType="SPEAR_CAR"
       serviceTitle="Spear Fishing"
       serviceIcon="🤿"
       breadcrumb="Kelola Konten"
