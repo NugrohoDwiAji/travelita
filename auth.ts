@@ -1,6 +1,7 @@
 // auth.ts
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import { prisma } from "@/app/lib/prisma";
 import { comparePassword } from "@/app/utils/password";
 import { authConfig } from "./auth.config"; // 👈 Import config yang baru dibuat
@@ -32,6 +33,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role: user.role,
         };
       },
+    }),
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID || "",
+      clientSecret: process.env.AUTH_GOOGLE_SECRET || "",
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
 });

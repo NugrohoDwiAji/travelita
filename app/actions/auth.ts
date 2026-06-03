@@ -81,6 +81,19 @@ export async function loginUser(email: string, password: string) {
   return { success: true };
 }
 
+export async function signInWithGoogle() {
+  try {
+    await signIn("google", {
+      redirectTo: "/",
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return { error: "Terjadi kesalahan saat login dengan Google." };
+    }
+    throw error;
+  }
+}
+
 export async function logout() {
   await signOut({ redirectTo: "/admin/login" });
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/app/components/atoms/Logo";
 import AuthInput from "@/app/components/moleculs/AuthInput";
-import { loginUser } from "@/app/actions/auth";
+import { loginUser, signInWithGoogle } from "@/app/actions/auth";
 import { validateLoginData } from "@/app/utils/auth-validation";
 import {
   IconEmail,
@@ -25,6 +25,7 @@ export default function SignInTemplate() {
     {},
   );
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
@@ -60,6 +61,17 @@ export default function SignInTemplate() {
       setError(t("errorGeneric"));
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleGoogleSignIn() {
+    setGoogleLoading(true);
+    setError(null);
+    try {
+      await signInWithGoogle();
+    } catch {
+      setError(t("errorGeneric"));
+      setGoogleLoading(false);
     }
   }
 
@@ -147,16 +159,20 @@ export default function SignInTemplate() {
           {/* Google SSO */}
           <button
             type="button"
+            onClick={handleGoogleSignIn}
+            disabled={googleLoading}
             className="flex w-full items-center justify-center gap-3 rounded-xl py-3 text-sm font-semibold transition-all mb-6"
             style={{
-              background: "#fff",
+              background: googleLoading ? "#f3f4f6" : "#fff",
               border: "1.5px solid #e5e7eb",
-              color: "#374151",
+              color: googleLoading ? "#9ca3af" : "#374151",
               boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
+              cursor: googleLoading ? "not-allowed" : "pointer",
+              opacity: googleLoading ? 0.6 : 1,
             }}
           >
             <IconGoogle size={18} />
-            {t("googleButton")}
+            {googleLoading ? t("googleButtonLoading") : t("googleButton")}
           </button>
 
           {/* Divider */}

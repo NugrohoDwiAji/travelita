@@ -47,6 +47,7 @@
       "noAccountText": "Belum punya akun?",
       "signUpLink": "Daftar sekarang",
       "googleButton": "Masuk dengan Google",
+      "googleButtonLoading": "Sedang masuk...",
       "dividerText": "atau masuk dengan email",
       "emailLabel": "Email",
       "emailPlaceholder": "nama@email.com",
