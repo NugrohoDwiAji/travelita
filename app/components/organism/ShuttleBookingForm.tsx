@@ -14,7 +14,6 @@ import ShuttleConfirmDialog from "@/app/components/moleculs/ShuttleConfirmDialog
 import AlertDialog from "@/app/components/moleculs/AlertDialog";
 import { postShuttleBooking } from "@/app/actions/shuttleService";
 import { getServiceRoutes } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -55,7 +54,7 @@ export default function ShuttleBookingForm() {
 
   // Fetch routes dari database
   useEffect(() => {
-    getServiceRoutes(BookingType.SHUTTLE).then((result) => {
+    getServiceRoutes("SHUTTLE").then((result) => {
       if (result.success && result.data) {
         const routes = result.data as RouteData[];
         
