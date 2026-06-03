@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Header from "@/app/components/organism/Header";
 import AuthProvider from "@/app/context/AuthProvider";
+import WhatsAppButton from "@/app/components/molecules/WhatsAppButton";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -39,6 +40,7 @@ export default async function RootLayout({
           <AuthProvider>
             <Header />
             {children}
+            <WhatsAppButton />
           </AuthProvider>
         </NextIntlClientProvider>
       </body>

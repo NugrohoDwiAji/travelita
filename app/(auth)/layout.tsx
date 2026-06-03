@@ -2,6 +2,7 @@ import React from "react";
 import "../globals.css";
 import AuthProvider from "@/app/context/AuthProvider";
 import UnderConstructionBanner from "@/app/components/moleculs/UnderConstructionBanner";
+import WhatsAppButton from "@/app/components/molecules/WhatsAppButton";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -20,6 +21,7 @@ export default async function Layout({
           <AuthProvider>
             <UnderConstructionBanner />
             {children}
+            <WhatsAppButton />
           </AuthProvider>
         </NextIntlClientProvider>
       </body>

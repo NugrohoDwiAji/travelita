@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import AdminSidebar from "@/app/components/admin/organism/AdminSidebar";
 import AuthProvider from "@/app/context/AuthProvider";
+import WhatsAppButton from "@/app/components/molecules/WhatsAppButton";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -31,6 +32,7 @@ export default function AdminLayout({
               <main className="min-h-screen">{children}</main>
             </div>
           </div>
+          <WhatsAppButton />
         </AuthProvider>
       </body>
     </html>

@@ -8,7 +8,6 @@ import AdminContentTemplate, {
   type ServiceRoute,
 } from "@/app/components/admin/templates/AdminContentTemplate";
 import { getServiceContent, getServiceRoutes } from "@/app/actions/content";
-import { BookingType } from "@prisma/client";
 
 export default function AdminTicketingContent() {
   const [general, setGeneral] = useState<Partial<GeneralInfo>>({});
@@ -19,8 +18,8 @@ export default function AdminTicketingContent() {
 
   useEffect(() => {
     Promise.all([
-      getServiceContent(BookingType.TICKET),
-      getServiceRoutes(BookingType.TICKET),
+      getServiceContent("TICKET"),
+      getServiceRoutes("TICKET"),
     ]).then(([contentRes, routesRes]) => {
       const data = contentRes.data;
       if (data) {
@@ -67,7 +66,7 @@ export default function AdminTicketingContent() {
 
   return (
     <AdminContentTemplate
-      serviceType={BookingType.TICKET}
+      serviceType="TICKET"
       serviceTitle="Ticketing"
       serviceIcon="🎫"
       breadcrumb="Kelola Konten"
