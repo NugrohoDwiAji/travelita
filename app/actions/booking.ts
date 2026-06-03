@@ -362,7 +362,22 @@ export async function getAllBookings(status?: string, type?: string) {
   }
 
   try {
-    const bookings = await prisma.booking.findMany({
+    const bookings: {
+      id: number;
+      userId: string;
+      details: number;
+      type: "SHUTTLE" | "TRIP" | "PRIVATE_CAR" | "SPEAR_CAR" | "TICKET";
+      status: "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELLED" | "PROCESSING";
+      paymentProof: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      user: {
+        id: string;
+        name: string;
+        username: string;
+        email: string;
+      };
+    }[] = await prisma.booking.findMany({
       where,
       select: {
         id: true,
