@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { BookingType } from "@prisma/client";
 import PrivateCarTemplate from "@/app/components/templates/PrivateCarTemplate";
 import { getContent, getPrivateCarPricing } from "@/app/actions/content";
 
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function PrivateCarPage() {
   const [contentResult, pricingResult] = await Promise.all([
-    getContent(BookingType.PRIVATE_CAR),
+    getContent("PRIVATE_CAR"),
     getPrivateCarPricing(),
   ]);
 

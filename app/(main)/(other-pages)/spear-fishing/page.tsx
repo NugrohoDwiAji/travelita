@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { BookingType } from "@prisma/client";
 import SpearFishingTemplate from "@/app/components/templates/SpearFishingTemplate";
 import { getContent, getServiceSpots } from "@/app/actions/content";
 
@@ -11,8 +10,8 @@ export const metadata: Metadata = {
 
 export default async function SpearFishingPage() {
   const [contentResult, spotsResult] = await Promise.all([
-    getContent(BookingType.SPEAR_CAR),
-    getServiceSpots(BookingType.SPEAR_CAR),
+    getContent("SPEAR_CAR"),
+    getServiceSpots("SPEAR_CAR"),
   ]);
 
   const spots = spotsResult.data?.map((spot) => ({
