@@ -145,7 +145,19 @@ export async function getUserBooking(userId: string, status?: string) {
     .filter((b) => b.type === "SHUTTLE")
     .map((b) => b.details);
 
-  const shuttleRecords =
+  const shuttleRecords: {
+    id: number;
+    shuttleType: "ROUND_TRIP" | "ONE_WAY";
+    from: string;
+    to: string;
+    leavingTime: Date;
+    returnTime: Date | null;
+    passengerCount: number;
+    price: number;
+    description: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }[] =
     shuttleBookingIds.length > 0
       ? await prisma.shuttleBooking.findMany({
           where: { id: { in: shuttleBookingIds } },
@@ -378,7 +390,17 @@ export async function getAllBookings(status?: string, type?: string) {
       .filter((b) => b.type === "SHUTTLE")
       .map((b) => b.details);
 
-    const shuttleRecords =
+    const shuttleRecords: {
+      id: number;
+      shuttleType: "ROUND_TRIP" | "ONE_WAY";
+      from: string;
+      to: string;
+      leavingTime: Date;
+      returnTime: Date | null;
+      passengerCount: number;
+      price: number;
+      description: string;
+    }[] =
       shuttleIds.length > 0
         ? await prisma.shuttleBooking.findMany({
             where: { id: { in: shuttleIds } },
