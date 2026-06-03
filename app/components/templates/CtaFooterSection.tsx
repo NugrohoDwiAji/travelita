@@ -1,28 +1,33 @@
-import Link from "next/link";
+"use client";
 
-const FOOTER_LINKS = {
-  Layanan: [
-    { label: "Shuttle Service", href: "/shuttle-service" },
-    { label: "Private Car",     href: "/private-car" },
-    { label: "Ticketing",       href: "/ticketing" },
-    { label: "Spear Fishing",   href: "/spear-fishing" },
-    { label: "Travel",          href: "/travel" },
-  ],
-  Perusahaan: [
-    { label: "Tentang Kami",    href: "/about" },
-    { label: "Karir",           href: "/career" },
-    { label: "Blog",            href: "/blog" },
-    { label: "Kontak",          href: "/contact" },
-  ],
-  Bantuan: [
-    { label: "FAQ",             href: "/faq" },
-    { label: "Kebijakan Privasi", href: "/privacy" },
-    { label: "Syarat & Ketentuan", href: "/terms" },
-    { label: "Lacak Booking",  href: "/track" },
-  ],
-};
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function CtaFooterSection() {
+  const t = useTranslations("landing.ctaFooter");
+
+  const FOOTER_LINKS = {
+    [t("footerLinks.Layanan")]: [
+      { label: "Shuttle Service", href: "/shuttle-service" },
+      { label: "Private Car",     href: "/private-car" },
+      { label: "Ticketing",       href: "/ticketing" },
+      { label: "Spear Fishing",   href: "/spear-fishing" },
+      { label: "Travel",          href: "/travel" },
+    ],
+    [t("footerLinks.Perusahaan")]: [
+      { label: t("footerLinks.Tentang Kami"), href: "/about" },
+      { label: t("footerLinks.Karir"),        href: "/career" },
+      { label: "Blog",                         href: "/blog" },
+      { label: t("footerLinks.Kontak"),       href: "/contact" },
+    ],
+    [t("footerLinks.Bantuan")]: [
+      { label: "FAQ",                          href: "/faq" },
+      { label: t("footerLinks.Kebijakan Privasi"),  href: "/privacy" },
+      { label: t("footerLinks.Syarat & Ketentuan"), href: "/terms" },
+      { label: t("footerLinks.Lacak Booking"),      href: "/track" },
+    ],
+  };
+
   return (
     <>
       {/* ── CTA ── */}
@@ -56,12 +61,11 @@ export default function CtaFooterSection() {
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-snug text-white"
           >
-            Siap Memulai&nbsp;
-            <span style={{ color: "#b0bbeb" }}>Petualangan?</span>
+            {t("title1")}&nbsp;
+            <span style={{ color: "#b0bbeb" }}>{t("title2")}</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/80">
-            Hubungi tim kami sekarang dan dapatkan konsultasi perjalanan gratis
-            serta penawaran spesial untuk pemesanan pertama Anda.
+            {t("desc")}
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -73,13 +77,13 @@ export default function CtaFooterSection() {
                 color: "#1434A4",
               }}
             >
-              Booking Sekarang
+              {t("cta1")}
             </Link>
             <Link
               href="/contact"
               className="rounded-full border-2 border-white/70 px-10 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 hover:bg-white/20"
             >
-              Hubungi Kami
+              {t("cta2")}
             </Link>
           </div>
         </div>
@@ -108,8 +112,7 @@ export default function CtaFooterSection() {
                 className="text-sm leading-relaxed mb-6"
                 style={{ color: "var(--brand-text-muted)" }}
               >
-                Platform perjalanan terpercaya dengan layanan lengkap dari
-                shuttle, private car, ticketing, hingga paket wisata eksotis.
+                {t("footerDesc")}
               </p>
               {/* Social icons */}
               <div className="flex gap-3">
@@ -168,7 +171,7 @@ export default function CtaFooterSection() {
             }}
           >
             <p>© {new Date().getFullYear()} Travelita. All rights reserved.</p>
-            <p>Dibuat dengan ❤️ untuk para petualang Indonesia</p>
+            <p>{t("copyright")}</p>
           </div>
         </div>
       </footer>

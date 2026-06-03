@@ -1,68 +1,54 @@
+"use client";
+
 import ShuttleBookingForm from "@/app/components/organism/ShuttleBookingForm";
 import FaqItem from "@/app/components/moleculs/FaqItem";
+import { ContentInput } from "@/app/actions/content";
 import {
   IconCheck,
   IconArrow,
 } from "@/app/components/atoms/BookingIcons";
+import { useTranslations } from "next-intl";
 
-const POPULAR_ROUTES = [
-  { from: "Jakarta",    to: "Bandung",   duration: "3 Jam",   price: "Rp 85.000",  tag: "Terlaris" },
-  { from: "Surabaya",   to: "Malang",    duration: "2 Jam",   price: "Rp 65.000",  tag: "Promo"    },
-  { from: "Yogyakarta", to: "Solo",      duration: "1.5 Jam", price: "Rp 45.000",  tag: null       },
-  { from: "Bali",       to: "Lombok",    duration: "4 Jam",   price: "Rp 120.000", tag: "Baru"     },
-  { from: "Semarang",   to: "Solo",      duration: "2 Jam",   price: "Rp 55.000",  tag: null       },
-  { from: "Medan",      to: "Parapat",   duration: "3.5 Jam", price: "Rp 95.000",  tag: "Populer"  },
-];
+const KEUNTUNGAN_KEYS = ["1", "2", "3", "4"] as const;
 
-const FAQS = [
-  {
-    q: "Bagaimana cara memesan shuttle?",
-    a: "Isi form pemesanan di atas dengan kota asal, tujuan, tanggal, dan jumlah penumpang. Pilih jadwal tersedia lalu lakukan pembayaran.",
-  },
-  {
-    q: "Berapa lama sebelum keberangkatan saya bisa memesan?",
-    a: "Pemesanan dapat dilakukan hingga 1 jam sebelum jadwal keberangkatan. Disarankan memesan minimal H-1 untuk mendapatkan kursi terbaik.",
-  },
-  {
-    q: "Apakah ada biaya bagasi tambahan?",
-    a: "Setiap penumpang mendapat allowance bagasi 20 kg gratis. Bagasi tambahan dikenakan biaya Rp 5.000 per kg.",
-  },
-  {
-    q: "Bisakah saya membatalkan atau reschedule tiket?",
-    a: "Pembatalan dapat dilakukan maksimal 3 jam sebelum keberangkatan dengan pengembalian dana 80%. Reschedule gratis hingga 2 jam sebelum berangkat.",
-  },
-];
+interface RouteData {
+  from: string;
+  to: string;
+  duration: string;
+  price: string;
+  tag?: string | null;
+}
 
-const KEUNTUNGAN = [
-  { icon: "🕐", title: "Tepat Waktu",     desc: "Armada berangkat sesuai jadwal" },
-  { icon: "🛡️", title: "Aman & Terjamin", desc: "Sopir berlisensi resmi & terlatih" },
-  { icon: "💺", title: "Kursi Nyaman",    desc: "AC, kursi reclining, leg room luas" },
-  { icon: "📍", title: "Antar Jemput",    desc: "Pick-up di lokasi yang ditentukan" },
-];
+interface ShuttleServiceTemplateProps {
+  content?: ContentInput;
+  routes?: RouteData[];
+}
 
-const CARA_BOOKING = [
-  { step: "01", title: "Pilih Rute",        desc: "Masukkan kota asal & tujuan serta tanggal keberangkatan" },
-  { step: "02", title: "Pilih Jadwal",       desc: "Lihat daftar jadwal tersedia dan pilih yang sesuai" },
-  { step: "03", title: "Isi Data Penumpang", desc: "Lengkapi nama, nomor HP, dan email untuk e-tiket" },
-  { step: "04", title: "Bayar & Berangkat",  desc: "Lakukan pembayaran dan tunjukkan e-tiket saat naik" },
-];
+export default function ShuttleServiceTemplate({ content, routes }: ShuttleServiceTemplateProps) {
+  const t = useTranslations("services.shuttle");
+  const tFaq = useTranslations("components.shuttleService.faq");
+  const title = content?.title ?? "Shuttle Service";
+  const subtitle = content?.subtitle ?? "Perjalanan nyaman antar kota dengan armada modern dan sopir berpengalaman.";
+  const description = content?.description ?? "Harga terjangkau, tepat waktu, dan aman.";
+  const heroBadge = content?.badge;
+  const ctaPrimary = content?.ctaPrimary ?? t("hero.ctaPrimary");
+  const faqItems =
+    content?.faqs?.length
+      ? content.faqs
+      : [
+          { question: tFaq("1.q"), answer: tFaq("1.a") },
+          { question: tFaq("2.q"), answer: tFaq("2.a") },
+          { question: tFaq("3.q"), answer: tFaq("3.a") },
+          { question: tFaq("4.q"), answer: tFaq("4.a") },
+        ];
+  const displayRoutes = routes ?? [];
 
-const KEUNGGULAN_LIST = [
-  "Armada Toyota HiAce & Hiace Premio terbaru (max 3 tahun)",
-  "Sopir profesional berlisensi B2 dengan pengalaman min 5 tahun",
-  "Pelacakan real-time via aplikasi Travelita",
-  "Asuransi perjalanan gratis untuk setiap penumpang",
-  "Fasilitas WiFi on-board di semua armada",
-  "Free mineral water & snack ringan di perjalanan >3 jam",
-];
-
-export default function ShuttleServiceTemplate() {
   return (
     <div className="min-h-screen" style={{ background: "#f5f6fb" }}>
 
       {/* ── Hero Banner ── */}
       <section
-        className="relative overflow-hidden pt-24 pb-36"
+        className="relative overflow-hidden pt-0 pb-36"
         style={{ background: "linear-gradient(135deg, #1434A4 0%, #3d52c6 100%)" }}
       >
         <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full opacity-10"
@@ -79,12 +65,17 @@ export default function ShuttleServiceTemplate() {
             style={{ top: d.top, left: d.left, width: d.size, height: d.size, background: "#fff" }} />
         ))}
 
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 text-center">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 pt-28 text-center">
           <div className="mb-4 flex items-center justify-center gap-2 text-xs text-white/60">
-            <span>Beranda</span>
+            <span>{t("hero.breadcrumbHome")}</span>
             <span>/</span>
-            <span className="text-white/90 font-medium">Shuttle Service</span>
+            <span className="text-white/90 font-medium">{t("hero.breadcrumbService")}</span>
           </div>
+          {heroBadge && (
+            <div className="mx-auto mb-4 inline-flex rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+              {heroBadge}
+            </div>
+          )}
 
           <div
             className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg"
@@ -102,18 +93,20 @@ export default function ShuttleServiceTemplate() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-            Shuttle Service
+            {title}
           </h1>
           <p className="mt-3 text-base sm:text-lg text-white/75 max-w-xl mx-auto">
-            Perjalanan nyaman antar kota dengan armada modern dan sopir berpengalaman.
-            Harga terjangkau, tepat waktu, dan aman.
+            {subtitle}
+          </p>
+          <p className="mt-3 text-base sm:text-lg text-white/75 max-w-xl mx-auto">
+            {description}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
             {[
-              { value: "50+", label: "Rute Tersedia" },
-              { value: "1.000+", label: "Penumpang/Bulan" },
-              { value: "4.9★", label: "Rating" },
+              { value: "50+", label: t("hero.stat1Label") },
+              { value: "1.000+", label: t("hero.stat2Label") },
+              { value: "4.9★", label: t("hero.stat3Label") },
             ].map(({ value, label }) => (
               <div key={label} className="flex flex-col items-center">
                 <span className="text-xl font-extrabold text-white">{value}</span>
@@ -132,7 +125,11 @@ export default function ShuttleServiceTemplate() {
       {/* ── Keuntungan ── */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 mt-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {KEUNTUNGAN.map(({ icon, title, desc }) => (
+          {KEUNTUNGAN_KEYS.map((key) => ({
+            icon: ["🕐", "🛡️", "💺", "📍"][parseInt(key) - 1],
+            title: t(`keuntungan.${key}.title`),
+            desc: t(`keuntungan.${key}.desc`),
+          })).map(({ icon, title, desc }) => (
             <div
               key={title}
               className="flex flex-col items-center gap-2 rounded-xl p-5 text-center"
@@ -155,19 +152,19 @@ export default function ShuttleServiceTemplate() {
         <div className="mb-5 flex items-end justify-between">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              Rute Populer
+              {t("popularRoutes.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Destinasi Favorit Penumpang
+              {t("popularRoutes.sectionTitle")}
             </h2>
           </div>
-          <a href="#" className="text-xs font-semibold underline underline-offset-4" style={{ color: "#3d52c6" }}>
-            Lihat Semua
+          <a href="#booking-form" className="text-xs font-semibold underline underline-offset-4" style={{ color: "#3d52c6" }}>
+            {ctaPrimary}
           </a>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {POPULAR_ROUTES.map((route) => (
+          {displayRoutes.map((route) => (
             <a
               key={`${route.from}-${route.to}`}
               href="#booking-form"
@@ -196,7 +193,7 @@ export default function ShuttleServiceTemplate() {
                 <span className="text-[11px]" style={{ color: "#4050b5" }}>⏱ {route.duration}</span>
               </div>
               <div className="shrink-0 text-right">
-                <p className="text-xs" style={{ color: "#4050b5" }}>Mulai dari</p>
+                <p className="text-xs" style={{ color: "#4050b5" }}>{t("popularRoutes.priceLabel")}</p>
                 <p className="text-sm font-extrabold" style={{ color: "#1434A4" }}>{route.price}</p>
               </div>
             </a>
@@ -209,24 +206,24 @@ export default function ShuttleServiceTemplate() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="mb-8 text-center">
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              Panduan
+              {t("caraBooking.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Cara Pesan Shuttle Service
+              {t("caraBooking.sectionTitle")}
             </h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-4">
-            {CARA_BOOKING.map(({ step, title, desc }) => (
+            {(["1", "2", "3", "4"] as const).map((step) => (
               <div key={step} className="flex flex-col items-center text-center gap-3">
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-full text-lg font-extrabold text-white"
                   style={{ background: "#1434A4", boxShadow: "0 4px 14px rgba(20,52,164,0.30)" }}
                 >
-                  {step}
+                  {step.padStart(2, "0")}
                 </div>
                 <div>
-                  <p className="font-bold text-sm" style={{ color: "#1434A4" }}>{title}</p>
-                  <p className="mt-1 text-xs leading-snug" style={{ color: "#4050b5" }}>{desc}</p>
+                  <p className="font-bold text-sm" style={{ color: "#1434A4" }}>{t(`caraBooking.${step}.title`)}</p>
+                  <p className="mt-1 text-xs leading-snug" style={{ color: "#4050b5" }}>{t(`caraBooking.${step}.desc`)}</p>
                 </div>
               </div>
             ))}
@@ -238,17 +235,17 @@ export default function ShuttleServiceTemplate() {
       <section className="mx-auto max-w-4xl px-4 sm:px-6 py-14">
         <div className="mb-8">
           <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-            Mengapa Kami
+            {t("keunggulan.sectionLabel")}
           </span>
           <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-            Keunggulan Shuttle Travelita
+            {t("keunggulan.sectionTitle")}
           </h2>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          {KEUNGGULAN_LIST.map((item) => (
-            <div key={item} className="flex items-start gap-3">
+          {(["1", "2", "3", "4", "5", "6"] as const).map((key) => (
+            <div key={key} className="flex items-start gap-3">
               <span className="mt-0.5 shrink-0"><IconCheck /></span>
-              <p className="text-sm leading-snug" style={{ color: "#3d3d5c" }}>{item}</p>
+              <p className="text-sm leading-snug" style={{ color: "#3d3d5c" }}>{t(`keunggulan.${key}`)}</p>
             </div>
           ))}
         </div>
@@ -259,15 +256,15 @@ export default function ShuttleServiceTemplate() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="mb-8 text-center">
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              FAQ
+              {t("faq.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Pertanyaan yang Sering Diajukan
+              {t("faq.sectionTitle")}
             </h2>
           </div>
           <div className="flex flex-col gap-3">
-            {FAQS.map((faq) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+            {faqItems.map((faq) => (
+              <FaqItem key={faq.question} q={faq.question} a={faq.answer} />
             ))}
           </div>
         </div>
@@ -280,17 +277,17 @@ export default function ShuttleServiceTemplate() {
       >
         <div className="mx-auto max-w-xl px-4">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Siap Untuk Perjalanan Anda?
+            {t("cta.title")}
           </h2>
           <p className="mt-2 text-white/70 text-sm">
-            Pesan shuttle sekarang dan nikmati perjalanan yang nyaman bersama Travelita!
+            {t("cta.desc")}
           </p>
           <a
             href="#booking-form"
             className="mt-6 inline-block rounded-full px-10 py-3.5 text-sm font-bold uppercase tracking-widest shadow-xl transition hover:scale-105"
             style={{ background: "#fff", color: "#1434A4" }}
           >
-            Pesan Sekarang
+            {t("cta.button")}
           </a>
         </div>
       </section>
@@ -298,3 +295,4 @@ export default function ShuttleServiceTemplate() {
     </div>
   );
 }
+

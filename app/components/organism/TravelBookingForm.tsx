@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Counter from "@/app/components/atoms/Counter";
-import { IconCalendar, IconPerson, IconChevron } from "@/app/components/atoms/BookingIcons";
+import { IconCalendar, IconClock, IconPerson, IconChevron } from "@/app/components/atoms/BookingIcons";
 import { IconMap, IconMountain, IconBeach } from "@/app/components/atoms/TravelIcons";
+import AlertDialog from "@/app/components/moleculs/AlertDialog";
+import BookingConfirmDialog from "@/app/components/moleculs/BookingConfirmDialog";
+import { postServiceBooking } from "@/app/actions/serviceBooking";
 
 const TOUR_TYPES = [
   { id: "adventure", label: "Adventure", icon: <IconMountain size={16} /> },
@@ -21,7 +25,10 @@ const DURATIONS = [
 ] as const;
 
 const DESTINATIONS = [
-  { name: "Semua Destinasi Lombok", region: "" },
+  { name: "Semua Destinasi Bali-Nusra", region: "" },
+  { name: "Ubud",                    region: "Bali" },
+  { name: "Nusa Penida",             region: "Bali" },
+  { name: "Sanur",                   region: "Bali" },
   { name: "Senggigi",               region: "Lombok Barat"  },
   { name: "Gili Trawangan",         region: "Lombok Utara"  },
   { name: "Gili Air",               region: "Lombok Utara"  },
@@ -33,12 +40,18 @@ const DESTINATIONS = [
   { name: "Desa Sade",              region: "Lombok Tengah" },
   { name: "Air Terjun Benang Kelambu", region: "Lombok Tengah" },
   { name: "Pantai Mawun",           region: "Lombok Tengah" },
+  { name: "Labuan Bajo",             region: "Flores" },
+  { name: "Pulau Komodo",            region: "NTT" },
+  { name: "Waerebo",                 region: "Flores" },
+  { name: "Kelimutu",                region: "Ende" },
+  { name: "Pantai Nihiwatu",         region: "Sumba" },
 ];
 
 type TourType = typeof TOUR_TYPES[number]["id"];
 type Duration = typeof DURATIONS[number]["id"];
 
 export default function TravelBookingForm() {
+  const [isSubmitting, startTransition] = useTransition();
   const [tourType, setTourType]           = useState<TourType>("all");
   const [destination, setDestination]     = useState(DESTINATIONS[0].name);
   const [destOpen, setDestOpen]           = useState(false);
@@ -48,13 +61,55 @@ export default function TravelBookingForm() {
   const [children, setChildren]           = useState(0);
   const [participantOpen, setParticipantOpen] = useState(false);
   const [submitted, setSubmitted]         = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [alertMsg, setAlertMsg] = useState<{ title: string; message: string; variant: "warning" | "error" | "success"; redirectTo?: string } | null>(null);
+  const router = useRouter();
 
   const totalPax = adults + children;
 
+  function handleCloseAlert() {
+    const redirectTo = alertMsg?.redirectTo;
+    setAlertMsg(null);
+    if (redirectTo) router.push(redirectTo);
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3500);
+    setShowConfirm(true);
+  }
+
+  function handleConfirm() {
+    startTransition(async () => {
+      const result = await postServiceBooking({
+        type: "TRIP",
+        from: "Bali-Nusra",
+        to: destination,
+        serviceDate: new Date(`${date}T08:00`).toISOString(),
+        passengerCount: totalPax,
+        price: 0,
+        description: [
+          `Jenis: ${tourType}`,
+          `Durasi: ${duration}`,
+          `${adults} dewasa, ${children} anak`,
+        ].join(" | "),
+      });
+
+      setShowConfirm(false);
+
+      if (result.error) {
+        const needsLogin = result.error.toLowerCase().includes("login");
+        setAlertMsg({
+          title: needsLogin ? "Login Diperlukan" : "Pemesanan Gagal",
+          message: result.error,
+          variant: needsLogin ? "warning" : "error",
+          redirectTo: needsLogin ? "/signin" : undefined,
+        });
+        return;
+      }
+
+      setSubmitted(true);
+      router.push(`/payment/${result.data?.bookingId}`);
+    });
   }
 
   return (
@@ -71,7 +126,7 @@ export default function TravelBookingForm() {
         className="mb-1 text-lg font-extrabold"
         style={{ color: "#1434A4" }}
       >
-        Cari Paket Wisata Lombok
+        Cari Paket Wisata Bali-Nusra
       </h2>
       <p className="mb-6 text-xs" style={{ color: "#4050b5" }}>
         Pilih destinasi, durasi, dan tanggal perjalanan Anda
@@ -267,11 +322,80 @@ export default function TravelBookingForm() {
 
       <button
         type="submit"
+        disabled={isSubmitting}
         className="mt-6 w-full rounded-xl py-3.5 text-sm font-extrabold uppercase tracking-widest shadow-lg transition-all hover:brightness-110 hover:scale-[1.01] active:scale-[0.99]"
         style={{ background: "linear-gradient(90deg, #1434A4, #3d52c6)", color: "#fff" }}
       >
-        Cari Paket Sekarang
+        {isSubmitting ? "Menyimpan Permintaan..." : "Cari Paket Sekarang"}
       </button>
+
+      <BookingConfirmDialog
+        open={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={handleConfirm}
+        onCancel={() => window.location.reload()}
+        price={0}
+      >
+        <div className="space-y-3">
+          <div className="flex justify-center">
+            <span
+              className="rounded-full px-4 py-1 text-xs font-semibold"
+              style={{ background: "#eef0fb", color: "#1434A4" }}
+            >
+              Paket Wisata - {TOUR_TYPES.find((t) => t.id === tourType)?.label}
+            </span>
+          </div>
+
+          <div
+            className="flex items-center gap-3 rounded-xl p-4"
+            style={{ background: "#f8f9ff" }}
+          >
+            <span style={{ color: "#1434A4" }}><IconMap size={16} /></span>
+            <span className="text-sm font-medium" style={{ color: "#1434A4" }}>{destination}</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <DetailItem icon={<IconCalendar />} label="Tanggal Mulai" value={new Date(date).toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" })} />
+            <DetailItem icon={<IconClock />} label="Durasi" value={DURATIONS.find((d) => d.id === duration)?.label || duration} />
+            <DetailItem icon={<IconPerson />} label="Peserta" value={`${totalPax} Orang (${adults} dewasa${children > 0 ? `, ${children} anak` : ""})`} />
+          </div>
+        </div>
+      </BookingConfirmDialog>
+
+      {alertMsg && (
+        <AlertDialog
+          open={!!alertMsg}
+          onClose={handleCloseAlert}
+          title={alertMsg.title}
+          message={alertMsg.message}
+          variant={alertMsg.variant}
+          onAction={handleCloseAlert}
+        />
+      )}
     </form>
+  );
+}
+
+function DetailItem({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-start gap-2 rounded-lg p-2.5" style={{ background: "#f8f9ff" }}>
+      <span className="mt-0.5" style={{ color: "#1434A4" }}>{icon}</span>
+      <div className="min-w-0">
+        <p className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "#4050b5" }}>
+          {label}
+        </p>
+        <p className="text-sm font-medium truncate" style={{ color: "#1434A4" }}>
+          {value}
+        </p>
+      </div>
+    </div>
   );
 }

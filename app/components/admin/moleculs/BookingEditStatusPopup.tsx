@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { BookingRecord, BookingStatus } from "@/app/types/booking";
+import { ShuttleBookingRecordAdmin, BookingStatus } from "@/app/types/booking";
 import {
   STATUS_STYLES,
   STATUS_OPTIONS,
@@ -10,7 +10,7 @@ import {
 import { updateBookingStatusById } from "@/app/actions/booking";
 
 interface BookingEditStatusPopupProps {
-  row: BookingRecord;
+  row: ShuttleBookingRecordAdmin;
   onClose: () => void;
   onSave: (bookingId: string, status: BookingStatus) => void;
 }
@@ -29,7 +29,7 @@ export default function BookingEditStatusPopup({
   function handleSave() {
     setErrorMsg(null);
 
-    if (!row.bookingDbId) {
+    if (!row.bookingId) {
       // Data statis / belum terhubung DB — update lokal saja
       onSave(row.id, selected);
       onClose();
@@ -38,7 +38,7 @@ export default function BookingEditStatusPopup({
 
     startTransition(async () => {
       const result = await updateBookingStatusById({
-        bookingId: row.bookingDbId as number,
+        bookingId: row.bookingId as number,
         status: selected,
       });
 

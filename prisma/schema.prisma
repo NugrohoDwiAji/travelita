@@ -31,19 +31,17 @@ enum UserRole {
 }
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-
+  provider = "postgresql"
 }
 
 model User {
   id        String   @id @default(uuid())
   name      String
-  username  String   
+  username  String
   email     String   @unique
   password  String
   role      UserRole @default(USER)
@@ -51,7 +49,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   profile   Profile?
-  booking   Booking?
+  bookings  Booking[]
 
   @@map("user")
 }
@@ -59,7 +57,7 @@ model User {
 model Profile {
   id        String   @id @default(uuid())
   userId    String   @unique
-  coutry   String
+  country   String?
   city     String
   profilePicture String?
   createdAt DateTime @default(now())
@@ -70,17 +68,113 @@ model Profile {
 }
 
 model Booking {
-  id        Int      @id @default(autoincrement())
-  userId    String @unique
-  details   Int
-  type      BookingType
-  status    BookingStatus
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int           @id @default(autoincrement())
+  userId       String
+  details      Int
+  type         BookingType
+  status       BookingStatus
+  paymentProof String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
-  user      User    @relation(fields: [userId], references: [id])
-
+  user         User          @relation(fields: [userId], references: [id])
   @@map("booking")
+}
+
+model ServiceContent {
+  id           String           @id @default(uuid())
+  serviceType  BookingType      @unique
+  badge        String?
+  title        String
+  subtitle     String?
+  description  String           @db.Text
+  ctaPrimary   String?
+  ctaSecondary String?
+  packages     ServicePackage[]
+  faqs         ServiceFaq[]
+  routes       ServiceRoute[]
+  spots        ServiceSpot[]
+  privateCarPricing PrivateCarPricing?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@map("service_content")
+}
+
+model ServicePackage {
+  id          String         @id @default(uuid())
+  contentId   String
+  name        String
+  description String?        @db.Text
+  price       Float
+  features    String         @db.Text
+  badge       String?
+  highlighted Boolean        @default(false)
+  content     ServiceContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@map("service_package")
+}
+
+model ServiceFaq {
+  id        String         @id @default(uuid())
+  contentId String
+  question  String
+  answer    String         @db.Text
+  content   ServiceContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@map("service_faq")
+}
+
+model ServiceRoute {
+  id          String         @id @default(uuid())
+  contentId   String
+  from        String
+  to          String
+  duration    String
+  price       Float
+  tag         String?
+  type        String?
+  icon        String?
+  order       Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  content     ServiceContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@map("service_route")
+}
+
+model ServiceSpot {
+  id          String         @id @default(uuid())
+  contentId   String
+  name        String
+  region      String
+  depth       String
+  price       Float          @default(0)
+  fish        String?
+  level       String?
+  tag         String?
+  order       Int            @default(0)
+  isBestSeller Boolean      @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  content     ServiceContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@map("service_spot")
+}
+
+model PrivateCarPricing {
+  id                String   @id @default(uuid())
+  contentId         String   @unique
+  basePrice         Float    @default(350000)
+  fullDayMultiplier Float    @default(1.8)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  content           ServiceContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@map("private_car_pricing")
 }
 
 model ShuttleBooking {
@@ -93,6 +187,7 @@ model ShuttleBooking {
   passengerCount Int
   price Float
   description String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

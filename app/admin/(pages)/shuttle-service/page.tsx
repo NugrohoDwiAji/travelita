@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import AdminServiceTemplate from "@/app/components/admin/templates/AdminServiceTemplate";
-import type { BookingStatus, ColumnDef, BookingRecord } from "@/app/types/booking";
+import type { BookingStatus, ColumnDef, ShuttleBookingRecordAdmin } from "@/app/types/booking";
 import { getShuttleBookingsByUserAndStatus } from "@/app/actions/shuttleService";
 
 export const metadata: Metadata = { title: "Shuttle Service – Admin Travelita" };
@@ -42,23 +42,23 @@ function formatTime(value: Date) {
 }
 
 function toTableStatus(status: string): BookingStatus {
-  const normalized = status.toLowerCase();
+  const normalized = status.toUpperCase();
   if (
-    normalized === "pending" ||
-    normalized === "confirmed" ||
-    normalized === "completed" ||
-    normalized === "cancelled" ||
-    normalized === "processing"
+    normalized === "PENDING" ||
+    normalized === "CONFIRMED" ||
+    normalized === "COMPLETED" ||
+    normalized === "CANCELLED" ||
+    normalized === "PROCESSING"
   ) {
     return normalized as BookingStatus;
   }
-  return "pending" as BookingStatus;
+  return "PENDING";
 }
 
 export default async function ShuttleAdminPage() {
   const result = await getShuttleBookingsByUserAndStatus();
 
-  const bookings: BookingRecord[] =
+  const bookings: ShuttleBookingRecordAdmin[] =
     result && "success" in result && result.success
       ? result.data.map((item) => {
           const shuttle = item.shuttleBooking;
@@ -66,7 +66,7 @@ export default async function ShuttleAdminPage() {
 
           return {
             id: `#SHT-${String(item.id).padStart(4, "0")}`,
-            bookingDbId: item.id,
+            bookingId: item.id,
             name: item.user?.name ?? "-",
             phone: "-",
             route: shuttle ? `${shuttle.from} → ${shuttle.to}` : "-",
@@ -75,6 +75,7 @@ export default async function ShuttleAdminPage() {
             passengers: shuttle ? String(shuttle.passengerCount) : "-",
             amount: shuttle ? formatRupiah(shuttle.price) : "Rp 0",
             status: toTableStatus(item.status),
+            paymentProof: item.paymentProof ,
           };
         })
       : [];

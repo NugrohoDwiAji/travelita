@@ -22,3 +22,65 @@ export const shuttleData = {
     // Tambahkan kombinasi lain yang tersedia
   }
 };
+
+export const baliNusraLocations = [
+  "Denpasar",
+  "Badung",
+  "Ubud",
+  "Sanur",
+  "Nusa Dua",
+  "Kuta Bali",
+  "Canggu",
+  "Tabanan",
+  "Karangasem",
+  "Singaraja",
+  "Nusa Penida",
+  "Mataram",
+  "Senggigi",
+  "Kuta Mandalika",
+  "Praya",
+  "Sembalun",
+  "Senaru",
+  "Gili Trawangan",
+  "Gili Air",
+  "Gili Meno",
+  "Sumbawa Besar",
+  "Bima",
+  "Dompu",
+  "Labuan Bajo",
+  "Ruteng",
+  "Bajawa",
+  "Ende",
+  "Maumere",
+  "Larantuka",
+  "Kupang",
+  "Atambua",
+  "Waingapu",
+  "Tambolaka",
+];
+
+export const baliNusraAirports = [
+  "Bali (DPS)",
+  "Lombok (LOP)",
+  "Sumbawa Besar (SWQ)",
+  "Bima (BMU)",
+  "Labuan Bajo (LBJ)",
+  "Kupang (KOE)",
+  "Ende (ENE)",
+  "Maumere (MOF)",
+  "Waingapu (WGP)",
+  "Tambolaka (TMC)",
+];
+
+export const baliNusraPorts = [
+  "Bali (Padangbai)",
+  "Bali (Sanur)",
+  "Bali (Gilimanuk)",
+  "Lombok (Lembar)",
+  "Lombok (Bangsal)",
+  "Lombok (Kayangan)",
+  "Sumbawa (Poto Tano)",
+  "Sumbawa (Sape)",
+  "Labuan Bajo",
+  "Kupang (Tenau)",
+];

@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Header from "@/app/components/organism/Header";
 import AuthProvider from "@/app/context/AuthProvider";
-import UnderConstructionBanner from "@/app/components/moleculs/UnderConstructionBanner";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,21 +22,25 @@ export const metadata: Metadata = {
     "Platform perjalanan terpercaya: shuttle service, private car, ticketing, spear fishing, dan paket travel terbaik di Indonesia.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          <UnderConstructionBanner />
-          <Header />
-          {children}
-        </AuthProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <AuthProvider>
+            <Header />
+            {children}
+          </AuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

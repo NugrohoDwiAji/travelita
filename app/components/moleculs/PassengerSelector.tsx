@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import Counter from "@/app/components/atoms/Counter";
 import { IconPerson } from "@/app/components/atoms/BookingIcons";
@@ -16,13 +17,14 @@ interface Props {
 }
 
 export default function PassengerSelector({ value, onChange }: Props) {
+  const t = useTranslations("components.passengerSelector");
   const [open, setOpen] = useState(false);
 
   const total = value.adults + value.children + value.infants;
   const label = [
-    `${value.adults} Dewasa`,
-    value.children > 0 ? `${value.children} Anak` : "",
-    value.infants > 0 ? `${value.infants} Bayi` : "",
+    `${value.adults} ${t("adult")}`,
+    value.children > 0 ? `${value.children} ${t("child")}` : "",
+    value.infants > 0 ? `${value.infants} ${t("infant")}` : "",
   ]
     .filter(Boolean)
     .join(", ");
@@ -33,7 +35,7 @@ export default function PassengerSelector({ value, onChange }: Props) {
         className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider"
         style={{ color: "#4050b5" }}
       >
-        Penumpang
+        {t("label")}
       </label>
       <button
         type="button"
@@ -75,10 +77,10 @@ export default function PassengerSelector({ value, onChange }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold" style={{ color: "#1434A4" }}>
-                  Dewasa
+                  {t("adult")}
                 </p>
                 <p className="text-[10px]" style={{ color: "#4050b5" }}>
-                  Usia 12 tahun ke atas
+                  {t("adultDesc")}
                 </p>
               </div>
               <Counter
@@ -92,10 +94,10 @@ export default function PassengerSelector({ value, onChange }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold" style={{ color: "#1434A4" }}>
-                  Anak-anak
+                  {t("child")}
                 </p>
                 <p className="text-[10px]" style={{ color: "#4050b5" }}>
-                  Usia 2–11 tahun
+                  {t("childDesc")}
                 </p>
               </div>
               <Counter
@@ -109,10 +111,10 @@ export default function PassengerSelector({ value, onChange }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold" style={{ color: "#1434A4" }}>
-                  Bayi
+                  {t("infant")}
                 </p>
                 <p className="text-[10px]" style={{ color: "#4050b5" }}>
-                  Usia di bawah 2 tahun
+                  {t("infantDesc")}
                 </p>
               </div>
               <Counter
@@ -133,7 +135,7 @@ export default function PassengerSelector({ value, onChange }: Props) {
               className="w-full rounded-lg py-2 text-sm font-bold text-white transition hover:brightness-110"
               style={{ background: "#1434A4" }}
             >
-              Selesai · {total} Penumpang
+              {t("done")} · {total} {t("label")}
             </button>
           </div>
         </div>

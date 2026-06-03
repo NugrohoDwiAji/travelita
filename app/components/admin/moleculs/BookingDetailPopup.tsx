@@ -1,14 +1,25 @@
 "use client";
-
-import { BookingRecord } from "@/app/types/booking";
-import { STATUS_STYLES, normalizeStatus } from "@/app/components/admin/atoms/bookingStatusConfig";
+import Image from "next/image";
+import { ShuttleBookingRecordAdmin } from "@/app/types/booking";
+import {
+  STATUS_STYLES,
+  normalizeStatus,
+} from "@/app/components/admin/atoms/bookingStatusConfig";
 
 interface BookingDetailPopupProps {
-  row: BookingRecord;
+  row: ShuttleBookingRecordAdmin;
   onClose: () => void;
 }
 
-function StatusBadge({ status }: { status: ReturnType<typeof normalizeStatus> }) {
+const isImagePath = (val: unknown): val is string => {
+  return typeof val === "string" && val.startsWith("/uploads/");
+};
+
+function StatusBadge({
+  status,
+}: {
+  status: ReturnType<typeof normalizeStatus>;
+}) {
   const s = STATUS_STYLES[status] ?? STATUS_STYLES.PENDING;
   return (
     <span
@@ -20,7 +31,10 @@ function StatusBadge({ status }: { status: ReturnType<typeof normalizeStatus> })
   );
 }
 
-export default function BookingDetailPopup({ row, onClose }: BookingDetailPopupProps) {
+export default function BookingDetailPopup({
+  row,
+  onClose,
+}: BookingDetailPopupProps) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
@@ -45,7 +59,10 @@ export default function BookingDetailPopup({ row, onClose }: BookingDetailPopupP
             >
               Detail Pesanan
             </p>
-            <h3 className="text-base font-extrabold" style={{ color: "#0d2280" }}>
+            <h3
+              className="text-base font-extrabold"
+              style={{ color: "#0d2280" }}
+            >
               {row.id}
             </h3>
           </div>
@@ -57,18 +74,29 @@ export default function BookingDetailPopup({ row, onClose }: BookingDetailPopupP
           {Object.entries(row).map(([key, value]) => (
             <div
               key={key}
-              className="flex items-start justify-between gap-3 rounded-lg px-3 py-2"
+              className={` items-start justify-between gap-3 rounded-lg px-3 py-2 ${isImagePath(value) ? "flex-col " : "flex"}`}
               style={{ background: "#f7f8ff" }}
             >
               <p
-                className="shrink-0 text-[11px] font-semibold uppercase"
+                className="shrink-0 text-[11px] font-semibold uppercase "
                 style={{ color: "#4050b5" }}
               >
                 {key.replace(/_/g, " ")}
               </p>
-              <p className="text-right text-xs" style={{ color: "#1f2937" }}>
-                {String(value ?? "-")}
-              </p>
+              {isImagePath(value) && value ? (
+                
+                <Image
+                  src={String(value)}
+                  alt="bukti"
+                  width={200}
+  height={200}
+                  className="rounded object-cover aspect-auto h-30"
+                />
+              ) : (
+                <p className="text-right text-xs" style={{ color: "#1f2937" }}>
+                  {String(value ?? "-")}
+                </p>
+              )}
             </div>
           ))}
         </div>

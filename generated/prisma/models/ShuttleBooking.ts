@@ -286,7 +286,6 @@ export type ShuttleBookingOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  _relevance?: Prisma.ShuttleBookingOrderByRelevanceInput
 }
 
 export type ShuttleBookingWhereUniqueInput = Prisma.AtLeast<{
@@ -437,12 +436,6 @@ export type ShuttleBookingUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ShuttleBookingOrderByRelevanceInput = {
-  fields: Prisma.ShuttleBookingOrderByRelevanceFieldEnum | Prisma.ShuttleBookingOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
-}
-
 export type ShuttleBookingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   shuttleType?: Prisma.SortOrder
@@ -505,14 +498,6 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 
 
 export type ShuttleBookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -529,7 +514,33 @@ export type ShuttleBookingSelect<ExtArgs extends runtime.Types.Extensions.Intern
   updatedAt?: boolean
 }, ExtArgs["result"]["shuttleBooking"]>
 
+export type ShuttleBookingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  shuttleType?: boolean
+  from?: boolean
+  to?: boolean
+  leavingTime?: boolean
+  returnTime?: boolean
+  passengerCount?: boolean
+  price?: boolean
+  description?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+}, ExtArgs["result"]["shuttleBooking"]>
 
+export type ShuttleBookingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  shuttleType?: boolean
+  from?: boolean
+  to?: boolean
+  leavingTime?: boolean
+  returnTime?: boolean
+  passengerCount?: boolean
+  price?: boolean
+  description?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+}, ExtArgs["result"]["shuttleBooking"]>
 
 export type ShuttleBookingSelectScalar = {
   id?: boolean
@@ -680,6 +691,30 @@ export interface ShuttleBookingDelegate<ExtArgs extends runtime.Types.Extensions
   createMany<T extends ShuttleBookingCreateManyArgs>(args?: Prisma.SelectSubset<T, ShuttleBookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many ShuttleBookings and returns the data saved in the database.
+   * @param {ShuttleBookingCreateManyAndReturnArgs} args - Arguments to create many ShuttleBookings.
+   * @example
+   * // Create many ShuttleBookings
+   * const shuttleBooking = await prisma.shuttleBooking.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many ShuttleBookings and only return the `id`
+   * const shuttleBookingWithIdOnly = await prisma.shuttleBooking.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends ShuttleBookingCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ShuttleBookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShuttleBookingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a ShuttleBooking.
    * @param {ShuttleBookingDeleteArgs} args - Arguments to delete one ShuttleBooking.
    * @example
@@ -742,6 +777,36 @@ export interface ShuttleBookingDelegate<ExtArgs extends runtime.Types.Extensions
    * 
    */
   updateMany<T extends ShuttleBookingUpdateManyArgs>(args: Prisma.SelectSubset<T, ShuttleBookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more ShuttleBookings and returns the data updated in the database.
+   * @param {ShuttleBookingUpdateManyAndReturnArgs} args - Arguments to update many ShuttleBookings.
+   * @example
+   * // Update many ShuttleBookings
+   * const shuttleBooking = await prisma.shuttleBooking.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more ShuttleBookings and only return the `id`
+   * const shuttleBookingWithIdOnly = await prisma.shuttleBooking.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends ShuttleBookingUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ShuttleBookingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShuttleBookingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one ShuttleBooking.
@@ -1156,6 +1221,25 @@ export type ShuttleBookingCreateManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * ShuttleBooking createManyAndReturn
+ */
+export type ShuttleBookingCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShuttleBooking
+   */
+  select?: Prisma.ShuttleBookingSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShuttleBooking
+   */
+  omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
+  /**
+   * The data used to create many ShuttleBookings.
+   */
+  data: Prisma.ShuttleBookingCreateManyInput | Prisma.ShuttleBookingCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * ShuttleBooking update
  */
 export type ShuttleBookingUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1181,6 +1265,32 @@ export type ShuttleBookingUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
  * ShuttleBooking updateMany
  */
 export type ShuttleBookingUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update ShuttleBookings.
+   */
+  data: Prisma.XOR<Prisma.ShuttleBookingUpdateManyMutationInput, Prisma.ShuttleBookingUncheckedUpdateManyInput>
+  /**
+   * Filter which ShuttleBookings to update
+   */
+  where?: Prisma.ShuttleBookingWhereInput
+  /**
+   * Limit how many ShuttleBookings to update.
+   */
+  limit?: number
+}
+
+/**
+ * ShuttleBooking updateManyAndReturn
+ */
+export type ShuttleBookingUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShuttleBooking
+   */
+  select?: Prisma.ShuttleBookingSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShuttleBooking
+   */
+  omit?: Prisma.ShuttleBookingOmit<ExtArgs> | null
   /**
    * The data used to update ShuttleBookings.
    */

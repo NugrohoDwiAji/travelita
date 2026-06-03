@@ -19,7 +19,7 @@ async function getCurrentUserProfile(userId: string): Promise<ProfileUserData | 
         select: {
           id: true,
           userId: true,
-          coutry: true,
+          country: true,
           city: true,
           profilePicture: true,
           createdAt: true,

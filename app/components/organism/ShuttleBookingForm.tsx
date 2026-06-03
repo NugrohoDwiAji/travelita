@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import CitySelect from "@/app/components/moleculs/CitySelect";
 import Counter from "@/app/components/atoms/Counter";
 import {
@@ -13,15 +13,17 @@ import {
 import ShuttleConfirmDialog from "@/app/components/moleculs/ShuttleConfirmDialog";
 import AlertDialog from "@/app/components/moleculs/AlertDialog";
 import { postShuttleBooking } from "@/app/actions/shuttleService";
-import { shuttleData } from "@/app/utils/city";
+import { getServiceRoutes } from "@/app/actions/content";
+import { BookingType } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const TRIP_TYPES = ["Sekali Jalan", "Pulang Pergi"];
 
-function getRoutePrice(from: string, to: string): number | null {
-  const rates = shuttleData.rates as Record<string, number>;
-  return rates[`${from}-${to}`] ?? rates[`${to}-${from}`] ?? null;
+interface RouteData {
+  from: string;
+  to: string;
+  price: number;
 }
 
 function formatPrice(price: number) {
@@ -44,18 +46,47 @@ export default function ShuttleBookingForm() {
   const [passengers, setPassengers]     = useState(1);
   const [submitted, setSubmitted]       = useState(false);
   const [showConfirm, setShowConfirm]   = useState(false);
-  const [showPaymentCard, setShowPaymentCard] = useState(false);
+  const [locations, setLocations]       = useState<string[]>([]);
+  const [routeRates, setRouteRates]     = useState<Record<string, number>>({});
+
   const [alertMsg, setAlertMsg]         = useState<{ title: string; message: string; variant: "warning" | "error" | "success"; redirectTo?: string } | null>(null);
   const {data:session, status} = useSession();
   const router = useRouter();
 
-  // 2. Cek status loading (opsional tapi disarankan)
+  // Fetch routes dari database
+  useEffect(() => {
+    getServiceRoutes(BookingType.SHUTTLE).then((result) => {
+      if (result.success && result.data) {
+        const routes = result.data as RouteData[];
+        
+        // Extract unique locations dari routes
+        const locationSet = new Set<string>();
+        routes.forEach((r) => {
+          locationSet.add(r.from);
+          locationSet.add(r.to);
+        });
+        setLocations(Array.from(locationSet).sort());
+
+        // Buat rates map dari routes
+        const rates: Record<string, number> = {};
+        routes.forEach((r) => {
+          rates[`${r.from}-${r.to}`] = r.price;
+        });
+        setRouteRates(rates);
+      }
+    });
+  }, []);
+
   if (status === "loading") return <p>Memuat data...</p>;
 
   const isLoggedIn = !!session?.user;
   const role = session?.user?.role;
 
   const today = new Date().toISOString().split("T")[0];
+
+  function getRoutePrice(fromCity: string, toCity: string): number | null {
+    return routeRates[`${fromCity}-${toCity}`] ?? routeRates[`${toCity}-${fromCity}`] ?? null;
+  }
 
   function swapCities() {
     setFrom(to);
@@ -64,7 +95,6 @@ export default function ShuttleBookingForm() {
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
-    setShowPaymentCard(false);
     setShowConfirm(true);
   }
 
@@ -130,7 +160,7 @@ export default function ShuttleBookingForm() {
       });
 
       if (result.error) {
-        setShowPaymentCard(false);
+
         setAlertMsg({
           title: "Pemesanan Gagal",
           message: result.error,
@@ -139,27 +169,14 @@ export default function ShuttleBookingForm() {
         return;
       }
 
-      setShowPaymentCard(true);
       setSubmitted(true);
-      setAlertMsg({
-        title: "Pemesanan Berhasil",
-        message: result.message || "Pemesanan shuttle berhasil disimpan.",
-        variant: "success",
-      });
-      setTimeout(() => setSubmitted(false), 3000);
-      router.refresh();
+      router.push(`/payment/${result.data?.bookingId}`);
     });
   }
 
-  const unitPrice = getRoutePrice(from, to);
+  const unitPrice = from && to ? getRoutePrice(from, to) : null;
   const multiplier = tripType === 1 ? 2 : 1;
   const totalEstimate = unitPrice ? unitPrice * passengers * multiplier : null;
-
-  const paymentAccount = {
-    bank: "Bank BCA",
-    number: "1234567890",
-    holder: "PT Travelita Nusantara",
-  };
 
   return (
     <div
@@ -194,7 +211,7 @@ export default function ShuttleBookingForm() {
             value={from}
             onChange={setFrom}
             placeholder="Kota asal…"
-            cities={shuttleData.locations}
+            cities={locations}
           />
 
           {/* Swap button */}
@@ -216,7 +233,7 @@ export default function ShuttleBookingForm() {
             value={to}
             onChange={setTo}
             placeholder="Kota tujuan…"
-            cities={shuttleData.locations}
+            cities={locations}
           />
         </div>
 
@@ -403,57 +420,14 @@ export default function ShuttleBookingForm() {
           {isSubmitting ? "Menyimpan Pemesanan..." : submitted ? "✓ Pemesanan Tersimpan" : "Cari Jadwal Shuttle"}
         </button>
 
-        {showPaymentCard && (
-          <div
-            className="mt-5 overflow-hidden rounded-xl border animate-in fade-in slide-in-from-bottom-2 duration-300"
-            style={{ borderColor: "rgba(20,52,164,0.20)", background: "#f8f9ff" }}
-          >
-            <div className="px-5 py-4">
-              <p
-                className="text-[11px] font-semibold uppercase tracking-wider"
-                style={{ color: "#4050b5" }}
-              >
-                Detail Pembayaran
-              </p>
 
-              <div className="mt-3 rounded-xl border bg-white px-4 py-3" style={{ borderColor: "rgba(20,52,164,0.16)" }}>
-                <p className="text-xs" style={{ color: "#4050b5" }}>Transfer ke Rekening</p>
-                <p className="mt-1 text-sm font-semibold" style={{ color: "#1434A4" }}>
-                  {paymentAccount.bank}
-                </p>
-                <p className="text-2xl font-extrabold tracking-wider" style={{ color: "#1434A4" }}>
-                  {paymentAccount.number}
-                </p>
-                <p className="text-sm" style={{ color: "#4050b5" }}>
-                  A/N {paymentAccount.holder}
-                </p>
-              </div>
-
-              <div className="mt-3 space-y-2 rounded-xl border bg-white px-4 py-3 text-sm" style={{ borderColor: "rgba(20,52,164,0.16)", color: "#4050b5" }}>
-                <div className="flex items-center justify-between">
-                  <span>Total Dibayar</span>
-                  <span className="font-bold" style={{ color: "#1434A4" }}>
-                    {totalEstimate ? formatPrice(totalEstimate) : "Menunggu estimasi"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Batas Pembayaran</span>
-                  <span className="font-semibold" style={{ color: "#1434A4" }}>24 Jam</span>
-                </div>
-                <div className="h-px" style={{ background: "rgba(20,52,164,0.10)" }} />
-                <p className="text-xs">
-                  Setelah transfer, simpan bukti pembayaran lalu konfirmasi ke admin agar pesanan diproses.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
       </form>
 
       <ShuttleConfirmDialog
         open={showConfirm}
         onClose={() => setShowConfirm(false)}
         onConfirm={handleConfirm}
+        onCancel={() => window.location.reload()}
         data={{
           tripType: TRIP_TYPES[tripType],
           from,

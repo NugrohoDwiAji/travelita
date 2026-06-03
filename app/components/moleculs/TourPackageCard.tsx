@@ -1,4 +1,7 @@
+"use client";
+
 import { IconStar } from "@/app/components/atoms/TravelIcons";
+import { useTranslations } from "next-intl";
 
 interface Inclusion {
   text: string;
@@ -24,7 +27,7 @@ export default function TourPackageCard({
   name,
   duration,
   price,
-  priceNote = "/ orang",
+  priceNote,
   image,
   badge,
   highlight = false,
@@ -34,6 +37,7 @@ export default function TourPackageCard({
   destinations,
   href = "#booking-form",
 }: TourPackageCardProps) {
+  const t = useTranslations("components.tourPackageCard");
   return (
     <div
       className="relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -105,7 +109,7 @@ export default function TourPackageCard({
               className="text-[10px]"
               style={{ color: highlight ? "rgba(255,255,255,0.55)" : "#9ca3af" }}
             >
-              ({reviewCount} ulasan)
+              ({reviewCount} {t("reviews")})
             </span>
           </div>
         </div>
@@ -161,7 +165,7 @@ export default function TourPackageCard({
               className="ml-1 text-[11px]"
               style={{ color: highlight ? "rgba(255,255,255,0.60)" : "#4050b5" }}
             >
-              {priceNote}
+              {priceNote || t("priceUnit")}
             </span>
           </div>
           <a
@@ -173,7 +177,7 @@ export default function TourPackageCard({
                 : { background: "linear-gradient(90deg, #1434A4, #3d52c6)", color: "#fff" }
             }
           >
-            Pilih Paket
+            {t("selectButton")}
           </a>
         </div>
       </div>

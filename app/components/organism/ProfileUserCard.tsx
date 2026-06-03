@@ -3,11 +3,12 @@
 import { useState, useTransition, useRef } from "react";
 import { updateProfile } from "@/app/actions/profile";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type ProfileInfo = {
   id: string;
   userId: string;
-  coutry: string;
+  country: string | null;
   city: string;
   profilePicture: string | null;
   createdAt: Date;
@@ -32,8 +33,12 @@ type ProfileUserCardProps = {
 function PersonalDataRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</p>
-      <p className="sm:col-span-2 break-all text-sm font-medium text-slate-800">{value}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+        {label}
+      </p>
+      <p className="sm:col-span-2 break-all text-sm font-medium text-slate-800">
+        {value}
+      </p>
     </div>
   );
 }
@@ -74,7 +79,9 @@ function EditField({
 function EditFieldReadOnly({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+        {label}
+      </p>
       <p className="sm:col-span-2 break-all rounded-xl border border-dashed border-slate-200 bg-slate-100 px-4 py-2.5 text-sm font-medium text-slate-400">
         {value}
       </p>
@@ -83,6 +90,7 @@ function EditFieldReadOnly({ label, value }: { label: string; value: string }) {
 }
 
 export default function ProfileUserCard({ user }: ProfileUserCardProps) {
+  const t = useTranslations("profile");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -92,10 +100,10 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
 
   const [name, setName] = useState(user.name);
   const [username, setUsername] = useState(user.username);
-  const [coutry, setCoutry] = useState(user.profile?.coutry ?? "");
+  const [country, setCountry] = useState(user.profile?.country ?? "");
   const [city, setCity] = useState(user.profile?.city ?? "");
   const [profilePicture, setProfilePicture] = useState(
-    user.profile?.profilePicture ?? ""
+    user.profile?.profilePicture ?? "",
   );
 
   const displayPicture = profilePicture || null;
@@ -110,7 +118,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
   function handleCancel() {
     setName(user.name);
     setUsername(user.username);
-    setCoutry(user.profile?.coutry ?? "");
+    setCountry(user.profile?.country ?? "");
     setCity(user.profile?.city ?? "");
     setProfilePicture(user.profile?.profilePicture ?? "");
     setError(null);
@@ -135,7 +143,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
       const result = await updateProfile(user.id, {
         name,
         username,
-        coutry,
+        country,
         city,
         profilePicture,
       });
@@ -179,7 +187,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={displayPicture}
-                    alt={`Foto profil ${name}`}
+                    alt={t("avatarAlt", { name })}
                     className="h-full w-full rounded-2xl border-4 border-white object-cover shadow-lg"
                   />
                 ) : (
@@ -208,8 +216,12 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                 )}
               </div>
 
-              <h1 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">{name}</h1>
-              <p className="mt-1 text-sm text-slate-600 sm:text-base">{user.email}</p>
+              <h1 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
+                {name}
+              </h1>
+              <p className="mt-1 text-sm text-slate-600 sm:text-base">
+                {user.email}
+              </p>
             </div>
 
             {!isEditing ? (
@@ -218,7 +230,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                 onClick={() => setIsEditing(true)}
                 className="mt-2 rounded-xl bg-[#1434A4] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0f2b8f]"
               >
-                Edit Profile
+                {t("editButton")}
               </button>
             ) : (
               <div className="mt-2 flex gap-2">
@@ -228,7 +240,7 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                   disabled={isPending}
                   className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-50 disabled:opacity-50"
                 >
-                  Batal
+                  {t("cancelButton")}
                 </button>
                 <button
                   type="button"
@@ -236,14 +248,16 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
                   disabled={isPending}
                   className="rounded-xl bg-[#1434A4] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0f2b8f] disabled:opacity-50"
                 >
-                  {isPending ? "Menyimpan…" : "Simpan"}
+                  {isPending ? t("saveButtonLoading") : t("saveButton")}
                 </button>
               </div>
             )}
           </div>
 
           <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-6">
-            <h2 className="text-base font-bold text-slate-900 sm:text-lg">Data Pribadi</h2>
+            <h2 className="text-base font-bold text-slate-900 sm:text-lg">
+              {t("sectionTitle")}
+            </h2>
 
             {error && (
               <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm text-red-600">
@@ -254,19 +268,58 @@ export default function ProfileUserCard({ user }: ProfileUserCardProps) {
             <div className="mt-3 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white px-4 sm:px-5">
               {isEditing ? (
                 <>
-                  <EditField label="Nama" id="edit-name" value={name} onChange={setName} placeholder="Nama lengkap" />
-                  <EditField label="Username" id="edit-username" value={username} onChange={setUsername} placeholder="username" />
-                  <EditFieldReadOnly label="Email" value={user.email} />
-                  <EditField label="Country" id="edit-country" value={coutry} onChange={setCoutry} placeholder="Negara" />
-                  <EditField label="City" id="edit-city" value={city} onChange={setCity} placeholder="Kota" />
+                  <EditField
+                    label={t("fields.nameLabel")}
+                    id="edit-name"
+                    value={name}
+                    onChange={setName}
+                    placeholder={t("fields.namePlaceholder")}
+                  />
+                  <EditField
+                    label={t("fields.usernameLabel")}
+                    id="edit-username"
+                    value={username}
+                    onChange={setUsername}
+                    placeholder={t("fields.usernamePlaceholder")}
+                  />
+                  <EditFieldReadOnly
+                    label={t("fields.emailLabel")}
+                    value={user.email}
+                  />
+                  <EditField
+                    label={t("fields.countryLabel")}
+                    id="edit-country"
+                    value={country}
+                    onChange={setCountry}
+                    placeholder={t("fields.countryPlaceholder")}
+                  />
+                  <EditField
+                    label={t("fields.cityLabel")}
+                    id="edit-city"
+                    value={city}
+                    onChange={setCity}
+                    placeholder={t("fields.cityPlaceholder")}
+                  />
                 </>
               ) : (
                 <>
-                  <PersonalDataRow label="Nama" value={name} />
-                  <PersonalDataRow label="Username" value={username} />
-                  <PersonalDataRow label="Email" value={user.email} />
-                  <PersonalDataRow label="Country" value={coutry || "Belum diatur"} />
-                  <PersonalDataRow label="City" value={city || "Belum diatur"} />
+                  <PersonalDataRow label={t("fields.nameLabel")} value={name} />
+                  <PersonalDataRow
+                    label={t("fields.usernameLabel")}
+                    value={username}
+                  />
+                  <PersonalDataRow
+                    label={t("fields.emailLabel")}
+                    value={user.email}
+                  />
+                  <PersonalDataRow
+                    label={t("fields.countryLabel")}
+                    value={country || t("notSetYet")}
+                  />
+                  <PersonalDataRow
+                    label={t("fields.cityLabel")}
+                    value={city || t("notSetYet")}
+                  />
                 </>
               )}
             </div>

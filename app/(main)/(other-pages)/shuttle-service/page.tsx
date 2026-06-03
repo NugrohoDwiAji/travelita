@@ -1,5 +1,7 @@
 import { Metadata } from "next";
+import { BookingType } from "@prisma/client";
 import ShuttleServiceTemplate from "@/app/components/templates/ShuttleServiceTemplate";
+import { getContent, getServiceRoutes } from "@/app/actions/content";
 
 export const metadata: Metadata = {
   title: "Shuttle Service  Travelita",
@@ -7,7 +9,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ShuttleServicePage() {
+  const [contentResult, routesResult] = await Promise.all([
+    getContent(BookingType.SHUTTLE),
+    getServiceRoutes(BookingType.SHUTTLE),
+  ]);
 
+  const routes = routesResult.data?.map(r => ({
+    from: r.from,
+    to: r.to,
+    duration: r.duration,
+    price: `Rp ${Math.round(r.price).toLocaleString("id-ID")}`,
+    tag: r.tag,
+  })) ?? undefined;
 
-  return <ShuttleServiceTemplate />;
+  return <ShuttleServiceTemplate content={contentResult.data ?? undefined} routes={routes} />;
 }

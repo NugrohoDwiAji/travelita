@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   IconLocation,
   IconCalendar,
@@ -12,6 +13,7 @@ export interface ShuttleConfirmDialogProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onCancel?: () => void;
   data: {
     tripType: string;
     from: string;
@@ -53,11 +55,14 @@ export default function ShuttleConfirmDialog({
   open,
   onClose,
   onConfirm,
+  onCancel,
   data,
 }: ShuttleConfirmDialogProps) {
+  const t = useTranslations("components.shuttleConfirm");
+
   if (!open) return null;
 
-  const isRoundTrip = data.tripType === "Pulang Pergi";
+  const isRoundTrip = data.tripType === t("roundTrip");
   const totalPrice = data.price
     ? data.price * data.passengers * (isRoundTrip ? 2 : 1)
     : null;
@@ -81,7 +86,7 @@ export default function ShuttleConfirmDialog({
           className="flex items-center justify-between rounded-t-2xl px-6 py-4"
           style={{ background: "linear-gradient(90deg, #1434A4, #3d52c6)" }}
         >
-          <h3 className="text-lg font-bold text-white">Konfirmasi Pesanan</h3>
+          <h3 className="text-lg font-bold text-white">{t("title")}</h3>
           <button
             type="button"
             onClick={onClose}
@@ -124,12 +129,12 @@ export default function ShuttleConfirmDialog({
             {/* Pergi */}
             <DetailItem
               icon={<IconCalendar />}
-              label="Tanggal Pergi"
+              label={t("departureDate")}
               value={formatDate(data.dateGo)}
             />
             <DetailItem
               icon={<IconClock />}
-              label="Jam Pergi"
+              label={t("departureTime")}
               value={formatTime(data.timeGo)}
             />
 
@@ -138,12 +143,12 @@ export default function ShuttleConfirmDialog({
               <>
                 <DetailItem
                   icon={<IconCalendar />}
-                  label="Tanggal Pulang"
+                  label={t("returnDate")}
                   value={formatDate(data.dateBack || "")}
                 />
                 <DetailItem
                   icon={<IconClock />}
-                  label="Jam Pulang"
+                  label={t("returnTime")}
                   value={formatTime(data.timeBack || "")}
                 />
               </>
@@ -152,8 +157,8 @@ export default function ShuttleConfirmDialog({
             {/* Penumpang */}
             <DetailItem
               icon={<IconPerson />}
-              label="Penumpang"
-              value={`${data.passengers} orang`}
+              label={t("passengers")}
+              value={`${data.passengers} ${t("passengerUnit")}`}
             />
           </div>
 
@@ -164,7 +169,7 @@ export default function ShuttleConfirmDialog({
               style={{ background: "#eef0fb" }}
             >
               <span className="text-sm font-semibold" style={{ color: "#4050b5" }}>
-                Total Harga
+                {t("totalPrice")}
               </span>
               <span className="text-lg font-bold" style={{ color: "#1434A4" }}>
                 {formatPrice(totalPrice)}
@@ -177,11 +182,11 @@ export default function ShuttleConfirmDialog({
         <div className="flex gap-3 px-6 pb-6">
           <button
             type="button"
-            onClick={onClose}
+            onClick={onCancel ?? onClose}
             className="flex-1 rounded-xl border py-3 text-sm font-semibold transition hover:bg-gray-50 active:scale-[0.98]"
             style={{ borderColor: "rgba(20,52,164,0.20)", color: "#4050b5" }}
           >
-            Batal
+            {t("cancel")}
           </button>
           <button
             type="button"
@@ -189,7 +194,7 @@ export default function ShuttleConfirmDialog({
             className="flex-1 rounded-xl py-3 text-sm font-bold text-white shadow-lg transition hover:brightness-110 active:scale-[0.98]"
             style={{ background: "linear-gradient(90deg, #1434A4, #3d52c6)" }}
           >
-            Pesan
+            {t("confirm")}
           </button>
         </div>
       </div>

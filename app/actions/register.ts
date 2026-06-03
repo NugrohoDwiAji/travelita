@@ -37,7 +37,7 @@ export async function register(data: SignUpFormData) {
         role: "USER",
         profile: {
           create: {
-            coutry: country,
+            country: country,
             city,
           },
         },

@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { PrismaMariaDb } from "@prisma/adapter-mariadb";
-import { PrismaClient, UserRole } from "../generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient, UserRole } from "@prisma/client";
 import { emailSchema, nameSchema, passwordSchema, usernameSchema } from "../app/utils/auth-validation";
 import { hashPassword } from "../app/utils/password";
 import { z } from "zod";
@@ -15,25 +15,11 @@ const adminSeedSchema = z.object({
 type AdminSeedInput = z.infer<typeof adminSeedSchema>;
 
 function createPrismaClient() {
-	const adapter = new PrismaMariaDb({
-		host: getRequiredEnv("DB_HOST"),
-		user: getRequiredEnv("DB_USER"),
-		password: getRequiredEnv("DB_PASSWORD"),
-		database: getRequiredEnv("DB_NAME"),
-		connectionLimit: 5,
+	const adapter = new PrismaPg({
+		connectionString: process.env.DATABASE_URL,
 	});
 
 	return new PrismaClient({ adapter });
-}
-
-function getRequiredEnv(name: string): string {
-	const value = process.env[name]?.trim();
-
-	if (value === undefined) {
-		throw new Error(`Environment variable ${name} wajib diisi.`);
-	}
-
-	return value;
 }
 
 function getAdminSeedInput(): AdminSeedInput {

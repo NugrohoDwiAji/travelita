@@ -1,83 +1,66 @@
+"use client";
+
 import TicketingBookingForm from "@/app/components/organism/TicketingBookingForm";
 import FaqItem from "@/app/components/moleculs/FaqItem";
+import { ContentInput } from "@/app/actions/content";
+import { useTranslations } from "next-intl";
 
-const POPULAR_DESTINATIONS = [
-  { from: "Jakarta", to: "Bali",       price: "Rp 450.000", type: "Pesawat", icon: "✈️", tag: "Terlaris",   duration: "1.5 Jam"  },
-  { from: "Jakarta", to: "Surabaya",   price: "Rp 280.000", type: "Pesawat", icon: "✈️", tag: "Promo",      duration: "1.25 Jam" },
-  { from: "Jakarta", to: "Yogyakarta", price: "Rp 175.000", type: "Kereta",  icon: "🚂", tag: null,         duration: "7 Jam"    },
-  { from: "Surabaya", to: "Bali",      price: "Rp 80.000",  type: "Kereta",  icon: "🚂", tag: "Populer",    duration: "4.5 Jam"  },
-  { from: "Jakarta", to: "Bandung",    price: "Rp 55.000",  type: "Kereta",  icon: "🚂", tag: "Terjangkau", duration: "3 Jam"    },
-  { from: "Bali",    to: "Lombok",     price: "Rp 75.000",  type: "Ferry",   icon: "⛴️", tag: "Baru",       duration: "4.5 Jam"  },
-];
+const KEUNTUNGAN_ICONS = ["🎫", "⚡", "🔄", "🛡️"];
 
 const PROMOS = [
-  {
-    title: "Flash Sale Pesawat",
-    desc: "Diskon hingga 40% untuk penerbangan domestik pilihan",
-    code: "FLASH40",
-    badge: "Berakhir 20 Mar 2026",
-    color: "#1434A4",
-  },
-  {
-    title: "Kereta Akhir Pekan",
-    desc: "Harga spesial setiap Jumat–Minggu untuk semua rute kereta",
-    code: "WEEKEND",
-    badge: "Setiap Minggu",
-    color: "#0d2280",
-  },
-  {
-    title: "Rute Baru Ferry Lombok",
-    desc: "Rute Bali–Lombok perdana mulai Rp 75.000/penumpang",
-    code: "FERRY75",
-    badge: "Rute Baru!",
-    color: "#3d52c6",
-  },
+  { code: "FLASH40", color: "#1434A4" },
+  { code: "WEEKEND", color: "#0d2280" },
+  { code: "FERRY75", color: "#3d52c6" },
 ];
 
-const KEUNTUNGAN = [
-  { icon: "🎫", title: "Harga Terbaik",     desc: "Bandingkan harga dari semua maskapai & operator" },
-  { icon: "⚡", title: "Konfirmasi Instan", desc: "E-tiket terkirim ke email dalam 15 menit"         },
-  { icon: "🔄", title: "Reschedule Mudah",  desc: "Ubah jadwal kapan saja melalui aplikasi Travelita"  },
-  { icon: "🛡️", title: "Aman & Terpercaya", desc: "Sistem pembayaran terenkripsi & berlisensi resmi" },
-];
+interface RouteData {
+  from: string;
+  to: string;
+  duration: string;
+  price: string;
+  tag?: string | null;
+  type?: string | null;
+  icon?: string | null;
+}
 
-const CARA_PESAN = [
-  { step: "01", title: "Pilih Moda Transportasi", desc: "Pilih pesawat, kereta, bus, atau ferry sesuai kebutuhan" },
-  { step: "02", title: "Isi Detail Perjalanan",   desc: "Masukkan rute, tanggal, jumlah penumpang, dan kelas"    },
-  { step: "03", title: "Pilih & Bandingkan",      desc: "Lihat semua pilihan tersedia dan pilih yang paling sesuai" },
-  { step: "04", title: "Bayar & Terima E-tiket",  desc: "Bayar dan e-tiket langsung dikirim ke email Anda"       },
-];
+interface TicketingTemplateProps {
+  content?: ContentInput;
+  routes?: RouteData[];
+}
 
-const FAQS = [
-  {
-    q: "Bagaimana cara memesan tiket di Travelita?",
-    a: "Pilih moda transportasi (Pesawat, Kereta, Bus, atau Ferry), isi kota asal & tujuan, tanggal, dan jumlah penumpang, lalu klik Cari Tiket. Setelah mendapat hasil, pilih tiket yang sesuai dan lakukan pembayaran.",
-  },
-  {
-    q: "Apakah tiket yang dibeli bisa di-refund?",
-    a: "Kebijakan refund bergantung pada maskapai/operator. Secara umum, tiket fleksibel dapat di-refund hingga 24 jam sebelum keberangkatan dengan potongan admin Rp 25.000.",
-  },
-  {
-    q: "Berapa lama e-tiket dikirimkan setelah pembayaran?",
-    a: "E-tiket akan dikirimkan ke email Anda dalam waktu maksimal 15 menit setelah pembayaran berhasil dikonfirmasi.",
-  },
-  {
-    q: "Apakah ada biaya tambahan selain harga tiket?",
-    a: "Harga tiket sudah termasuk pajak dan biaya layanan dasar. Biaya bagasi tambahan dan pemilihan kursi berbayar akan tertera secara transparan sebelum pembayaran.",
-  },
-  {
-    q: "Bisakah saya memesan tiket untuk orang lain?",
-    a: "Bisa. Pada saat mengisi data penumpang, masukkan nama dan data yang berbeda dari pemesan. Pastikan data sesuai identitas yang digunakan saat perjalanan.",
-  },
-];
+export default function TicketingTemplate({ content, routes }: TicketingTemplateProps) {
+  const t = useTranslations("services.ticketing");
+  const tFallback = useTranslations("components.ticketingService");
 
-export default function TicketingTemplate() {
+  const tagMap: Record<string, string> = {
+    "Terlaris": tFallback("routes.tags.bestSeller"),
+    "Promo": tFallback("routes.tags.promo"),
+    "Populer": tFallback("routes.tags.popular"),
+    "Terjangkau": tFallback("routes.tags.affordable"),
+    "Baru": tFallback("routes.tags.new"),
+  };
+
+  const typeMap: Record<string, string> = {
+    "Ferry": tFallback("routes.types.ferry"),
+    "Pesawat": tFallback("routes.types.plane"),
+    "Bus": tFallback("routes.types.bus"),
+  };
+  const title = content?.title ?? t("hero.title");
+  const subtitle = content?.subtitle ?? t("hero.subtitle");
+  const description = content?.description ?? t("hero.description");
+  const heroBadge = content?.badge;
+  const faqItems =
+    content?.faqs?.length
+      ? content.faqs
+      : [1, 2, 3, 4, 5].map((i) => ({ question: t(`faq.${i}.q`), answer: t(`faq.${i}.a`) }));
+  const displayRoutes = routes ?? [];
+
   return (
     <div className="min-h-screen" style={{ background: "#f5f6fb" }}>
 
       {/* ── Hero Banner ── */}
       <section
-        className="relative overflow-hidden pt-24 pb-40"
+        className="relative overflow-hidden pt-0 pb-40"
         style={{ background: "linear-gradient(135deg, #0d2280 0%, #1434A4 55%, #3d52c6 100%)" }}
       >
         <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-[0.08]"
@@ -95,12 +78,17 @@ export default function TicketingTemplate() {
             style={{ top: d.top, left: d.left, width: d.size, height: d.size, background: "#fff" }} />
         ))}
 
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 text-center">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 pt-28 text-center">
           <div className="mb-4 flex items-center justify-center gap-2 text-xs text-white/60">
-            <span>Beranda</span>
+            <span>{t("hero.breadcrumbHome")}</span>
             <span>/</span>
-            <span className="font-medium text-white/90">Ticketing</span>
+            <span className="font-medium text-white/90">{t("hero.breadcrumbService")}</span>
           </div>
+          {heroBadge && (
+            <div className="mx-auto mb-4 inline-flex rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+              {heroBadge}
+            </div>
+          )}
 
           {/* Ticket icon */}
           <div
@@ -120,18 +108,20 @@ export default function TicketingTemplate() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-            Pesan Tiket Online
+            {title}
           </h1>
           <p className="mt-3 text-base sm:text-lg text-white/75 max-w-2xl mx-auto">
-            Temukan dan pesan tiket pesawat, kereta, bus, dan ferry terbaik dengan harga
-            transparan. Satu platform untuk semua moda transportasi Anda.
+            {subtitle}
+          </p>
+          <p className="mt-3 text-base sm:text-lg text-white/75 max-w-2xl mx-auto">
+            {description}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
             {[
-              { value: "1.000+", label: "Rute Tersedia"    },
-              { value: "50+",    label: "Partner Maskapai" },
-              { value: "4.8★",   label: "Rating Pengguna"  },
+              { value: "1.000+", label: t("hero.stat1Label")    },
+              { value: "50+",    label: t("hero.stat2Label") },
+              { value: "4.8★",   label: t("hero.stat3Label")  },
             ].map(({ value, label }) => (
               <div key={label} className="flex flex-col items-center">
                 <span className="text-xl font-extrabold text-white">{value}</span>
@@ -150,9 +140,9 @@ export default function TicketingTemplate() {
       {/* ── Keuntungan ── */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 mt-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {KEUNTUNGAN.map(({ icon, title, desc }) => (
+          {([1, 2, 3, 4] as const).map((i) => (
             <div
-              key={title}
+              key={t(`keuntungan.${i}.title`)}
               className="flex flex-col items-center gap-2 rounded-xl p-5 text-center"
               style={{
                 background: "#fff",
@@ -160,9 +150,9 @@ export default function TicketingTemplate() {
                 boxShadow: "0 2px 12px rgba(20,52,164,0.05)",
               }}
             >
-              <span className="text-2xl">{icon}</span>
-              <p className="text-sm font-bold" style={{ color: "#1434A4" }}>{title}</p>
-              <p className="text-[11px] leading-snug" style={{ color: "#4050b5" }}>{desc}</p>
+              <span className="text-2xl">{KEUNTUNGAN_ICONS[i - 1]}</span>
+              <p className="text-sm font-bold" style={{ color: "#1434A4" }}>{t(`keuntungan.${i}.title`)}</p>
+              <p className="text-[11px] leading-snug" style={{ color: "#4050b5" }}>{t(`keuntungan.${i}.desc`)}</p>
             </div>
           ))}
         </div>
@@ -173,19 +163,19 @@ export default function TicketingTemplate() {
         <div className="mb-5 flex items-end justify-between">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              Destinasi Populer
+              {t("popularDestinations.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Rute Favorit Pelancong
+              {t("popularDestinations.sectionTitle")}
             </h2>
           </div>
           <a href="#" className="text-xs font-semibold underline underline-offset-4" style={{ color: "#3d52c6" }}>
-            Lihat Semua
+            {t("popularDestinations.viewAll")}
           </a>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {POPULAR_DESTINATIONS.map((d) => (
+          {displayRoutes.map((d) => (
             <a
               key={`${d.from}-${d.to}`}
               href="#booking-form"
@@ -201,7 +191,7 @@ export default function TicketingTemplate() {
                   className="absolute -top-2 right-3 rounded-full px-2 py-0.5 text-[10px] font-bold text-white"
                   style={{ background: "#1434A4" }}
                 >
-                  {d.tag}
+                  {d.tag && tagMap[d.tag] ? tagMap[d.tag] : d.tag}
                 </span>
               )}
               <div
@@ -219,13 +209,13 @@ export default function TicketingTemplate() {
                     className="rounded-full px-2 py-0.5 text-[10px] font-medium"
                     style={{ background: "rgba(20,52,164,0.07)", color: "#1434A4" }}
                   >
-                    {d.type}
+                    {d.type && typeMap[d.type] ? typeMap[d.type] : d.type}
                   </span>
                   <span className="text-[11px]" style={{ color: "#4050b5" }}>⏱ {d.duration}</span>
                 </div>
               </div>
               <div className="shrink-0 text-right">
-                <p className="text-[10px]" style={{ color: "#4050b5" }}>Mulai dari</p>
+                <p className="text-[10px]" style={{ color: "#4050b5" }}>{t("popularDestinations.priceLabel")}</p>
                 <p className="text-sm font-extrabold" style={{ color: "#1434A4" }}>{d.price}</p>
               </div>
             </a>
@@ -238,10 +228,10 @@ export default function TicketingTemplate() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="mb-6 text-center">
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              Penawaran Spesial
+              {t("promo.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Promo & Deals Terbaru
+              {t("promo.sectionTitle")}
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -252,15 +242,15 @@ export default function TicketingTemplate() {
                 style={{ background: `linear-gradient(135deg, ${promo.color}, #3d52c6)` }}
               >
                 <span className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold bg-white/20 mb-3">
-                  {promo.badge}
+                  {t("promo.1.badge")}
                 </span>
-                <h3 className="text-base font-extrabold mb-1">{promo.title}</h3>
-                <p className="text-xs text-white/75 leading-relaxed mb-4">{promo.desc}</p>
+                <h3 className="text-base font-extrabold mb-1">{t("promo.1.title")}</h3>
+                <p className="text-xs text-white/75 leading-relaxed mb-4">{t("promo.1.desc")}</p>
                 <div
                   className="flex items-center justify-between rounded-lg px-3 py-2"
                   style={{ background: "rgba(255,255,255,0.15)" }}
                 >
-                  <span className="text-xs text-white/70">Kode Promo</span>
+                  <span className="text-xs text-white/70">{t("promo.codeLabel")}</span>
                   <span className="font-extrabold text-sm tracking-widest">{promo.code}</span>
                 </div>
               </div>
@@ -273,24 +263,24 @@ export default function TicketingTemplate() {
       <section className="mx-auto max-w-4xl px-4 sm:px-6 py-14">
         <div className="mb-8 text-center">
           <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-            Panduan
+            {t("caraBooking.sectionLabel")}
           </span>
           <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-            Cara Memesan Tiket
+            {t("caraBooking.sectionTitle")}
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-4">
-          {CARA_PESAN.map(({ step, title, desc }) => (
+          {(["1", "2", "3", "4"] as const).map((step) => (
             <div key={step} className="flex flex-col items-center text-center gap-3">
               <div
                 className="flex h-12 w-12 items-center justify-center rounded-full text-lg font-extrabold text-white"
                 style={{ background: "#1434A4", boxShadow: "0 4px 14px rgba(20,52,164,0.30)" }}
               >
-                {step}
+                {step.padStart(2, "0")}
               </div>
               <div>
-                <p className="font-bold text-sm" style={{ color: "#1434A4" }}>{title}</p>
-                <p className="mt-1 text-xs leading-snug" style={{ color: "#4050b5" }}>{desc}</p>
+                <p className="font-bold text-sm" style={{ color: "#1434A4" }}>{t(`caraBooking.${step}.title`)}</p>
+                <p className="mt-1 text-xs leading-snug" style={{ color: "#4050b5" }}>{t(`caraBooking.${step}.desc`)}</p>
               </div>
             </div>
           ))}
@@ -302,15 +292,15 @@ export default function TicketingTemplate() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="mb-8 text-center">
             <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#1434A4" }}>
-              FAQ
+              {t("faq.sectionLabel")}
             </span>
             <h2 className="mt-1 text-xl sm:text-2xl font-extrabold" style={{ color: "#1434A4" }}>
-              Pertanyaan yang Sering Diajukan
+              {t("faq.sectionTitle")}
             </h2>
           </div>
           <div className="flex flex-col gap-3">
-            {FAQS.map((faq) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+            {faqItems.map((faq) => (
+              <FaqItem key={faq.question} q={faq.question} a={faq.answer} />
             ))}
           </div>
         </div>
@@ -323,17 +313,17 @@ export default function TicketingTemplate() {
       >
         <div className="mx-auto max-w-xl px-4">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Siap Merencanakan Perjalanan?
+            {t("cta.title")}
           </h2>
           <p className="mt-2 text-white/70 text-sm">
-            Dapatkan harga terbaik untuk semua moda transportasi favoritmu.
+            {t("cta.desc")}
           </p>
           <a
             href="#booking-form"
             className="mt-6 inline-block rounded-full px-10 py-3.5 text-sm font-bold uppercase tracking-widest shadow-xl transition hover:scale-105"
             style={{ background: "#fff", color: "#1434A4" }}
           >
-            Cari Tiket Sekarang
+            {t("cta.button")}
           </a>
         </div>
       </section>

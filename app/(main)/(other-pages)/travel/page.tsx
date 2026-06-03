@@ -1,12 +1,16 @@
 import { Metadata } from "next";
+import { BookingType } from "@prisma/client";
 import TravelTemplate from "@/app/components/templates/TravelTemplate";
+import { getContent } from "@/app/actions/content";
 
 export const metadata: Metadata = {
-  title: "Paket Wisata Lombok – Travelita",
+  title: "Paket Wisata Bali-Nusra - Travelita",
   description:
-    "Temukan paket wisata terbaik ke Lombok — Gili Islands, Gunung Rinjani, Pantai Kuta, dan destinasi eksotis lainnya. Guide lokal berpengalaman, harga terjangkau.",
+    "Temukan paket wisata terbaik di Bali, NTB, dan NTT. Guide lokal berpengalaman, harga terjangkau, dan destinasi terkurasi.",
 };
 
-export default function TravelPage() {
-  return <TravelTemplate />;
+export default async function TravelPage() {
+  const { data: content } = await getContent(BookingType.TRIP);
+  return <TravelTemplate content={content ?? undefined} />;
 }
+

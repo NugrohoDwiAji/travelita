@@ -16,7 +16,7 @@ export function errorResponse(message: string = "Internal Server Error", statusC
   const response: ApiErrorResponse = {
     success: false,
     message: message,
-    ...(errorDetails && { error: errorDetails }), // Masukkan detail error jika ada
+    error: errorDetails,
   };
   return NextResponse.json(response, { status: statusCode });
 }

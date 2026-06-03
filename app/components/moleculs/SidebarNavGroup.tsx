@@ -35,6 +35,7 @@ export default function SidebarNavGroup({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
+        suppressHydrationWarning={true}
         className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all"
         style={
           anyActive

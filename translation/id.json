@@ -1,0 +1,718 @@
+{
+  "common": {
+    "brandName": "Travelita",
+    "loading": "Memproses...",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "saving": "Menyimpan…",
+    "back": "Kembali",
+    "bookingTypes": {
+      "shuttle": "Shuttle",
+      "trip": "Travel / Wisata",
+      "privateCar": "Sewa Mobil Privat",
+      "spearFishing": "Spear Fishing",
+      "ticket": "Tiket"
+    },
+    "orderStatus": {
+      "pending": "Pending",
+      "processing": "Diproses",
+      "confirmed": "Terkonfirmasi",
+      "completed": "Selesai",
+      "cancelled": "Dibatalkan"
+    }
+  },
+
+  "header": {
+    "nav": {
+      "ordersAriaLabel": "Pesanan Saya",
+      "profileMenuOpen": "Buka menu akun",
+      "profileMenuClose": "Tutup menu akun",
+      "editProfile": "Edit Profil",
+      "logout": "Keluar",
+      "login": "Masuk",
+      "register": "Daftar",
+      "openMenu": "Buka menu",
+      "closeMenu": "Tutup menu",
+      "ordersLink": "Pesanan Saya",
+      "loginLink": "Masuk",
+      "registerLink": "Daftar"
+    }
+  },
+
+  "auth": {
+    "signIn": {
+      "pageTitle": "Masuk",
+      "welcomeHeading": "Selamat datang kembali! 👋",
+      "welcomeSubtext": "Masuk ke akunmu dan lanjutkan petualanganmu bersama Travelita.",
+      "noAccountText": "Belum punya akun?",
+      "signUpLink": "Daftar sekarang",
+      "googleButton": "Masuk dengan Google",
+      "dividerText": "atau masuk dengan email",
+      "emailLabel": "Email",
+      "emailPlaceholder": "nama@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Masukkan password",
+      "forgotPasswordLink": "Lupa password?",
+      "submitButton": "Masuk",
+      "submitButtonLoading": "Memproses...",
+      "errorGeneric": "Terjadi kesalahan saat login.",
+      "successMessage": "Login berhasil! Mengalihkan..."
+    },
+    "signUp": {
+      "pageTitle": "Buat Akun",
+      "leftPanelHeading": "Gabung & mulai jelajahi Indonesia! 🌴",
+      "feature1": "Pesan shuttle, private car & tiket perjalanan",
+      "feature2": "Paket wisata eksklusif ke Lombok & Gili",
+      "feature3": "Pengalaman spear fishing seru bersama guide",
+      "feature4": "Lacak semua pemesananmu dalam satu dashboard",
+      "alreadyHaveAccountText": "Sudah punya akun?",
+      "signInLink": "Masuk di sini",
+      "googleButton": "Daftar dengan Google",
+      "dividerText": "atau daftar dengan email",
+      "nameLabel": "Nama Lengkap",
+      "namePlaceholder": "Nama lengkapmu",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Username unik kamu",
+      "emailLabel": "Email",
+      "emailPlaceholder": "nama@email.com",
+      "countryLabel": "Negara",
+      "countryPlaceholder": "Pilih negara",
+      "cityLabel": "Kota",
+      "cityPlaceholder": "Pilih kota",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min. 8 karakter",
+      "confirmPasswordLabel": "Konfirmasi Password",
+      "confirmPasswordPlaceholder": "Ulangi password",
+      "submitButton": "Buat Akun",
+      "submitButtonLoading": "Memproses...",
+      "passwordStrength": {
+        "weak": "Lemah",
+        "fair": "Cukup",
+        "good": "Bagus",
+        "strong": "Kuat"
+      },
+      "terms": {
+        "text": "Saya menyetujui",
+        "termsLink": "Syarat & Ketentuan",
+        "and": "dan",
+        "privacyLink": "Kebijakan Privasi",
+        "of": "dari",
+        "brand": "Travelita.",
+        "error": "Kamu harus menyetujui syarat & ketentuan."
+      },
+      "success": {
+        "title": "Berhasil Mendaftar!",
+        "subtext": "Akunmu telah dibuat. Silakan masuk dan mulai petualanganmu!",
+        "button": "Masuk Sekarang"
+      },
+      "error": {
+        "registrationFailedTitle": "Pendaftaran Gagal",
+        "retryButton": "Coba Lagi",
+        "generic": "Terjadi kesalahan saat mendaftar."
+      }
+    }
+  },
+
+  "profile": {
+    "editButton": "Edit Profil",
+    "cancelButton": "Batal",
+    "saveButton": "Simpan",
+    "saveButtonLoading": "Menyimpan…",
+    "sectionTitle": "Data Pribadi",
+    "fields": {
+      "nameLabel": "Nama",
+      "namePlaceholder": "Nama lengkap",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "username",
+      "emailLabel": "Email",
+      "countryLabel": "Negara",
+      "countryPlaceholder": "Negara",
+      "cityLabel": "Kota",
+      "cityPlaceholder": "Kota"
+    },
+    "notSetYet": "Belum diatur",
+    "avatarAlt": "Foto profil {name}"
+  },
+
+  "orders": {
+    "sectionLabel": "Riwayat Pemesanan",
+    "pageTitle": "Pesanan Saya",
+    "emptyState": {
+      "title": "Belum ada pesanan",
+      "subtext": "Pesanan dengan status ini tidak ditemukan."
+    },
+    "card": {
+      "confirmAdminPrice": "Konfirmasi admin",
+      "viewDetailButton": "Lihat Detail",
+      "cancelButton": "Batalkan",
+      "cancelButtonLoading": "Membatalkan...",
+      "cancelConfirm": {
+        "text": "Yakin ingin membatalkan pesanan #{id}?",
+        "confirmButton": "Ya, Batalkan",
+        "confirmButtonLoading": "Memproses...",
+        "declineButton": "Tidak"
+      }
+    }
+  },
+
+  "payment": {
+    "loadingText": "Memuat detail pembayaran...",
+    "errorNotFound": "Pesanan tidak ditemukan",
+    "errorFetchFailed": "Gagal memuat detail pesanan.",
+    "backToOrdersButton": "Kembali ke Pesanan Saya",
+    "status": {
+      "confirmed": {
+        "title": "Pembayaran Berhasil!",
+        "subtext": "Pesanan Anda telah dikonfirmasi. Terima kasih telah melakukan pembayaran.",
+        "badge": "✓ CONFIRMED"
+      },
+      "pending": {
+        "title": "Menunggu Pembayaran",
+        "subtext": "Selesaikan pembayaran Anda dalam waktu 24 jam agar pesanan dapat diproses.",
+        "badge": "⏳ PENDING"
+      },
+      "fallback": {
+        "title": "Status Pembayaran"
+      }
+    },
+    "orderDetail": {
+      "sectionLabel": "Detail Pesanan",
+      "orderIdLabel": "ID Pesanan",
+      "serviceLabel": "Layanan"
+    },
+    "instructions": {
+      "heading": "Instruksi Pembayaran",
+      "transferLabel": "Transfer ke Rekening",
+      "accountHolderPrefix": "A/N",
+      "copyButtonTitle": "Salin Nomor Rekening",
+      "copiedAlert": "Nomor rekening disalin!"
+    },
+    "total": {
+      "label": "Total Pembayaran",
+      "customPriceText": "Menunggu Konfirmasi"
+    },
+    "customPrice": {
+      "noticeTitle": "Penting: Harga akan dikonfirmasi oleh Admin.",
+      "noticeBody": "Layanan {type} membutuhkan konfirmasi ketersediaan dan harga khusus. Mohon hubungi admin sebelum melakukan transfer.",
+      "whatsappMessage": "Halo Admin, saya ingin konfirmasi pesanan #{id} ({type}). Berapa total biaya yang harus saya bayarkan?",
+      "chatAdminButton": "Chat Admin"
+    },
+    "cta": {
+      "viewOrdersButton": "Lihat Pesanan Saya",
+      "uploadProofNote": "Bukti pembayaran dapat diunggah melalui halaman Detail Pesanan di menu Pesanan Saya."
+    }
+  },
+
+  "services": {
+    "shuttle": {
+      "hero": {
+        "breadcrumbHome": "Beranda",
+        "breadcrumbService": "Shuttle Service",
+        "stat1Label": "Rute Tersedia",
+        "stat2Label": "Penumpang/Bulan",
+        "stat3Label": "Rating",
+        "ctaPrimary": "Pesan Sekarang"
+      },
+      "popularRoutes": {
+        "sectionLabel": "Rute Populer",
+        "sectionTitle": "Destinasi Favorit Penumpang",
+        "priceLabel": "Mulai dari"
+      },
+      "keuntungan": {
+        "1": { "title": "Tepat Waktu", "desc": "Armada berangkat sesuai jadwal" },
+        "2": { "title": "Aman & Terjamin", "desc": "Sopir berlisensi resmi & terlatih" },
+        "3": { "title": "Kursi Nyaman", "desc": "AC, kursi reclining, leg room luas" },
+        "4": { "title": "Antar Jemput", "desc": "Pick-up di lokasi yang ditentukan" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Panduan",
+        "sectionTitle": "Cara Pesan Shuttle Service",
+        "1": { "title": "Pilih Rute", "desc": "Masukkan kota asal & tujuan serta tanggal keberangkatan" },
+        "2": { "title": "Pilih Jadwal", "desc": "Lihat daftar jadwal tersedia dan pilih yang sesuai" },
+        "3": { "title": "Isi Data Penumpang", "desc": "Lengkapi nama, nomor HP, dan email untuk e-tiket" },
+        "4": { "title": "Bayar & Berangkat", "desc": "Lakukan pembayaran dan tunjukkan e-tiket saat naik" }
+      },
+      "keunggulan": {
+        "sectionLabel": "Mengapa Kami",
+        "sectionTitle": "Keunggulan Shuttle Travelita",
+        "1": "Armada Toyota HiAce & Hiace Premio terbaru (max 3 tahun)",
+        "2": "Sopir profesional berlisensi B2 dengan pengalaman min 5 tahun",
+        "3": "Pelacakan real-time via aplikasi Travelita",
+        "4": "Asuransi perjalanan gratis untuk setiap penumpang",
+        "5": "Fasilitas WiFi on-board di semua armada",
+        "6": "Free mineral water & snack ringan di perjalanan >3 jam"
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Pertanyaan yang Sering Diajukan",
+        "1": { "q": "Bagaimana cara memesan shuttle?", "a": "Isi form pemesanan di atas dengan kota asal, tujuan, tanggal, dan jumlah penumpang. Pilih jadwal tersedia lalu lakukan pembayaran." },
+        "2": { "q": "Berapa lama sebelum keberangkatan saya bisa memesan?", "a": "Pemesanan dapat dilakukan hingga 1 jam sebelum jadwal keberangkatan. Disarankan memesan minimal H-1 untuk mendapatkan kursi terbaik." },
+        "3": { "q": "Apakah ada biaya bagasi tambahan?", "a": "Setiap penumpang mendapat allowance bagasi 20 kg gratis. Bagasi tambahan dikenakan biaya Rp 5.000 per kg." },
+        "4": { "q": "Bisakah saya membatalkan atau reschedule tiket?", "a": "Pembatalan dapat dilakukan maksimal 3 jam sebelum keberangkatan dengan pengembalian dana 80%. Reschedule gratis hingga 2 jam sebelum berangkat." }
+      },
+      "cta": {
+        "title": "Siap Untuk Perjalanan Anda?",
+        "desc": "Pesan shuttle sekarang dan nikmati perjalanan yang nyaman bersama Travelita!",
+        "button": "Pesan Sekarang"
+      }
+    },
+
+    "ticketing": {
+      "hero": {
+        "breadcrumbHome": "Beranda",
+        "breadcrumbService": "Ticketing",
+        "title": "Pesan Tiket Online",
+        "subtitle": "Temukan dan pesan tiket pesawat, bus, dan ferry Bali-Nusra dengan harga transparan.",
+        "description": "Satu platform untuk perjalanan Bali, NTB, dan NTT.",
+        "stat1Label": "Rute Tersedia",
+        "stat2Label": "Partner Maskapai",
+        "stat3Label": "Rating Pengguna",
+        "ctaPrimary": "Pesan Sekarang"
+      },
+      "popularDestinations": {
+        "sectionLabel": "Destinasi Populer",
+        "sectionTitle": "Rute Favorit Pelancong",
+        "viewAll": "Lihat Semua",
+        "priceLabel": "Mulai dari"
+      },
+      "keuntungan": {
+        "1": { "title": "Harga Terbaik", "desc": "Bandingkan harga dari semua maskapai & operator" },
+        "2": { "title": "Konfirmasi Instan", "desc": "E-tiket terkirim ke email dalam 15 menit" },
+        "3": { "title": "Reschedule Mudah", "desc": "Ubah jadwal kapan saja melalui aplikasi Travelita" },
+        "4": { "title": "Aman & Terpercaya", "desc": "Sistem pembayaran terenkripsi & berlisensi resmi" }
+      },
+      "promo": {
+        "sectionLabel": "Penawaran Spesial",
+        "sectionTitle": "Promo & Deals Terbaru",
+        "codeLabel": "Kode Promo",
+        "1": { "title": "Flash Sale Pesawat", "desc": "Diskon hingga 40% untuk penerbangan Bali-Nusra pilihan", "badge": "Berakhir 20 Mar 2026" },
+        "2": { "title": "Bus Akhir Pekan", "desc": "Harga spesial setiap Jumat-Minggu untuk rute bus Bali-Nusra", "badge": "Setiap Minggu" },
+        "3": { "title": "Rute Baru Ferry Lombok", "desc": "Rute Bali–Lombok perdana mulai Rp 75.000/penumpang", "badge": "Rute Baru!" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Panduan",
+        "sectionTitle": "Cara Memesan Tiket",
+        "1": { "title": "Pilih Moda Transportasi", "desc": "Pilih pesawat, bus, atau ferry sesuai kebutuhan" },
+        "2": { "title": "Isi Detail Perjalanan", "desc": "Masukkan rute, tanggal, jumlah penumpang, dan kelas" },
+        "3": { "title": "Pilih & Bandingkan", "desc": "Lihat semua pilihan tersedia dan pilih yang paling sesuai" },
+        "4": { "title": "Bayar & Terima E-tiket", "desc": "Bayar dan e-tiket langsung dikirim ke email Anda" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Pertanyaan yang Sering Diajukan",
+        "1": { "q": "Bagaimana cara memesan tiket di Travelita?", "a": "Pilih moda transportasi (Pesawat, Bus, atau Ferry), isi kota asal & tujuan, tanggal, dan jumlah penumpang, lalu klik Cari Tiket. Setelah mendapat hasil, pilih tiket yang sesuai dan lakukan pembayaran." },
+        "2": { "q": "Apakah tiket yang dibeli bisa di-refund?", "a": "Kebijakan refund bergantung pada maskapai/operator. Secara umum, tiket fleksibel dapat di-refund hingga 24 jam sebelum keberangkatan dengan potongan admin Rp 25.000." },
+        "3": { "q": "Berapa lama e-tiket dikirimkan setelah pembayaran?", "a": "E-tiket akan dikirimkan ke email Anda dalam waktu maksimal 15 menit setelah pembayaran berhasil dikonfirmasi." },
+        "4": { "q": "Apakah ada biaya tambahan selain harga tiket?", "a": "Harga tiket sudah termasuk pajak dan biaya layanan dasar. Biaya bagasi tambahan dan pemilihan kursi berbayar akan tertera secara transparan sebelum pembayaran." },
+        "5": { "q": "Bisakah saya memesan tiket untuk orang lain?", "a": "Bisa. Pada saat mengisi data penumpang, masukkan nama dan data yang berbeda dari pemesan. Pastikan data sesuai identitas yang digunakan saat perjalanan." }
+      },
+      "cta": {
+        "title": "Siap Merencanakan Perjalanan?",
+        "desc": "Dapatkan harga terbaik untuk semua moda transportasi favoritmu.",
+        "button": "Cari Tiket Sekarang"
+      }
+    },
+
+    "privateCar": {
+      "hero": {
+        "breadcrumbHome": "Beranda",
+        "breadcrumbService": "Private Car",
+        "stat1Label": "Armada Aktif",
+        "stat2Label": "Siap Melayani",
+        "stat3Label": "Rating Sopir"
+      },
+      "keunggulan": {
+        "1": { "title": "Sopir Profesional", "desc": "Berlisensi, ramah, hafal rute" },
+        "2": { "title": "Tracking Realtime", "desc": "Pantau posisi via aplikasi" },
+        "3": { "title": "Privasi Terjaga", "desc": "Tidak ada penumpang lain" },
+        "4": { "title": "On-demand 24 Jam", "desc": "Pesan kapan saja, siap jemput" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Panduan",
+        "sectionTitle": "Cara Memesan Private Car",
+        "1": { "title": "Tentukan Kebutuhan", "desc": "Pilih tipe layanan, tanggal, jam jemput dan tujuan" },
+        "2": { "title": "Pilih Kendaraan", "desc": "Sesuaikan kapasitas dan kelas kendaraan dengan kebutuhan Anda" },
+        "3": { "title": "Isi Data & Konfirmasi", "desc": "Lengkapi data pemesanan dan dapatkan konfirmasi instan" },
+        "4": { "title": "Sopir Siap Menjemput", "desc": "Sopir akan menghubungi 30 menit sebelum waktu penjemputan" }
+      },
+      "inklusif": {
+        "title": "Sudah Termasuk",
+        "1": "Sopir profesional berlisensi",
+        "2": "BBM (khusus paket dalam kota)",
+        "3": "Air mineral & tisu",
+        "4": "Asuransi penumpang",
+        "5": "Parkir area jemput/antar"
+      },
+      "eksklusif": {
+        "title": "Belum Termasuk",
+        "1": "BBM untuk perjalanan antar kota",
+        "2": "Biaya tol & parkir destinasi",
+        "3": "Biaya masuk objek wisata",
+        "4": "Konsumsi sopir",
+        "5": "Overtime di luar durasi"
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Pertanyaan yang Sering Diajukan",
+        "1": { "q": "Apakah harga sudah termasuk BBM dan tol?", "a": "Belum. BBM dan biaya tol ditanggung oleh penyewa. Sopir akan memberikan struk tol untuk transparansi." },
+        "2": { "q": "Bisakah saya memilih sopir yang sama seperti sebelumnya?", "a": "Bisa! Hubungi CS kami dan kami akan mengusahakan sopir yang sama jika tersedia di jadwal Anda." },
+        "3": { "q": "Apa yang terjadi jika perjalanan melebihi durasi yang dipesan?", "a": "Perpanjangan dikenakan biaya overtime Rp 50.000/jam. Konfirmasi ke sopir atau CS kami terlebih dahulu." },
+        "4": { "q": "Apakah tersedia layanan untuk malam hari atau dini hari?", "a": "Tersedia 24 jam. Pemesanan di luar jam kerja (22:00–06:00) dikenakan surcharge Rp 75.000." },
+        "5": { "q": "Bagaimana jika mobil mengalami masalah di tengah perjalanan?", "a": "Kami menyediakan armada pengganti dalam waktu 60 menit khusus area kota besar. Seluruh biaya penggantian ditanggung Travelita." }
+      },
+      "cta": {
+        "title": "Butuh Mobil Dengan Sopir?",
+        "desc": "Pesan private car Travelita sekarang — nyaman, aman, dan tepat waktu.",
+        "button": "Pesan Sekarang"
+      }
+    },
+
+    "spearFishing": {
+      "hero": {
+        "breadcrumbHome": "Beranda",
+        "breadcrumbService": "Spear Fishing",
+        "title": "Spear Fishing",
+        "subtitle": "Adventure Trip Bali-Nusra",
+        "description": "Jelajahi spot bawah laut Bali-Nusra bersama guide lokal berpengalaman dan instruktur bersertifikat.",
+        "stat1Label": "Destinasi Premium",
+        "stat2Label": "Peserta/Tahun",
+        "stat3Label": "Safety Record"
+      },
+      "keunggulan": {
+        "1": { "title": "Spot Eksklusif", "desc": "Akses ke lokasi tersembunyi yang tidak dijual umum" },
+        "2": { "title": "Guide Bersertifikat", "desc": "Instruktur AIDA & SSI berpengalaman min. 5 tahun" },
+        "3": { "title": "Dokumentasi Lengkap", "desc": "Foto & video underwater oleh fotografer profesional" },
+        "4": { "title": "Perahu Privat", "desc": "Charter perahu khusus, bebas dari rombongan lain" }
+      },
+      "packages": {
+        "sectionLabel": "Paket Wisata",
+        "sectionTitle": "Pilih Paket yang Sesuai",
+        "sectionDesc": "Semua paket sudah termasuk instruktur, peralatan, dan asuransi perjalanan",
+        "1": {
+          "name": "Paket Pemula",
+          "level": "Untuk pemula / belum punya pengalaman",
+          "priceNote": "/ orang",
+          "features": ["Briefing teknik spear fishing dasar (2 jam)", "Lokasi spot dangkal (3–5 m)", "1 instruktur untuk maks. 4 peserta", "Sewa peralatan lengkap (masker, fins, snorkel)", "Foto dokumentasi dasar", "Snack & minuman"]
+        },
+        "2": {
+          "name": "Paket Menengah",
+          "level": "Sudah pernah snorkeling / freediving",
+          "priceNote": "/ orang",
+          "badge": "Paling Populer ⭐",
+          "features": ["Akses spot premium (8–15 m)", "1 instruktur untuk maks. 3 peserta", "Senapan panah + peralatan lengkap", "Sesi foto & video underwater", "Makan siang & minuman", "Sertifikat keikutsertaan", "Transfer PP dari titik kumpul"]
+        },
+        "3": {
+          "name": "Paket Profesional",
+          "level": "Berpengalaman / freediver terlatih",
+          "priceNote": "/ orang",
+          "badge": "Eksklusif",
+          "features": ["Spot eksklusif off-the-grid (15–25 m)", "1:1 guide pribadi berpengalaman", "Akses peralatan kompetisi", "Rekaman video & editing profesional", "Paket makan siang premium", "Sertifikat & merchandise Travelita", "Charter perahu privat"]
+        }
+      },
+      "spots": {
+        "sectionLabel": "Lokasi Trip",
+        "sectionTitle": "Spot Spear Fishing Terbaik",
+        "bookNow": "Booking Sekarang",
+        "1": { "name": "Nusa Penida", "region": "Bali", "depth": "5-20 m", "fish": "Mola-mola & Manta", "level": "Semua Level", "tag": "Favorit" },
+        "2": { "name": "Amed", "region": "Bali", "depth": "3-18 m", "fish": "Reef Fish", "level": "Pemula-Menengah", "tag": "Pemula" },
+        "3": { "name": "Menjangan", "region": "Bali", "depth": "5-25 m", "fish": "Karang & Pelagis", "level": "Semua Level", "tag": "" },
+        "4": { "name": "Gili Trawangan", "region": "Lombok Utara", "depth": "5-18 m", "fish": "Reef Fish", "level": "Pemula-Menengah", "tag": "Populer" },
+        "5": { "name": "Komodo", "region": "NTT", "depth": "10-25 m", "fish": "Hiu, Pari, Karang", "level": "Menengah-Ahli", "tag": "Tantangan Tinggi" },
+        "6": { "name": "Alor", "region": "NTT", "depth": "8-30 m", "fish": "Tuna, Barracuda", "level": "Menengah-Ahli", "tag": "Tersembunyi" }
+      },
+      "caraIkut": {
+        "sectionLabel": "Panduan",
+        "sectionTitle": "Cara Ikut Trip Spear Fishing",
+        "1": { "title": "Pilih Paket", "desc": "Tentukan level dan paket yang sesuai pengalaman Anda" },
+        "2": { "title": "Tentukan Lokasi", "desc": "Pilih spot premium kami di Bali, NTB, dan NTT" },
+        "3": { "title": "Konfirmasi & Bayar", "desc": "Booking online dan dapatkan konfirmasi segera dari tim kami" },
+        "4": { "title": "Menyelam!", "desc": "Tim kami menjemput Anda dan siap menemani petualangan laut" }
+      },
+      "peralatan": {
+        "sectionLabel": "Kelengkapan",
+        "sectionTitle": "Peralatan yang Kami Sediakan",
+        "1": { "item": "Masker & Snorkel profesional", "note": "Tersedia semua paket" },
+        "2": { "item": "Fins / Sirip ukuran lengkap", "note": "Tersedia semua paket" },
+        "3": { "item": "Wetsuit 3mm & 5mm", "note": "Paket Menengah ke atas" },
+        "4": { "item": "Senapan panah elastis & pneumatik", "note": "Paket Menengah ke atas" },
+        "5": { "item": "Action Camera GoPro underwater", "note": "Paket Menengah ke atas" },
+        "6": { "item": "First Aid Kit & oksigen darurat", "note": "Semua trip" },
+        "7": { "item": "Perahu cepat & kapal selam snorkeling", "note": "Termasuk semua paket" },
+        "8": { "item": "Sertifikat keikutsertaan", "note": "Paket Menengah ke atas" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Pertanyaan yang Sering Diajukan",
+        "1": { "q": "Apakah saya harus bisa berenang untuk ikut spear fishing?", "a": "Ya, kemampuan renang dasar diperlukan. Untuk paket pemula, kami menyediakan instruktur spesial dan rompi pelampung. Peserta tidak perlu pengalaman menyelam sebelumnya." },
+        "2": { "q": "Apakah peralatan spear fishing sudah termasuk dalam paket?", "a": "Ya, semua paket sudah termasuk sewa peralatan dasar (masker, fins, snorkel). Senapan panah & wetsuit termasuk untuk paket Menengah ke atas. Anda juga bisa membawa peralatan sendiri." },
+        "3": { "q": "Berapa usia minimum untuk ikut trip spear fishing?", "a": "Peserta minimum berusia 14 tahun. Peserta di bawah 18 tahun harus disertai pendamping dewasa dan mendapat izin orang tua tertulis." },
+        "4": { "q": "Apa yang terjadi jika cuaca buruk di hari trip?", "a": "Keselamatan adalah prioritas kami. Jika kondisi laut tidak memungkinkan, trip akan dijadwalkan ulang tanpa biaya tambahan, atau dana 100% dikembalikan jika tidak dapat reschedule." },
+        "5": { "q": "Apakah ikan hasil tangkapan boleh dibawa pulang?", "a": "Ikan hasil tangkapan akan dimasak untuk makan siang bersama (paket Menengah & Profesional). Untuk paket Pemula, tangkapan bersifat catch-and-release demi kelestarian ekosistem." }
+      },
+      "cta": {
+        "title": "Petualangan Bawah Laut Menanti!",
+        "desc": "Bergabunglah dengan ratusan pelancong yang sudah merasakan sensasi spear fishing di spot-spot terbaik Indonesia.",
+        "button": "Booking Trip Sekarang"
+      }
+    },
+
+    "travel": {
+      "hero": {
+        "breadcrumbHome": "Beranda",
+        "breadcrumbService": "Paket Wisata",
+        "title": "Wisata Bali-Nusra",
+        "subtitle": "Paket Liburan Premium Pulau Seribu Masjid",
+        "description": "Jelajahi keindahan Lombok — dari Gili Islands yang memukau, puncak Rinjani yang megah, hingga pantai tersembunyi yang masih perawan.",
+        "stat1Label": "Paket Tersedia",
+        "stat2Label": "Destinasi Bali-Nusra",
+        "stat3Label": "Rating Rata-rata",
+        "stat4Label": "Traveler Puas",
+        "ctaPrimary": "Cari Paket Wisata"
+      },
+      "keunggulan": {
+        "1": { "title": "Guide Lokal Berpengalaman", "desc": "Semua guide kami putra daerah Bali-Nusra, fasih bahasa Indonesia & Inggris" },
+        "2": { "title": "Akomodasi Terpilih", "desc": "Penginapan nyaman dari homestay charming hingga resort berbintang" },
+        "3": { "title": "Transportasi Nyaman", "desc": "Armada AC dengan pengemudi profesional dan tepat waktu" },
+        "4": { "title": "Kuliner Autentik", "desc": "Nikmati Ayam Taliwang, Plecing Kangkung, dan seafood segar khas Bali-Nusra" },
+        "5": { "title": "Dokumentasi Profesional", "desc": "Foto & video memorable di setiap spot ikonik Bali-Nusra" },
+        "6": { "title": "Destinasi Lengkap", "desc": "Dari pantai eksotis hingga puncak Rinjani, semua ada di satu paket" }
+      },
+      "packages": {
+        "sectionLabel": "Paket Wisata Bali-Nusra",
+        "sectionTitle": "Pilih Paket Liburan Impian Anda"
+      },
+      "destinations": {
+        "sectionLabel": "Jelajahi Bali-Nusra",
+        "sectionTitle": "Destinasi Ikonik Lombok",
+        "1": { "name": "Gili Trawangan", "tag": "Wisata Bahari", "desc": "Pulau partai Lombok, snorkeling & diving kelas dunia" },
+        "2": { "name": "Gunung Rinjani", "tag": "Petualangan", "desc": "Puncak tertinggi ke-2 Indonesia, 3.726 mdpl" },
+        "3": { "name": "Pantai Kuta Lombok", "tag": "Pantai Eksotis", "desc": "Pasir merica unik dengan air toska yang jernih" },
+        "4": { "name": "Desa Sade", "tag": "Budaya Sasak", "desc": "Desa adat Suku Sasak, tradisi tenun & arsitektur khas" },
+        "5": { "name": "Benang Kelambu", "tag": "Wisata Alam", "desc": "Air terjun bertingkat di tengah hutan tropis lebat" },
+        "6": { "name": "Gili Air", "tag": "Pulau Tenang", "desc": "Surga tenang tanpa kendaraan bermotor, cocok untuk santai" },
+        "7": { "name": "Senggigi", "tag": "Wisata Pantai", "desc": "Kawasan wisata utama dengan sunset paling menawan" },
+        "8": { "name": "Tanjung Aan", "tag": "Pantai Premium", "desc": "Pantai berpasir butiran besar coklat & putih yang unik" }
+      },
+      "testimoni": {
+        "sectionLabel": "Ulasan Traveler",
+        "sectionTitle": "Apa Kata Mereka?",
+        "1": { "name": "Rina S.", "origin": "Denpasar", "pkg": "Rinjani Trekking", "text": "Pengalaman trekking Rinjani yang luar biasa! Guide-nya sangat profesional dan memastikan kami sampai puncak dengan selamat. Pemandangannya tidak terlupakan!" },
+        "2": { "name": "Ahmad F.", "origin": "Mataram", "pkg": "Gili Islands Explorer", "text": "Paket Gili-nya worth every penny! Snorkeling di 3 spot berbeda, nemu penyu laut, dan sunset di Gili Air rasanya magical. Sudah rekomendasikan ke semua teman!" },
+        "3": { "name": "Dewi K.", "origin": "Kupang", "pkg": "Lombok South Coast", "text": "Pantai Tanjung Aan & Mawun benar-benar surga! Pasirnya putih bersih, air jernihnya bikin betah berjam-jam. Guide lokalnya juga ramah dan informatif sekali." }
+      },
+      "caraBooking": {
+        "sectionLabel": "Panduan",
+        "sectionTitle": "Cara Pesan Paket Wisata",
+        "1": { "title": "Pilih Destinasi", "desc": "Tentukan destinasi dan jenis wisata yang Anda inginkan" },
+        "2": { "title": "Pilih Paket", "desc": "Bandingkan paket berdasarkan durasi, fasilitas, dan harga" },
+        "3": { "title": "Konfirmasi", "desc": "Isi formulir booking dan lakukan pembayaran DP 30%" },
+        "4": { "title": "Berangkat!", "desc": "Tim kami menjemput di bandara dan siap menemani perjalanan" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Pertanyaan yang Sering Diajukan",
+        "1": { "q": "Apakah harga sudah termasuk tiket pesawat ke Lombok?", "a": "Belum. Harga yang tertera adalah harga paket wisata di Lombok saja, tidak termasuk tiket penerbangan menuju Lombok. Kami dapat membantu mencarikan tiket pesawat terbaik jika Anda membutuhkan." },
+        "2": { "q": "Berapa usia minimum untuk trekking Rinjani?", "a": "Usia minimum untuk trekking Rinjani adalah 17 tahun dengan kondisi fisik prima. Pendakian puncak sangat disarankan bagi yang sudah terbiasa hiking. Tersedia juga rute camping tepi danau yang lebih ringan untuk usia 14 tahun ke atas." },
+        "3": { "q": "Apakah paket bisa dikustomisasi untuk grup atau keluarga?", "a": "Tentu! Semua paket bisa disesuaikan untuk group, keluarga, maupun acara honeymoon. Hubungi tim kami untuk mendapatkan penawaran harga khusus grup (min. 10 orang)." },
+        "4": { "q": "Bagaimana kebijakan pembatalan dan refund?", "a": "Pembatalan 7 hari sebelum keberangkatan: refund 100%. Pembatalan 3–6 hari sebelumnya: refund 50%. Pembatalan kurang dari 3 hari: tidak ada refund, namun dapat dijadwalkan ulang." },
+        "5": { "q": "Apa yang perlu dibawa saat ikut paket wisata?", "a": "Dokumen identitas (KTP/paspor), pakaian sesuai aktivitas (pakaian renang untuk pantai/Gili, pakaian hangat untuk Rinjani), sunscreen, topi, dan kamera. Setiap paket memiliki packing list lengkap yang akan dikirimkan setelah konfirmasi booking." }
+      },
+      "cta": {
+        "title": "Bali-Nusra Menanti Kedatangan Anda!",
+        "desc": "Jangan tunda lagi. Pesan sekarang dan dapatkan harga terbaik untuk liburan impian Anda ke Bali-Nusra.",
+        "button": "Cari Paket Wisata"
+      }
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "Explore • Adventure • Discover",
+      "title1": "Jelajahi Nusa Tenggara Barat",
+      "title2": "Bersama Travelita",
+      "subtitle": "Dari shuttle service harian hingga petualangan spear fishing di laut biru - kami menghadirkan pengalaman perjalanan yang tak terlupakan.",
+      "cta1": "Pesan Sekarang",
+      "cta2": "Lihat Paket",
+      "stat1Label": "Pelanggan Puas",
+      "stat2Label": "Destinasi",
+      "stat3Label": "Rating Layanan"
+    },
+    "services": {
+      "sectionLabel": "Layanan Kami",
+      "sectionTitle": "Semua Kebutuhan Perjalanan",
+      "sectionTitleHighlight": "dalam Satu Tempat",
+      "sectionDesc": "Kami menyediakan berbagai layanan perjalanan yang dirancang untuk kenyamanan, keamanan, dan kepuasan Anda.",
+      "learnMore": "Selengkapnya",
+      "shuttle": { "title": "Shuttle Service", "desc": "Layanan antar-jemput terjadwal ke bandara, terminal bus, dan destinasi wisata populer dengan armada nyaman." },
+      "privateCar": { "title": "Private Car", "desc": "Sewa kendaraan pribadi dengan pengemudi profesional untuk wisata keliling kota maupun perjalanan jauh." },
+      "ticketing": { "title": "Ticketing", "desc": "Pembelian tiket pesawat, kapal feri, kereta api, dan bus dengan harga terbaik dalam satu platform." },
+      "spearFishing": { "title": "Spear Fishing", "desc": "Petualangan memancing bawah laut dengan instruktur bersertifikat di perairan eksotis yang jernih dan kaya fauna." },
+      "travel": { "title": "Travel", "desc": "Paket wisata domestik dan internasional dengan itinerary lengkap, akomodasi premium, dan pemandu wisata lokal." }
+    },
+    "whyChooseUs": {
+      "sectionLabel": "Kenapa Travelita?",
+      "sectionTitle1": "Perjalanan Impian,",
+      "sectionTitle2": "Layanan Tanpa Kompromi",
+      "sectionDesc": "Kami telah melayani ribuan pelanggan dengan standar layanan tertinggi. Kepuasan dan keselamatan Anda adalah prioritas utama kami dalam setiap perjalanan.",
+      "progress1Label": "Kepuasan Pelanggan",
+      "progress2Label": "Ketepatan Waktu",
+      "progress3Label": "Keamanan Perjalanan",
+      "features": {
+        "1": { "title": "Armada Terawat & Nyaman", "desc": "Semua kendaraan kami diperiksa berkala, dilengkapi AC, dan siap melayani 24/7." },
+        "2": { "title": "Harga Transparan & Terjangkau", "desc": "Tidak ada biaya tersembunyi. Semua harga sudah termasuk pajak dan layanan penuh." },
+        "3": { "title": "Destinasi Pilihan Terbaik", "desc": "Lebih dari 50 destinasi wisata dalam dan luar negeri dengan paket yang bisa dikustomisasi." },
+        "4": { "title": "Jangkauan Bali Nusra", "desc": "Beroperasi di lebih dari 20 kota besar di Bali Nusra dengan jaringan mitra terpercaya." },
+        "5": { "title": "Support 24/7", "desc": "Tim customer service siap membantu Anda kapan saja lewat WhatsApp, telepon, atau live chat." }
+      }
+    },
+    "destinations": {
+      "sectionLabel": "Destinasi Populer",
+      "sectionTitle1": "Jelajahi Destinasi",
+      "sectionTitle2": "Favorit",
+      "viewAll": "Lihat semua destinasi →",
+      "priceLabel": "Mulai dari",
+      "priceUnit": "/orang",
+      "bookButton": "Pesan",
+      "1": { "name": "Raja Ampat", "location": "Papua Barat", "category": "Spear Fishing & Snorkeling", "duration": "5 Hari / 4 Malam", "price": "Rp 8.500.000", "badge": "Terlaris" },
+      "2": { "name": "Labuan Bajo", "location": "Nusa Tenggara Timur", "category": "Travel & Wisata Alam", "duration": "4 Hari / 3 Malam", "price": "Rp 6.200.000", "badge": "Promo" },
+      "3": { "name": "Bali", "location": "Bali", "category": "Private Car & Travel", "duration": "3 Hari / 2 Malam", "price": "Rp 3.800.000", "badge": "Popular" },
+      "4": { "name": "Lombok", "location": "Nusa Tenggara Barat", "category": "Shuttle & Travel", "duration": "3 Hari / 2 Malam", "price": "Rp 4.100.000", "badge": "Baru" }
+    },
+    "reviews": {
+      "sectionLabel": "Testimoni Pelanggan",
+      "sectionTitle1": "Apa Kata Mereka",
+      "sectionTitle2": "Tentang Kami?",
+      "sectionDesc": "Ribuan pelanggan telah mempercayai Travelita untuk perjalanan mereka. Inilah pengalaman nyata dari mereka.",
+      "stat1Label": "Rating Rata-rata",
+      "stat2Label": "Review Masuk",
+      "stat3Label": "Pelanggan Puas",
+      "ctaText": "Bergabunglah dengan ribuan pelanggan yang sudah merasakan perbedaannya",
+      "ctaButton": "Pesan Sekarang"
+    },
+    "ctaFooter": {
+      "title1": "Siap Memulai",
+      "title2": "Petualangan?",
+      "desc": "Hubungi tim kami sekarang dan dapatkan konsultasi perjalanan gratis serta penawaran spesial untuk pemesanan pertama Anda.",
+      "cta1": "Booking Sekarang",
+      "cta2": "Hubungi Kami",
+      "footerDesc": "Platform perjalanan terpercaya dengan layanan lengkap dari shuttle, private car, ticketing, hingga paket wisata eksotis.",
+      "footerLinks": {
+        "Layanan": "Layanan",
+        "Perusahaan": "Perusahaan",
+        "Bantuan": "Bantuan",
+        "Tentang Kami": "Tentang Kami",
+        "Karir": "Karir",
+        "Kontak": "Kontak",
+        "Kebijakan Privasi": "Kebijakan Privasi",
+        "Syarat & Ketentuan": "Syarat & Ketentuan",
+        "Lacak Booking": "Lacak Booking"
+      },
+      "copyright": "Dibuat dengan ❤️ untuk para petualang Indonesia"
+    }
+  },
+
+  "components": {
+    "packageCard": {
+      "selectButton": "Pilih Paket"
+    },
+    "tourPackageCard": {
+      "priceUnit": "/ orang",
+      "reviews": "ulasan",
+      "selectButton": "Pilih Paket"
+    },
+    "bookingStatus": {
+      "pending": "Pending",
+      "confirmed": "Terkonfirmasi",
+      "processing": "Diproses",
+      "completed": "Selesai"
+    },
+    "nav": {
+      "mainMenu": "Menu utama",
+      "home": "Beranda",
+      "tagline": "Travel & Adventure"
+    },
+    "passengerSelector": {
+      "label": "Penumpang",
+      "adult": "Dewasa",
+      "adultDesc": "Usia 12 tahun ke atas",
+      "child": "Anak-anak",
+      "childDesc": "Usia 2–11 tahun",
+      "infant": "Bayi",
+      "infantDesc": "Usia di bawah 2 tahun",
+      "done": "Selesai"
+    },
+    "shuttleConfirm": {
+      "title": "Konfirmasi Pesanan",
+      "departureDate": "Tanggal Pergi",
+      "departureTime": "Jam Pergi",
+      "returnDate": "Tanggal Pulang",
+      "returnTime": "Jam Pulang",
+      "passengers": "Penumpang",
+      "passengerUnit": "orang",
+      "totalPrice": "Total Harga",
+      "cancel": "Batal",
+      "confirm": "Pesan",
+      "roundTrip": "Pulang Pergi"
+    },
+    "orderDetail": {
+      "title": "Detail Pemesanan",
+      "closeLabel": "Tutup",
+      "createdLabel": "Dibuat",
+      "updatedLabel": "Diperbarui",
+      "adminConfirmNote": "Detail layanan ... akan dikonfirmasi oleh admin.",
+      "contactAdminNote": "Silakan hubungi admin melalui WhatsApp untuk informasi lebih lanjut.",
+      "chatAdminWhatsApp": "Chat Admin via WhatsApp",
+      "routeLabel": "Rute",
+      "shuttleTypeLabel": "Tipe Shuttle",
+      "departureLabel": "Berangkat",
+      "returnLabel": "Pulang",
+      "passengerLabel": "Penumpang",
+      "passengerUnit": "orang",
+      "descriptionLabel": "Deskripsi",
+      "paymentProofLabel": "Bukti Pembayaran",
+      "uploadPrompt": "Klik untuk unggah",
+      "uploadFormat": "JPG, PNG, atau PDF",
+      "uploadSuccess": "Bukti pembayaran berhasil diunggah!",
+      "uploadError": "Gagal mengunggah bukti pembayaran.",
+      "uploadSelectFirst": "Silakan pilih file bukti pembayaran terlebih dahulu.",
+      "uploadGenericError": "Terjadi kesalahan. Silakan coba lagi.",
+      "saving": "Menyimpan...",
+      "saveButton": "Simpan",
+      "chatAdminButton": "Chat Admin",
+      "viewPaymentDetail": "Lihat Detail Pembayaran"
+    },
+    "shuttleService": {
+      "faq": {
+        "1": { "q": "Bagaimana cara memesan shuttle?", "a": "Isi form pemesanan di atas dengan kota asal, tujuan, tanggal, dan jumlah penumpang. Pilih jadwal tersedia lalu lakukan pembayaran." },
+        "2": { "q": "Berapa lama sebelum keberangkatan saya bisa memesan?", "a": "Pemesanan dapat dilakukan hingga 1 jam sebelum jadwal keberangkatan. Disarankan memesan minimal H-1 untuk mendapatkan kursi terbaik." },
+        "3": { "q": "Apakah ada biaya bagasi tambahan?", "a": "Setiap penumpang mendapat allowance bagasi 20 kg gratis. Bagasi tambahan dikenakan biaya Rp 5.000 per kg." },
+        "4": { "q": "Bisakah saya membatalkan atau reschedule tiket?", "a": "Pembatalan dapat dilakukan maksimal 3 jam sebelum keberangkatan dengan pengembalian dana 80%. Reschedule gratis hingga 2 jam sebelum berangkat." }
+      },
+      "routes": {
+        "tags": { "bestSeller": "Terlaris", "promo": "Promo", "new": "Baru", "popular": "Populer" }
+      }
+    },
+    "ticketingService": {
+      "routes": {
+        "tags": { "bestSeller": "Terlaris", "promo": "Promo", "popular": "Populer", "affordable": "Terjangkau", "new": "Baru" },
+        "types": { "ferry": "Ferry", "plane": "Pesawat", "bus": "Bus" },
+        "durationUnit": { "hour": "Jam", "minute": "Menit" }
+      }
+    },
+    "privateCarService": {
+      "defaults": {
+        "title": "Private Car",
+        "subtitle": "Sewa mobil dengan sopir profesional. Fleksibel untuk dalam kota, antar kota, hingga airport transfer — kapan saja, ke mana saja.",
+        "description": "Sewa mobil dengan sopir profesional. Fleksibel untuk dalam kota, antar kota, dan airport transfer bersama Travelita."
+      }
+    },
+    "reviews": {
+      "1": { "name": "Andi Pratama", "location": "Jakarta", "comment": "Pelayanan sangat memuaskan! Sopirnya ramah dan tepat waktu. Mobil bersih dan nyaman. Pasti akan pakai lagi untuk perjalanan bisnis saya berikutnya." },
+      "2": { "name": "Sari Dewi", "location": "Surabaya", "comment": "Pengalaman spear fishing di Raja Ampat benar-benar luar biasa! Tim Travelita sangat profesional, perlengkapan lengkap, dan guide-nya sabar banget. 10/10 recommended!" },
+      "3": { "name": "Budi Santoso", "location": "Bandung", "comment": "Shuttle service-nya on time dan harganya terjangkau. Armada bersih dan AC dingin. Hanya saja kursinya agak sempit untuk perjalanan jauh. Overall tetap recommended." },
+      "4": { "name": "Rina Kusuma", "location": "Bali", "comment": "Paket Labuan Bajo dari Travelita sangat worth it! Itinerary tertata rapi, hotel pilihan bagus, dan pemandu wisata lokal yang informatif. Terima kasih Travelita!" },
+      "5": { "name": "Deni Firmansyah", "location": "Makassar", "comment": "Proses booking tiket cepat dan mudah. CS-nya responsif waktu ada pertanyaan soal jadwal. Harga transparan, tidak ada biaya tersembunyi. Sangat puas!" },
+      "6": { "name": "Maya Anggraeni", "location": "Yogyakarta", "comment": "Liburan ke Bali bareng keluarga jadi sangat menyenangkan berkat Travelita. Semua diurus dengan baik mulai dari transportasi sampai penginapan. Highly recommended!" }
+    }
+  }
+}

@@ -33,6 +33,26 @@ export type Profile = Prisma.ProfileModel
  */
 export type Booking = Prisma.BookingModel
 /**
+ * Model ServiceContent
+ * 
+ */
+export type ServiceContent = Prisma.ServiceContentModel
+/**
+ * Model ServicePackage
+ * 
+ */
+export type ServicePackage = Prisma.ServicePackageModel
+/**
+ * Model ServiceFaq
+ * 
+ */
+export type ServiceFaq = Prisma.ServiceFaqModel
+/**
+ * Model ServiceRoute
+ * 
+ */
+export type ServiceRoute = Prisma.ServiceRouteModel
+/**
  * Model ShuttleBooking
  * 
  */

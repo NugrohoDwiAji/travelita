@@ -21,22 +21,61 @@ import SidebarNavGroup, {
 } from "@/app/components/moleculs/SidebarNavGroup";
 import { logout } from "@/app/actions/auth";
 
-
 const NAV_ITEMS = [
-  { href: "/admin",               label: "Dashboard",      icon: <IconDashboard size={18} /> },
-  { href: "/admin/shuttle-service", label: "Shuttle Service", icon: <IconShuttle size={18} />  },
-  { href: "/admin/private-car",   label: "Private Car",     icon: <IconCar size={18} />      },
-  { href: "/admin/ticketing",     label: "Ticketing",       icon: <IconTicket size={18} />   },
-  { href: "/admin/spear-fishing", label: "Spear Fishing",   icon: <IconFishAdmin size={18} />},
-  { href: "/admin/travel",        label: "Wisata Travel",   icon: <IconMapAdmin size={18} /> },
+  { href: "/admin", label: "Dashboard", icon: <IconDashboard size={18} /> },
+  {
+    href: "/admin/shuttle-service",
+    label: "Shuttle Service",
+    icon: <IconShuttle size={18} />,
+  },
+  {
+    href: "/admin/private-car",
+    label: "Private Car",
+    icon: <IconCar size={18} />,
+  },
+  {
+    href: "/admin/ticketing",
+    label: "Ticketing",
+    icon: <IconTicket size={18} />,
+  },
+  {
+    href: "/admin/spear-fishing",
+    label: "Spear Fishing",
+    icon: <IconFishAdmin size={18} />,
+  },
+  {
+    href: "/admin/travel",
+    label: "Wisata Travel",
+    icon: <IconMapAdmin size={18} />,
+  },
 ];
 
 const CONTENT_ITEMS: SubNavItem[] = [
-  { href: "/admin/content/shuttle-service", label: "Shuttle Service", icon: <IconShuttle size={14} /> },
-  { href: "/admin/content/private-car",     label: "Private Car",     icon: <IconCar size={14} />     },
-  { href: "/admin/content/ticketing",       label: "Ticketing",       icon: <IconTicket size={14} />  },
-  { href: "/admin/content/spear-fishing",   label: "Spear Fishing",   icon: <IconFishAdmin size={14} />},
-  { href: "/admin/content/travel",          label: "Wisata Travel",   icon: <IconMapAdmin size={14} />},
+  {
+    href: "/admin/content/shuttle-service",
+    label: "Shuttle Service",
+    icon: <IconShuttle size={14} />,
+  },
+  {
+    href: "/admin/content/private-car",
+    label: "Private Car",
+    icon: <IconCar size={14} />,
+  },
+  {
+    href: "/admin/content/ticketing",
+    label: "Ticketing",
+    icon: <IconTicket size={14} />,
+  },
+  {
+    href: "/admin/content/spear-fishing",
+    label: "Spear Fishing",
+    icon: <IconFishAdmin size={14} />,
+  },
+  {
+    href: "/admin/content/travel",
+    label: "Wisata Travel",
+    icon: <IconMapAdmin size={14} />,
+  },
 ];
 
 interface SidebarContentProps {
@@ -45,8 +84,6 @@ interface SidebarContentProps {
 }
 
 function SidebarContent({ isActive, onClose }: SidebarContentProps) {
-
-
   const handleLogout = async () => {
     try {
       await logout();
@@ -54,7 +91,7 @@ function SidebarContent({ isActive, onClose }: SidebarContentProps) {
     } catch (error) {
       console.error("Logout failed:", error);
     }
-  }
+  };
   return (
     <div className="flex h-full flex-col" style={{ background: "#0d2280" }}>
       {/* Brand */}
@@ -69,8 +106,13 @@ function SidebarContent({ isActive, onClose }: SidebarContentProps) {
           T
         </div>
         <div>
-          <p className="text-sm font-extrabold text-white leading-none">Travelita</p>
-          <p className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.50)" }}>
+          <p className="text-sm font-extrabold text-white leading-none">
+            Travelita
+          </p>
+          <p
+            className="text-[10px] font-medium"
+            style={{ color: "rgba(255,255,255,0.50)" }}
+          >
             Admin Panel
           </p>
         </div>
@@ -147,7 +189,7 @@ function SidebarContent({ isActive, onClose }: SidebarContentProps) {
           <IconSettings size={18} />
           Pengaturan
         </button>
-       <button
+        <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all hover:bg-white/10"
           style={{ color: "rgba(255,255,255,0.65)" }}
@@ -171,7 +213,7 @@ export default function AdminSidebar() {
     <>
       {/* Desktop sidebar */}
       <aside
-        className="fixed left-0 top-8 z-30 hidden h-[calc(100%-2rem)] w-60 lg:block"
+        className="fixed left-0 top-0 z-30 hidden h-screen w-60 lg:block"
         style={{ boxShadow: "2px 0 20px rgba(13,34,128,0.25)" }}
       >
         <SidebarContent isActive={isActive} onClose={() => {}} />
@@ -179,7 +221,7 @@ export default function AdminSidebar() {
 
       {/* Mobile toggle button */}
       <button
-        className="fixed left-4 top-12 z-50 flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-lg lg:hidden"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-lg lg:hidden"
         style={{ background: "#1434A4" }}
         onClick={() => setOpen(true)}
       >
@@ -197,7 +239,7 @@ export default function AdminSidebar() {
 
       {/* Mobile drawer */}
       <aside
-        className={`fixed left-0 top-8 z-50 h-[calc(100%-2rem)] w-60 transition-transform duration-300 lg:hidden ${
+        className={`fixed left-0 top-0 z-50 h-screen w-60 transition-transform duration-300 lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -213,5 +255,3 @@ export default function AdminSidebar() {
     </>
   );
 }
-
-

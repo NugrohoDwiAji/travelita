@@ -1,8 +1,12 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 interface Feature {
   text: string;
 }
 
-interface PackageCardProps {
+export interface PackageCardProps {
   name: string;
   level: string;
   price: string;
@@ -25,6 +29,7 @@ export default function PackageCard({
   icon,
   href = "#booking-form",
 }: PackageCardProps) {
+  const t = useTranslations("components.packageCard");
   return (
     <div
       className="relative flex flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
@@ -144,7 +149,7 @@ export default function PackageCard({
               }
         }
       >
-        Pilih Paket
+        {t("selectButton")}
       </a>
     </div>
   );

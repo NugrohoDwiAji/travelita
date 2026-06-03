@@ -1,0 +1,718 @@
+{
+  "common": {
+    "brandName": "Travelita",
+    "loading": "Processing...",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving…",
+    "back": "Back",
+    "bookingTypes": {
+      "shuttle": "Shuttle",
+      "trip": "Travel / Tour",
+      "privateCar": "Private Car Rental",
+      "spearFishing": "Spear Fishing",
+      "ticket": "Ticket"
+    },
+    "orderStatus": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
+  },
+
+  "header": {
+    "nav": {
+      "ordersAriaLabel": "My Orders",
+      "profileMenuOpen": "Open account menu",
+      "profileMenuClose": "Close account menu",
+      "editProfile": "Edit Profile",
+      "logout": "Logout",
+      "login": "Login",
+      "register": "Register",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "ordersLink": "My Orders",
+      "loginLink": "Login",
+      "registerLink": "Register"
+    }
+  },
+
+  "auth": {
+    "signIn": {
+      "pageTitle": "Sign In",
+      "welcomeHeading": "Welcome back! 👋",
+      "welcomeSubtext": "Sign in to your account and continue your adventure with Travelita.",
+      "noAccountText": "Don't have an account?",
+      "signUpLink": "Register now",
+      "googleButton": "Sign in with Google",
+      "dividerText": "or sign in with email",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "forgotPasswordLink": "Forgot password?",
+      "submitButton": "Sign In",
+      "submitButtonLoading": "Processing...",
+      "errorGeneric": "An error occurred during sign in.",
+      "successMessage": "Sign in successful! Redirecting..."
+    },
+    "signUp": {
+      "pageTitle": "Create Account",
+      "leftPanelHeading": "Join & start exploring Indonesia! 🌴",
+      "feature1": "Book shuttles, private cars & travel tickets",
+      "feature2": "Exclusive tour packages to Lombok & Gili",
+      "feature3": "Exciting spear fishing experience with a guide",
+      "feature4": "Track all your bookings in one dashboard",
+      "alreadyHaveAccountText": "Already have an account?",
+      "signInLink": "Sign in here",
+      "googleButton": "Sign up with Google",
+      "dividerText": "or sign up with email",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Your full name",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your unique username",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@email.com",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Select country",
+      "cityLabel": "City",
+      "cityPlaceholder": "Select city",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min. 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "submitButton": "Create Account",
+      "submitButtonLoading": "Processing...",
+      "passwordStrength": {
+        "weak": "Weak",
+        "fair": "Fair",
+        "good": "Good",
+        "strong": "Strong"
+      },
+      "terms": {
+        "text": "I agree to the",
+        "termsLink": "Terms & Conditions",
+        "and": "and",
+        "privacyLink": "Privacy Policy",
+        "of": "of",
+        "brand": "Travelita.",
+        "error": "You must agree to the terms & conditions."
+      },
+      "success": {
+        "title": "Registration Successful!",
+        "subtext": "Your account has been created. Please sign in and start your adventure!",
+        "button": "Sign In Now"
+      },
+      "error": {
+        "registrationFailedTitle": "Registration Failed",
+        "retryButton": "Try Again",
+        "generic": "An error occurred during registration."
+      }
+    }
+  },
+
+  "profile": {
+    "editButton": "Edit Profile",
+    "cancelButton": "Cancel",
+    "saveButton": "Save",
+    "saveButtonLoading": "Saving…",
+    "sectionTitle": "Personal Information",
+    "fields": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Full name",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "username",
+      "emailLabel": "Email",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Country",
+      "cityLabel": "City",
+      "cityPlaceholder": "City"
+    },
+    "notSetYet": "Not set yet",
+    "avatarAlt": "Profile picture of {name}"
+  },
+
+  "orders": {
+    "sectionLabel": "Booking History",
+    "pageTitle": "My Orders",
+    "emptyState": {
+      "title": "No orders yet",
+      "subtext": "No orders with this status were found."
+    },
+    "card": {
+      "confirmAdminPrice": "Admin confirmation",
+      "viewDetailButton": "View Details",
+      "cancelButton": "Cancel",
+      "cancelButtonLoading": "Cancelling...",
+      "cancelConfirm": {
+        "text": "Are you sure you want to cancel order #{id}?",
+        "confirmButton": "Yes, Cancel",
+        "confirmButtonLoading": "Processing...",
+        "declineButton": "No"
+      }
+    }
+  },
+
+  "payment": {
+    "loadingText": "Loading payment details...",
+    "errorNotFound": "Order not found",
+    "errorFetchFailed": "Failed to load order details.",
+    "backToOrdersButton": "Back to My Orders",
+    "status": {
+      "confirmed": {
+        "title": "Payment Successful!",
+        "subtext": "Your order has been confirmed. Thank you for your payment.",
+        "badge": "✓ CONFIRMED"
+      },
+      "pending": {
+        "title": "Awaiting Payment",
+        "subtext": "Please complete your payment within 24 hours so your order can be processed.",
+        "badge": "⏳ PENDING"
+      },
+      "fallback": {
+        "title": "Payment Status"
+      }
+    },
+    "orderDetail": {
+      "sectionLabel": "Order Details",
+      "orderIdLabel": "Order ID",
+      "serviceLabel": "Service"
+    },
+    "instructions": {
+      "heading": "Payment Instructions",
+      "transferLabel": "Transfer to Account",
+      "accountHolderPrefix": "A/N",
+      "copyButtonTitle": "Copy Account Number",
+      "copiedAlert": "Account number copied!"
+    },
+    "total": {
+      "label": "Total Payment",
+      "customPriceText": "Awaiting Confirmation"
+    },
+    "customPrice": {
+      "noticeTitle": "Important: Price will be confirmed by Admin.",
+      "noticeBody": "{type} service requires availability and custom pricing confirmation. Please contact the admin before making a transfer.",
+      "whatsappMessage": "Hello Admin, I want to confirm order #{id} ({type}). What is the total amount I need to pay?",
+      "chatAdminButton": "Chat Admin"
+    },
+    "cta": {
+      "viewOrdersButton": "View My Orders",
+      "uploadProofNote": "Payment proof can be uploaded via the Order Details page in the My Orders menu."
+    }
+  },
+
+  "services": {
+    "shuttle": {
+      "hero": {
+        "breadcrumbHome": "Home",
+        "breadcrumbService": "Shuttle Service",
+        "stat1Label": "Routes Available",
+        "stat2Label": "Passengers/Month",
+        "stat3Label": "Rating",
+        "ctaPrimary": "Book Now"
+      },
+      "popularRoutes": {
+        "sectionLabel": "Popular Routes",
+        "sectionTitle": "Passenger Favorite Destinations",
+        "priceLabel": "Starting from"
+      },
+      "keuntungan": {
+        "1": { "title": "Punctual", "desc": "Fleet departs on schedule" },
+        "2": { "title": "Safe & Guaranteed", "desc": "Licensed & trained drivers" },
+        "3": { "title": "Comfortable Seats", "desc": "AC, reclining seats, spacious leg room" },
+        "4": { "title": "Pick-up & Drop-off", "desc": "Pick-up at designated locations" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Guide",
+        "sectionTitle": "How to Book Shuttle Service",
+        "1": { "title": "Choose Route", "desc": "Enter origin & destination city and departure date" },
+        "2": { "title": "Choose Schedule", "desc": "View available schedules and pick the one that suits you" },
+        "3": { "title": "Fill Passenger Data", "desc": "Complete name, phone number, and email for e-ticket" },
+        "4": { "title": "Pay & Depart", "desc": "Make payment and show e-ticket when boarding" }
+      },
+      "keunggulan": {
+        "sectionLabel": "Why Us",
+        "sectionTitle": "Travelita Shuttle Advantages",
+        "1": "Latest Toyota HiAce & Hiace Premio fleet (max 3 years old)",
+        "2": "Professional B2 licensed drivers with min. 5 years experience",
+        "3": "Real-time tracking via Travelita app",
+        "4": "Free travel insurance for every passenger",
+        "5": "On-board WiFi facility in all fleet",
+        "6": "Free mineral water & light snacks on trips >3 hours"
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Frequently Asked Questions",
+        "1": { "q": "How do I book a shuttle?", "a": "Fill in the booking form above with origin city, destination, date, and number of passengers. Select an available schedule then make payment." },
+        "2": { "q": "How far in advance can I book before departure?", "a": "Bookings can be made up to 1 hour before the departure schedule. It is recommended to book at least 1 day in advance to get the best seats." },
+        "3": { "q": "Are there additional baggage fees?", "a": "Each passenger gets a free 20 kg baggage allowance. Additional baggage is charged at Rp 5,000 per kg." },
+        "4": { "q": "Can I cancel or reschedule my ticket?", "a": "Cancellation can be made up to 3 hours before departure with an 80% refund. Reschedule is free up to 2 hours before departure." }
+      },
+      "cta": {
+        "title": "Ready for Your Journey?",
+        "desc": "Book a shuttle now and enjoy a comfortable ride with Travelita!",
+        "button": "Book Now"
+      }
+    },
+
+    "ticketing": {
+      "hero": {
+        "breadcrumbHome": "Home",
+        "breadcrumbService": "Ticketing",
+        "title": "Book Tickets Online",
+        "subtitle": "Find and book flight, bus, and ferry tickets across Bali-Nusra at transparent prices.",
+        "description": "One platform for travel across Bali, NTB, and NTT.",
+        "stat1Label": "Routes Available",
+        "stat2Label": "Airline Partners",
+        "stat3Label": "User Rating",
+        "ctaPrimary": "Book Now"
+      },
+      "popularDestinations": {
+        "sectionLabel": "Popular Destinations",
+        "sectionTitle": "Traveler Favorite Routes",
+        "viewAll": "View All",
+        "priceLabel": "Starting from"
+      },
+      "keuntungan": {
+        "1": { "title": "Best Prices", "desc": "Compare prices from all airlines & operators" },
+        "2": { "title": "Instant Confirmation", "desc": "E-ticket sent to email within 15 minutes" },
+        "3": { "title": "Easy Reschedule", "desc": "Change schedule anytime via Travelita app" },
+        "4": { "title": "Safe & Trusted", "desc": "Encrypted payment system & officially licensed" }
+      },
+      "promo": {
+        "sectionLabel": "Special Offers",
+        "sectionTitle": "Latest Promo & Deals",
+        "codeLabel": "Promo Code",
+        "1": { "title": "Flight Flash Sale", "desc": "Up to 40% discount on selected Bali-Nusra flights", "badge": "Ends Mar 20, 2026" },
+        "2": { "title": "Weekend Bus", "desc": "Special prices every Friday-Sunday for Bali-Nusra bus routes", "badge": "Every Sunday" },
+        "3": { "title": "New Lombok Ferry Route", "desc": "Bali–Lombok inaugural route starting from Rp 75,000/passenger", "badge": "New Route!" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Guide",
+        "sectionTitle": "How to Book Tickets",
+        "1": { "title": "Choose Transport Mode", "desc": "Select plane, bus, or ferry as needed" },
+        "2": { "title": "Fill Travel Details", "desc": "Enter route, date, number of passengers, and class" },
+        "3": { "title": "Compare & Choose", "desc": "View all available options and pick the most suitable one" },
+        "4": { "title": "Pay & Receive E-ticket", "desc": "Pay and e-ticket is sent directly to your email" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Frequently Asked Questions",
+        "1": { "q": "How do I book tickets on Travelita?", "a": "Choose transport mode (Plane, Bus, or Ferry), enter origin & destination city, date, and number of passengers, then click Search Tickets. After getting results, select the matching ticket and make payment." },
+        "2": { "q": "Can purchased tickets be refunded?", "a": "Refund policy depends on the airline/operator. Generally, flexible tickets can be refunded up to 24 hours before departure with an admin fee of Rp 25,000." },
+        "3": { "q": "How long does it take to receive the e-ticket after payment?", "a": "E-ticket will be sent to your email within a maximum of 15 minutes after payment is confirmed." },
+        "4": { "q": "Are there additional fees besides the ticket price?", "a": "Ticket prices include tax and basic service fees. Additional baggage fees and paid seat selection will be displayed transparently before payment." },
+        "5": { "q": "Can I book tickets for someone else?", "a": "Yes. When filling in passenger data, enter a different name and details from the booker. Make sure the data matches the identity used during travel." }
+      },
+      "cta": {
+        "title": "Ready to Plan Your Trip?",
+        "desc": "Get the best prices for all your favorite transport modes.",
+        "button": "Search Tickets Now"
+      }
+    },
+
+    "privateCar": {
+      "hero": {
+        "breadcrumbHome": "Home",
+        "breadcrumbService": "Private Car",
+        "stat1Label": "Active Fleet",
+        "stat2Label": "Ready to Serve",
+        "stat3Label": "Driver Rating"
+      },
+      "keunggulan": {
+        "1": { "title": "Professional Drivers", "desc": "Licensed, friendly, know the routes" },
+        "2": { "title": "Realtime Tracking", "desc": "Monitor position via app" },
+        "3": { "title": "Privacy Maintained", "desc": "No other passengers" },
+        "4": { "title": "On-demand 24 Hours", "desc": "Book anytime, ready to pick up" }
+      },
+      "caraBooking": {
+        "sectionLabel": "Guide",
+        "sectionTitle": "How to Book Private Car",
+        "1": { "title": "Determine Needs", "desc": "Choose service type, date, pick-up time and destination" },
+        "2": { "title": "Choose Vehicle", "desc": "Match vehicle capacity and class to your needs" },
+        "3": { "title": "Fill Data & Confirm", "desc": "Complete booking data and get instant confirmation" },
+        "4": { "title": "Driver Ready to Pick Up", "desc": "Driver will contact 30 minutes before pick-up time" }
+      },
+      "inklusif": {
+        "title": "Included",
+        "1": "Licensed professional driver",
+        "2": "Fuel (city packages only)",
+        "3": "Mineral water & tissues",
+        "4": "Passenger insurance",
+        "5": "Parking at pick-up/drop-off area"
+      },
+      "eksklusif": {
+        "title": "Not Included",
+        "1": "Fuel for intercity travel",
+        "2": "Toll & destination parking fees",
+        "3": "Tourist attraction entrance fees",
+        "4": "Driver meals",
+        "5": "Overtime beyond duration"
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Frequently Asked Questions",
+        "1": { "q": "Does the price include fuel and tolls?", "a": "No. Fuel and toll costs are borne by the renter. The driver will provide toll receipts for transparency." },
+        "2": { "q": "Can I choose the same driver as before?", "a": "Yes! Contact our CS and we will arrange the same driver if available on your schedule." },
+        "3": { "q": "What happens if the trip exceeds the booked duration?", "a": "Extensions are charged at overtime rate of Rp 50,000/hour. Confirm with the driver or our CS first." },
+        "4": { "q": "Is late night or early morning service available?", "a": "Available 24 hours. Bookings outside working hours (22:00–06:00) are subject to a surcharge of Rp 75,000." },
+        "5": { "q": "What if the car has issues during the trip?", "a": "We provide a replacement vehicle within 60 minutes in major city areas. All replacement costs are covered by Travelita." }
+      },
+      "cta": {
+        "title": "Need a Car With Driver?",
+        "desc": "Book Travelita private car now — comfortable, safe, and on time.",
+        "button": "Book Now"
+      }
+    },
+
+    "spearFishing": {
+      "hero": {
+        "breadcrumbHome": "Home",
+        "breadcrumbService": "Spear Fishing",
+        "title": "Spear Fishing",
+        "subtitle": "Adventure Trip Bali-Nusra",
+        "description": "Explore underwater spots in Bali-Nusra with experienced local guides and certified instructors.",
+        "stat1Label": "Premium Destinations",
+        "stat2Label": "Participants/Year",
+        "stat3Label": "Safety Record"
+      },
+      "keunggulan": {
+        "1": { "title": "Exclusive Spots", "desc": "Access to hidden locations not sold publicly" },
+        "2": { "title": "Certified Guides", "desc": "AIDA & SSI instructors with min. 5 years experience" },
+        "3": { "title": "Complete Documentation", "desc": "Underwater photos & videos by professional photographers" },
+        "4": { "title": "Private Boat", "desc": "Special boat charter, free from other groups" }
+      },
+      "packages": {
+        "sectionLabel": "Tour Packages",
+        "sectionTitle": "Choose the Right Package",
+        "sectionDesc": "All packages include instructor, equipment, and travel insurance",
+        "1": {
+          "name": "Beginner Package",
+          "level": "For beginners / no experience needed",
+          "priceNote": "/ person",
+          "features": ["Basic spear fishing technique briefing (2 hours)", "Shallow spot location (3–5 m)", "1 instructor for max. 4 participants", "Complete equipment rental (mask, fins, snorkel)", "Basic documentation photos", "Snacks & drinks"]
+        },
+        "2": {
+          "name": "Intermediate Package",
+          "level": "Has snorkeling / freediving experience",
+          "priceNote": "/ person",
+          "badge": "Most Popular ⭐",
+          "features": ["Premium spot access (8–15 m)", "1 instructor for max. 3 participants", "Speargun + complete equipment", "Underwater photo & video session", "Lunch & drinks", "Participation certificate", "Round-trip transfer from meeting point"]
+        },
+        "3": {
+          "name": "Professional Package",
+          "level": "Experienced / trained freediver",
+          "priceNote": "/ person",
+          "badge": "Exclusive",
+          "features": ["Exclusive off-the-grid spots (15–25 m)", "1:1 experienced personal guide", "Competition equipment access", "Professional video recording & editing", "Premium lunch package", "Certificate & Travelita merchandise", "Private boat charter"]
+        }
+      },
+      "spots": {
+        "sectionLabel": "Trip Locations",
+        "sectionTitle": "Best Spear Fishing Spots",
+        "bookNow": "Book Now",
+        "1": { "name": "Nusa Penida", "region": "Bali", "depth": "5-20 m", "fish": "Mola-mola & Manta", "level": "All Levels", "tag": "Favorite" },
+        "2": { "name": "Amed", "region": "Bali", "depth": "3-18 m", "fish": "Reef Fish", "level": "Beginner-Intermediate", "tag": "Beginner" },
+        "3": { "name": "Menjangan", "region": "Bali", "depth": "5-25 m", "fish": "Coral & Pelagics", "level": "All Levels", "tag": "" },
+        "4": { "name": "Gili Trawangan", "region": "North Lombok", "depth": "5-18 m", "fish": "Reef Fish", "level": "Beginner-Intermediate", "tag": "Popular" },
+        "5": { "name": "Komodo", "region": "NTT", "depth": "10-25 m", "fish": "Sharks, Rays, Coral", "level": "Intermediate-Expert", "tag": "High Challenge" },
+        "6": { "name": "Alor", "region": "NTT", "depth": "8-30 m", "fish": "Tuna, Barracuda", "level": "Intermediate-Expert", "tag": "Hidden Gem" }
+      },
+      "caraIkut": {
+        "sectionLabel": "Guide",
+        "sectionTitle": "How to Join Spear Fishing Trip",
+        "1": { "title": "Choose Package", "desc": "Determine level and package matching your experience" },
+        "2": { "title": "Choose Location", "desc": "Select our premium spots in Bali, NTB, and NTT" },
+        "3": { "title": "Confirm & Pay", "desc": "Book online and get instant confirmation from our team" },
+        "4": { "title": "Dive In!", "desc": "Our team picks you up and accompanies your ocean adventure" }
+      },
+      "peralatan": {
+        "sectionLabel": "Equipment",
+        "sectionTitle": "Equipment We Provide",
+        "1": { "item": "Professional Mask & Snorkel", "note": "All packages" },
+        "2": { "item": "Full-size Fins", "note": "All packages" },
+        "3": { "item": "Wetsuit 3mm & 5mm", "note": "Intermediate package and above" },
+        "4": { "item": "Elastic & pneumatic spearguns", "note": "Intermediate package and above" },
+        "5": { "item": "GoPro underwater Action Camera", "note": "Intermediate package and above" },
+        "6": { "item": "First Aid Kit & emergency oxygen", "note": "All trips" },
+        "7": { "item": "Speed boat & snorkeling submarine", "note": "All packages" },
+        "8": { "item": "Participation certificate", "note": "Intermediate package and above" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Frequently Asked Questions",
+        "1": { "q": "Do I need to know how to swim to join spear fishing?", "a": "Yes, basic swimming ability is required. For beginner packages, we provide a special instructor and life vest. Participants do not need previous diving experience." },
+        "2": { "q": "Is spear fishing equipment included in the package?", "a": "Yes, all packages include basic equipment rental (mask, fins, snorkel). Spearguns & wetsuits are included for Intermediate package and above. You can also bring your own equipment." },
+        "3": { "q": "What is the minimum age to join a spear fishing trip?", "a": "Minimum participant age is 14 years. Participants under 18 must be accompanied by an adult guardian and have written parental consent." },
+        "4": { "q": "What happens if there's bad weather on trip day?", "a": "Safety is our priority. If sea conditions are not suitable, the trip will be rescheduled at no extra cost, or 100% refund if rescheduling is not possible." },
+        "5": { "q": "Can I take the catch home?", "a": "Catch will be cooked for lunch together (Intermediate & Professional packages). For Beginner packages, catch is catch-and-release for ecosystem conservation." }
+      },
+      "cta": {
+        "title": "Underwater Adventure Awaits!",
+        "desc": "Join hundreds of travelers who have experienced the thrill of spear fishing at Indonesia's best spots.",
+        "button": "Book Trip Now"
+      }
+    },
+
+    "travel": {
+      "hero": {
+        "breadcrumbHome": "Home",
+        "breadcrumbService": "Tour Packages",
+        "title": "Bali-Nusra Tourism",
+        "subtitle": "Premium Vacation Packages from the Island of a Thousand Mosques",
+        "description": "Explore the beauty of Lombok — from the stunning Gili Islands, majestic Rinjani summit, to pristine hidden beaches.",
+        "stat1Label": "Packages Available",
+        "stat2Label": "Bali-Nusra Destinations",
+        "stat3Label": "Average Rating",
+        "stat4Label": "Happy Travelers",
+        "ctaPrimary": "Find Tour Package"
+      },
+      "keunggulan": {
+        "1": { "title": "Experienced Local Guides", "desc": "All our guides are Bali-Nusra locals, fluent in Indonesian & English" },
+        "2": { "title": "Handpicked Accommodation", "desc": "Comfortable stays from charming homestays to star-rated resorts" },
+        "3": { "title": "Comfortable Transport", "desc": "AC fleet with professional and punctual drivers" },
+        "4": { "title": "Authentic Cuisine", "desc": "Enjoy Ayam Taliwang, Plecing Kangkung, and fresh Bali-Nusra seafood" },
+        "5": { "title": "Professional Documentation", "desc": "Memorable photos & videos at every iconic Bali-Nusra spot" },
+        "6": { "title": "Complete Destinations", "desc": "From exotic beaches to Rinjani summit, all in one package" }
+      },
+      "packages": {
+        "sectionLabel": "Bali-Nusra Tour Packages",
+        "sectionTitle": "Choose Your Dream Vacation Package"
+      },
+      "destinations": {
+        "sectionLabel": "Explore Bali-Nusra",
+        "sectionTitle": "Iconic Lombok Destinations",
+        "1": { "name": "Gili Trawangan", "tag": "Marine Tourism", "desc": "Lombok's party island, world-class snorkeling & diving" },
+        "2": { "name": "Mount Rinjani", "tag": "Adventure", "desc": "Indonesia's 2nd highest peak, 3,726 masl" },
+        "3": { "name": "Kuta Beach Lombok", "tag": "Exotic Beach", "desc": "Unique pepper sand with crystal clear turquoise water" },
+        "4": { "name": "Sade Village", "tag": "Sasak Culture", "desc": "Traditional Sasak village, weaving traditions & unique architecture" },
+        "5": { "name": "Benang Kelambu", "tag": "Nature Tourism", "desc": "Tiered waterfall in the heart of lush tropical forest" },
+        "6": { "name": "Gili Air", "tag": "Peaceful Island", "desc": "Motorized vehicle-free paradise, perfect for relaxation" },
+        "7": { "name": "Senggigi", "tag": "Beach Tourism", "desc": "Main tourist area with the most captivating sunset" },
+        "8": { "name": "Tanjung Aan", "tag": "Premium Beach", "desc": "Unique beach with large brown & white pepper-like sand grains" }
+      },
+      "testimoni": {
+        "sectionLabel": "Traveler Reviews",
+        "sectionTitle": "What They Say",
+        "1": { "name": "Rina S.", "origin": "Denpasar", "pkg": "Rinjani Trekking", "text": "An extraordinary Rinjani trekking experience! The guide was very professional and ensured we reached the summit safely. The views were unforgettable!" },
+        "2": { "name": "Ahmad F.", "origin": "Mataram", "pkg": "Gili Islands Explorer", "text": "The Gili package was worth every penny! Snorkeling at 3 different spots, finding sea turtles, and watching sunset at Gili Air felt magical. Already recommended to all friends!" },
+        "3": { "name": "Dewi K.", "origin": "Kupang", "pkg": "Lombok South Coast", "text": "Tanjung Aan & Mawun beaches are truly paradise! The clean white sand and crystal clear water kept us comfortable for hours. The local guide was also very friendly and informative." }
+      },
+      "caraBooking": {
+        "sectionLabel": "Guide",
+        "sectionTitle": "How to Book Tour Package",
+        "1": { "title": "Choose Destination", "desc": "Determine the destination and type of tourism you want" },
+        "2": { "title": "Choose Package", "desc": "Compare packages based on duration, facilities, and price" },
+        "3": { "title": "Confirm", "desc": "Fill in the booking form and make 30% down payment" },
+        "4": { "title": "Depart!", "desc": "Our team picks you up at the airport and accompanies your journey" }
+      },
+      "faq": {
+        "sectionLabel": "FAQ",
+        "sectionTitle": "Frequently Asked Questions",
+        "1": { "q": "Does the price include flights to Lombok?", "a": "No. The listed price is for the Lombok tour package only, not including flights to Lombok. We can help find the best flight tickets if you need them." },
+        "2": { "q": "What is the minimum age for Rinjani trekking?", "a": "Minimum age for Rinjani trekking is 17 years with prime physical condition. Summit climbing is highly recommended for those accustomed to hiking. There is also a lighter lakeside camping route for ages 14 and above." },
+        "3": { "q": "Can packages be customized for groups or families?", "a": "Of course! All packages can be adjusted for groups, families, or honeymoon events. Contact our team to get special group pricing (min. 10 people)." },
+        "4": { "q": "What is the cancellation and refund policy?", "a": "Cancellation 7 days before departure: 100% refund. Cancellation 3–6 days before: 50% refund. Cancellation less than 3 days: no refund, but can be rescheduled." },
+        "5": { "q": "What should I bring when joining a tour package?", "a": "Identity documents (ID/passport), appropriate clothing (swimwear for beach/Gili, warm clothes for Rinjani), sunscreen, hat, and camera. Each package has a complete packing list that will be sent after booking confirmation." }
+      },
+      "cta": {
+        "title": "Bali-Nusra Awaits Your Arrival!",
+        "desc": "Don't wait any longer. Book now and get the best price for your dream vacation to Bali-Nusra.",
+        "button": "Find Tour Package"
+      }
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "Explore • Adventure • Discover",
+      "title1": "Explore West Nusa Tenggara",
+      "title2": "With Travelita",
+      "subtitle": "From daily shuttle services to exciting spear fishing adventures in the blue sea - we deliver unforgettable travel experiences.",
+      "cta1": "Book Now",
+      "cta2": "View Packages",
+      "stat1Label": "Happy Customers",
+      "stat2Label": "Destinations",
+      "stat3Label": "Service Rating"
+    },
+    "services": {
+      "sectionLabel": "Our Services",
+      "sectionTitle": "All Your Travel Needs",
+      "sectionTitleHighlight": "In One Place",
+      "sectionDesc": "We provide a range of travel services designed for your comfort, safety, and satisfaction.",
+      "learnMore": "Learn More",
+      "shuttle": { "title": "Shuttle Service", "desc": "Scheduled pick-up and drop-off service to airports, bus terminals, and popular tourist destinations with comfortable fleet." },
+      "privateCar": { "title": "Private Car", "desc": "Private vehicle rental with professional driver for city tours and long-distance travel." },
+      "ticketing": { "title": "Ticketing", "desc": "Purchase flight tickets, ferries, trains, and buses at the best prices on one platform." },
+      "spearFishing": { "title": "Spear Fishing", "desc": "Underwater fishing adventure with certified instructors in exotic, clear waters rich with marine life." },
+      "travel": { "title": "Travel", "desc": "Domestic and international tour packages with complete itinerary, premium accommodation, and local tour guides." }
+    },
+    "whyChooseUs": {
+      "sectionLabel": "Why Travelita?",
+      "sectionTitle1": "Dream Journey,",
+      "sectionTitle2": "Service Without Compromise",
+      "sectionDesc": "We have served thousands of customers with the highest service standards. Your satisfaction and safety are our top priorities on every journey.",
+      "progress1Label": "Customer Satisfaction",
+      "progress2Label": "Punctuality",
+      "progress3Label": "Travel Safety",
+      "features": {
+        "1": { "title": "Well-Maintained & Comfortable Fleet", "desc": "All our vehicles are regularly inspected, equipped with AC, and ready to serve 24/7." },
+        "2": { "title": "Transparent & Affordable Prices", "desc": "No hidden fees. All prices include tax and full service." },
+        "3": { "title": "Best Handpicked Destinations", "desc": "Over 50 domestic and international tourist destinations with customizable packages." },
+        "4": { "title": "Bali Nusra Coverage", "desc": "Operating in over 20 major cities across Bali Nusra with a trusted partner network." },
+        "5": { "title": "24/7 Support", "desc": "Customer service team ready to help you anytime via WhatsApp, phone, or live chat." }
+      }
+    },
+    "destinations": {
+      "sectionLabel": "Popular Destinations",
+      "sectionTitle1": "Explore Favorite",
+      "sectionTitle2": "Destinations",
+      "viewAll": "View all destinations →",
+      "priceLabel": "Starting from",
+      "priceUnit": "/person",
+      "bookButton": "Book",
+      "1": { "name": "Raja Ampat", "location": "West Papua", "category": "Spear Fishing & Snorkeling", "duration": "5 Days / 4 Nights", "price": "Rp 8,500,000", "badge": "Best Seller" },
+      "2": { "name": "Labuan Bajo", "location": "East Nusa Tenggara", "category": "Travel & Nature Tourism", "duration": "4 Days / 3 Nights", "price": "Rp 6,200,000", "badge": "Promo" },
+      "3": { "name": "Bali", "location": "Bali", "category": "Private Car & Travel", "duration": "3 Days / 2 Nights", "price": "Rp 3,800,000", "badge": "Popular" },
+      "4": { "name": "Lombok", "location": "West Nusa Tenggara", "category": "Shuttle & Travel", "duration": "3 Days / 2 Nights", "price": "Rp 4,100,000", "badge": "New" }
+    },
+    "reviews": {
+      "sectionLabel": "Customer Testimonials",
+      "sectionTitle1": "What They Say",
+      "sectionTitle2": "About Us?",
+      "sectionDesc": "Thousands of customers have trusted Travelita for their travels. Here are their real experiences.",
+      "stat1Label": "Average Rating",
+      "stat2Label": "Reviews Received",
+      "stat3Label": "Happy Customers",
+      "ctaText": "Join thousands of customers who have experienced the difference",
+      "ctaButton": "Book Now"
+    },
+    "ctaFooter": {
+      "title1": "Ready to Start",
+      "title2": "Your Adventure?",
+      "desc": "Contact our team now and get free travel consultation plus special offers for your first booking.",
+      "cta1": "Book Now",
+      "cta2": "Contact Us",
+      "footerDesc": "Trusted travel platform with complete services from shuttles, private cars, ticketing, to exotic tour packages.",
+      "footerLinks": {
+        "Layanan": "Services",
+        "Perusahaan": "Company",
+        "Bantuan": "Help",
+        "Tentang Kami": "About Us",
+        "Karir": "Careers",
+        "Kontak": "Contact",
+        "Kebijakan Privasi": "Privacy Policy",
+        "Syarat & Ketentuan": "Terms & Conditions",
+        "Lacak Booking": "Track Booking"
+      },
+      "copyright": "Made with ❤️ for Indonesian adventurers"
+    }
+  },
+
+  "components": {
+    "packageCard": {
+      "selectButton": "Select Package"
+    },
+    "tourPackageCard": {
+      "priceUnit": "/ person",
+      "reviews": "reviews",
+      "selectButton": "Select Package"
+    },
+    "bookingStatus": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "completed": "Completed"
+    },
+    "nav": {
+      "mainMenu": "Main menu",
+      "home": "Home",
+      "tagline": "Travel & Adventure"
+    },
+    "passengerSelector": {
+      "label": "Passengers",
+      "adult": "Adults",
+      "adultDesc": "Age 12 years and above",
+      "child": "Children",
+      "childDesc": "Age 2–11 years",
+      "infant": "Infants",
+      "infantDesc": "Under 2 years old",
+      "done": "Done"
+    },
+    "shuttleConfirm": {
+      "title": "Booking Confirmation",
+      "departureDate": "Departure Date",
+      "departureTime": "Departure Time",
+      "returnDate": "Return Date",
+      "returnTime": "Return Time",
+      "passengers": "Passengers",
+      "passengerUnit": "person",
+      "totalPrice": "Total Price",
+      "cancel": "Cancel",
+      "confirm": "Book",
+      "roundTrip": "Round Trip"
+    },
+    "orderDetail": {
+      "title": "Booking Details",
+      "closeLabel": "Close",
+      "createdLabel": "Created",
+      "updatedLabel": "Updated",
+      "adminConfirmNote": "Service details ... will be confirmed by admin.",
+      "contactAdminNote": "Please contact admin via WhatsApp for more information.",
+      "chatAdminWhatsApp": "Chat Admin via WhatsApp",
+      "routeLabel": "Route",
+      "shuttleTypeLabel": "Shuttle Type",
+      "departureLabel": "Departure",
+      "returnLabel": "Return",
+      "passengerLabel": "Passengers",
+      "passengerUnit": "person",
+      "descriptionLabel": "Description",
+      "paymentProofLabel": "Payment Proof",
+      "uploadPrompt": "Click to upload",
+      "uploadFormat": "JPG, PNG, or PDF",
+      "uploadSuccess": "Payment proof uploaded successfully!",
+      "uploadError": "Failed to upload payment proof.",
+      "uploadSelectFirst": "Please select a payment proof file first.",
+      "uploadGenericError": "An error occurred. Please try again.",
+      "saving": "Saving...",
+      "saveButton": "Save",
+      "chatAdminButton": "Chat Admin",
+      "viewPaymentDetail": "View Payment Details"
+    },
+    "shuttleService": {
+      "faq": {
+        "1": { "q": "How do I book a shuttle?", "a": "Fill in the booking form above with origin city, destination, date, and number of passengers. Select an available schedule then make payment." },
+        "2": { "q": "How far in advance can I book before departure?", "a": "Bookings can be made up to 1 hour before the departure schedule. It is recommended to book at least 1 day in advance to get the best seats." },
+        "3": { "q": "Are there additional baggage fees?", "a": "Each passenger gets a free 20 kg baggage allowance. Additional baggage is charged at Rp 5,000 per kg." },
+        "4": { "q": "Can I cancel or reschedule my ticket?", "a": "Cancellation can be made up to 3 hours before departure with an 80% refund. Reschedule is free up to 2 hours before departure." }
+      },
+      "routes": {
+        "tags": { "bestSeller": "Best Seller", "promo": "Promo", "new": "New", "popular": "Popular" }
+      }
+    },
+    "ticketingService": {
+      "routes": {
+        "tags": { "bestSeller": "Best Seller", "promo": "Promo", "popular": "Popular", "affordable": "Affordable", "new": "New" },
+        "types": { "ferry": "Ferry", "plane": "Plane", "bus": "Bus" },
+        "durationUnit": { "hour": "Hour", "minute": "Minute" }
+      }
+    },
+    "privateCarService": {
+      "defaults": {
+        "title": "Private Car",
+        "subtitle": "Rent a car with a professional driver. Flexible for city tours, intercity travel, and airport transfers — anytime, anywhere.",
+        "description": "Rent a car with a professional driver. Flexible for city tours, intercity travel, and airport transfers with Travelita."
+      }
+    },
+    "reviews": {
+      "1": { "name": "Andi Pratama", "location": "Jakarta", "comment": "Excellent service! The driver was friendly and punctual. The car was clean and comfortable. Will definitely use again for my next business trip." },
+      "2": { "name": "Sari Dewi", "location": "Surabaya", "comment": "The spear fishing experience in Raja Ampat was truly extraordinary! The Travelita team was very professional, equipment was complete, and the guide was incredibly patient. 10/10 recommended!" },
+      "3": { "name": "Budi Santoso", "location": "Bandung", "comment": "The shuttle service was on time and affordable. Fleet was clean with cold AC. Only the seats were a bit narrow for long trips. Overall still recommended." },
+      "4": { "name": "Rina Kusuma", "location": "Bali", "comment": "The Labuan Bajo package from Travelita was totally worth it! Itinerary was well-organized, hotel selection was great, and the local tour guide was informative. Thank you Travelita!" },
+      "5": { "name": "Deni Firmansyah", "location": "Makassar", "comment": "Ticket booking process was fast and easy. Customer service was responsive when I had questions about schedules. Transparent prices, no hidden fees. Very satisfied!" },
+      "6": { "name": "Maya Anggraeni", "location": "Yogyakarta", "comment": "Vacation to Bali with family became so enjoyable thanks to Travelita. Everything was well taken care of from transportation to accommodation. Highly recommended!" }
+    }
+  }
+}

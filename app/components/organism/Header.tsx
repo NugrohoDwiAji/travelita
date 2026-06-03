@@ -6,8 +6,10 @@ import { useSession, signOut } from "next-auth/react";
 import NavBrand from "@/app/components/moleculs/NavBrand";
 import NavMenu from "@/app/components/moleculs/NavMenu";
 import LanguageSwitcherBar from "@/app/components/moleculs/LanguageSwitcherBar";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
+  const t = useTranslations("header.nav");
   const { data: session, status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +68,7 @@ export default function Header() {
     <>
       <header
         className={[
-          "fixed inset-x-0 top-8 z-50 w-full",
+          "fixed inset-x-0  z-50 w-full",
           "bg-brand-navy-900 border-b border-(--brand-divider)",
           "transition-shadow duration-300",
           scrolled ? "shadow-[0_4px_24px_rgba(20,52,164,0.12)]" : "",
@@ -90,7 +92,7 @@ export default function Header() {
                   <div className="flex items-center gap-2">
                     <Link
                       href="/orders"
-                      aria-label="Pesanan Saya"
+                      aria-label={t("ordersAriaLabel")}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-brand-text-light transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent-500"
                     >
                       <svg
@@ -111,15 +113,19 @@ export default function Header() {
 
                     <button
                       type="button"
-                      aria-label={profileMenuOpen ? "Tutup menu akun" : "Buka menu akun"}
+                      aria-label={
+                        profileMenuOpen
+                          ? t("profileMenuClose")
+                          : t("profileMenuOpen")
+                      }
                       aria-haspopup="menu"
                       aria-expanded={profileMenuOpen}
                       onClick={() => setProfileMenuOpen((open) => !open)}
                       className="flex  gap-3 h-10  items-center justify-center rounded-full border border-white/15 bg-white/5 text-brand-text-light transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent-500 cursor-pointer"
                     >
-                       <span className="text-sm font-medium text-brand-text-light">
-                      {session.user?.name}
-                    </span>
+                      <span className="text-sm font-medium text-brand-text-light">
+                        {session.user?.name}
+                      </span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -131,7 +137,11 @@ export default function Header() {
                           profileMenuOpen ? "rotate-180" : "",
                         ].join(" ")}
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m6 9 6 6 6-6"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -139,7 +149,9 @@ export default function Header() {
                   <div
                     className={[
                       "absolute right-0 top-[calc(100%+0.75rem)] w-52 rounded-2xl border border-white/10 bg-brand-navy-800/95 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur-md transition-all duration-200",
-                      profileMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0",
+                      profileMenuOpen
+                        ? "pointer-events-auto translate-y-0 opacity-100"
+                        : "pointer-events-none -translate-y-2 opacity-0",
                     ].join(" ")}
                   >
                     <Link
@@ -147,7 +159,7 @@ export default function Header() {
                       onClick={() => setProfileMenuOpen(false)}
                       className="block rounded-xl px-4 py-3 text-sm font-medium text-brand-text-light transition-colors duration-200 hover:bg-white/10"
                     >
-                      Edit Profile
+                      {t("editProfile")}
                     </Link>
                     <button
                       type="button"
@@ -157,7 +169,7 @@ export default function Header() {
                       }}
                       className="mt-1 w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-red-500 transition-colors duration-200 hover:bg-red-500/25 hover:text-red-500"
                     >
-                      Logout
+                      {t("logout")}
                     </button>
                   </div>
                 </div>
@@ -167,13 +179,13 @@ export default function Header() {
                     href="/signin"
                     className="rounded-full border border-brand-accent-500 px-5 py-2 text-sm font-semibold text-brand-accent-500 transition-colors duration-200 hover:bg-brand-accent-500 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                   >
-                    Login
+                    {t("login")}
                   </Link>
                   <Link
                     href="/signup"
                     className="rounded-full bg-brand-accent-500 px-5 py-2 text-sm font-semibold text-white shadow-md transition-colors duration-200 hover:bg-brand-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                   >
-                    Register
+                    {t("register")}
                   </Link>
                 </>
               )}
@@ -183,7 +195,7 @@ export default function Header() {
           {/* Hamburger – Mobile */}
           <button
             type="button"
-            aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
+            aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((v) => !v)}
@@ -218,7 +230,9 @@ export default function Header() {
         className={[
           "fixed inset-0 z-40 flex md:hidden",
           "transition-opacity duration-300",
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
         ].join(" ")}
       >
         {/* Backdrop */}
@@ -260,17 +274,20 @@ export default function Header() {
                       d="M3 3h1.5l.3 1.6m0 0L6 12h11l2-7.4H4.8Zm1.7 11.9a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Zm10.9 0a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z"
                     />
                   </svg>
-                  Pesanan Saya
+                  {t("ordersLink")}
                 </Link>
                 <span className="text-center text-sm font-medium text-brand-text-light">
                   {session.user?.name}
                 </span>
                 <button
                   type="button"
-                  onClick={() => { setMenuOpen(false); signOut({ callbackUrl: "/" }); }}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    signOut({ callbackUrl: "/" });
+                  }}
                   className="rounded-full border border-red-400 px-5 py-3 text-center text-sm font-semibold text-red-400 transition-colors hover:bg-red-500 hover:text-white"
                 >
-                  Logout
+                  {t("logout")}
                 </button>
               </>
             ) : (
@@ -280,14 +297,14 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className="rounded-full border border-brand-accent-500 px-5 py-3 text-center text-sm font-semibold text-brand-accent-500 transition-colors hover:bg-brand-accent-500 hover:text-white"
                 >
-                  Login
+                  {t("loginLink")}
                 </Link>
                 <Link
                   href="/signup"
                   onClick={() => setMenuOpen(false)}
                   className="rounded-full bg-brand-accent-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-md transition-colors hover:bg-brand-accent-400"
                 >
-                  Register
+                  {t("registerLink")}
                 </Link>
               </>
             )}
@@ -296,7 +313,7 @@ export default function Header() {
       </div>
 
       {/* Spacer agar konten tidak tertutup fixed header */}
-      <div className="h-34" aria-hidden="true" />
+      <div className="h-26" aria-hidden="true" />
     </>
   );
 }

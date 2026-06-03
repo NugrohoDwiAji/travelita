@@ -54,6 +54,10 @@ export const ModelName = {
   User: 'User',
   Profile: 'Profile',
   Booking: 'Booking',
+  ServiceContent: 'ServiceContent',
+  ServicePackage: 'ServicePackage',
+  ServiceFaq: 'ServiceFaq',
+  ServiceRoute: 'ServiceRoute',
   ShuttleBooking: 'ShuttleBooking'
 } as const
 
@@ -90,7 +94,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const ProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  coutry: 'coutry',
+  country: 'country',
   city: 'city',
   profilePicture: 'profilePicture',
   createdAt: 'createdAt',
@@ -106,11 +110,70 @@ export const BookingScalarFieldEnum = {
   details: 'details',
   type: 'type',
   status: 'status',
+  paymentProof: 'paymentProof',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
+
+
+export const ServiceContentScalarFieldEnum = {
+  id: 'id',
+  serviceType: 'serviceType',
+  badge: 'badge',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  ctaPrimary: 'ctaPrimary',
+  ctaSecondary: 'ctaSecondary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceContentScalarFieldEnum = (typeof ServiceContentScalarFieldEnum)[keyof typeof ServiceContentScalarFieldEnum]
+
+
+export const ServicePackageScalarFieldEnum = {
+  id: 'id',
+  contentId: 'contentId',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  features: 'features',
+  badge: 'badge',
+  highlighted: 'highlighted'
+} as const
+
+export type ServicePackageScalarFieldEnum = (typeof ServicePackageScalarFieldEnum)[keyof typeof ServicePackageScalarFieldEnum]
+
+
+export const ServiceFaqScalarFieldEnum = {
+  id: 'id',
+  contentId: 'contentId',
+  question: 'question',
+  answer: 'answer'
+} as const
+
+export type ServiceFaqScalarFieldEnum = (typeof ServiceFaqScalarFieldEnum)[keyof typeof ServiceFaqScalarFieldEnum]
+
+
+export const ServiceRouteScalarFieldEnum = {
+  id: 'id',
+  contentId: 'contentId',
+  from: 'from',
+  to: 'to',
+  duration: 'duration',
+  price: 'price',
+  tag: 'tag',
+  type: 'type',
+  icon: 'icon',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceRouteScalarFieldEnum = (typeof ServiceRouteScalarFieldEnum)[keyof typeof ServiceRouteScalarFieldEnum]
 
 
 export const ShuttleBookingScalarFieldEnum = {
@@ -138,15 +201,12 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const UserOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  username: 'username',
-  email: 'email',
-  password: 'password'
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 } as const
 
-export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 export const NullsOrder = {
@@ -155,31 +215,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const ProfileOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  coutry: 'coutry',
-  city: 'city',
-  profilePicture: 'profilePicture'
-} as const
-
-export type ProfileOrderByRelevanceFieldEnum = (typeof ProfileOrderByRelevanceFieldEnum)[keyof typeof ProfileOrderByRelevanceFieldEnum]
-
-
-export const BookingOrderByRelevanceFieldEnum = {
-  userId: 'userId'
-} as const
-
-export type BookingOrderByRelevanceFieldEnum = (typeof BookingOrderByRelevanceFieldEnum)[keyof typeof BookingOrderByRelevanceFieldEnum]
-
-
-export const ShuttleBookingOrderByRelevanceFieldEnum = {
-  from: 'from',
-  to: 'to',
-  description: 'description'
-} as const
-
-export type ShuttleBookingOrderByRelevanceFieldEnum = (typeof ShuttleBookingOrderByRelevanceFieldEnum)[keyof typeof ShuttleBookingOrderByRelevanceFieldEnum]
 

@@ -1,9 +1,11 @@
+"use client";
+
 import NavLink, { type NavLinkProps } from "@/app/components/atoms/NavLink";
+import { useTranslations } from "next-intl";
 
 const NAV_ITEMS: NavLinkProps[] = [
   { label: "Shuttle Service", href: "/shuttle-service" },
   { label: "Private Car",     href: "/private-car" },
-  { label: "Ticketing",       href: "/ticketing" },
   { label: "Spear Fishing",   href: "/spear-fishing" },
   { label: "Travel",          href: "/travel" },
 ];
@@ -19,8 +21,10 @@ export default function NavMenu({
   onClose,
   direction = "horizontal",
 }: NavMenuProps) {
+  const t = useTranslations("components.nav");
+
   return (
-    <nav aria-label="Menu utama">
+    <nav aria-label={t("mainMenu")}>
       <ul
         className={[
           "flex list-none p-0 m-0",

@@ -1,15 +1,18 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function HeroSection() {
+  const t = useTranslations("landing.hero");
+
   return (
     <section
       className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat py-10"
       style={{ backgroundImage: "url('/banner/banner.png')" }}
     >
-
-         {/* Konten */}
+      {/* Konten */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-
         {/* Badge */}
         <span
           className="inline-block mb-6 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest"
@@ -19,25 +22,22 @@ export default function HeroSection() {
             background: "rgba(255,255,255,0.12)",
           }}
         >
-          Explore &bull; Adventure &bull; Discover
+          {t("badge")}
         </span>
 
         <h1
           className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6"
           style={{ color: "#ffffff" }}
         >
-          Jelajahi Nusa Tenggara Barat&nbsp;
-          <span className="block text-white">
-            Bersama Travelita
-          </span>
+          {t("title1")}&nbsp;
+          <span className="block text-white">{t("title2")}</span>
         </h1>
 
         <p
           className="mx-auto mb-10 max-w-2xl text-lg sm:text-xl leading-relaxed"
           style={{ color: "rgba(255,255,255,0.92)" }}
         >
-          Dari shuttle service harian hingga petualangan spear fishing di laut
-          biru - kami menghadirkan pengalaman perjalanan yang tak terlupakan.
+          {t("subtitle")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
@@ -46,7 +46,7 @@ export default function HeroSection() {
             className="rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-widest shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
             style={{ background: "#1434A4", color: "#ffffff" }}
           >
-            Pesan Sekarang
+            {t("cta1")}
           </Link>
           <Link
             href="/travel"
@@ -57,7 +57,7 @@ export default function HeroSection() {
               background: "transparent",
             }}
           >
-            Lihat Paket
+            {t("cta2")}
           </Link>
         </div>
 
@@ -71,9 +71,9 @@ export default function HeroSection() {
           }}
         >
           {[
-            { value: "1000+", label: "Pelanggan Puas" },
-            { value: "50+",  label: "Destinasi" },
-            { value: "5",   label: "Rating Layanan" },
+            { value: "500+", label: t("stat1Label") },
+            { value: "50+", label: t("stat2Label") },
+            { value: "4.9", label: t("stat3Label") },
           ].map(({ value, label }) => (
             <div key={label} className="flex flex-col items-center gap-1 px-2">
               <span

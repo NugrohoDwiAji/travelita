@@ -1,53 +1,58 @@
-import Link from "next/link";
+"use client";
 
-const DESTINATIONS = [
-  {
-    id: 1,
-    name: "Raja Ampat",
-    location: "Papua Barat",
-    category: "Spear Fishing & Snorkeling",
-    duration: "5 Hari / 4 Malam",
-    price: "Rp 8.500.000",
-    badge: "Terlaris",
-    badgeColor: "#1434A4",
-    gradient: "from-[#1434A4] to-[#3d52c6]",
-  },
-  {
-    id: 2,
-    name: "Labuan Bajo",
-    location: "Nusa Tenggara Timur",
-    category: "Travel & Wisata Alam",
-    duration: "4 Hari / 3 Malam",
-    price: "Rp 6.200.000",
-    badge: "Promo",
-    badgeColor: "#0d2280",
-    gradient: "from-[#0d2280] to-[#1434A4]",
-  },
-  {
-    id: 3,
-    name: "Bali",
-    location: "Bali",
-    category: "Private Car & Travel",
-    duration: "3 Hari / 2 Malam",
-    price: "Rp 3.800.000",
-    badge: "Popular",
-    badgeColor: "#3d52c6",
-    gradient: "from-[#3d52c6] to-[#5c6fd4]",
-  },
-  {
-    id: 4,
-    name: "Lombok",
-    location: "Nusa Tenggara Barat",
-    category: "Shuttle & Travel",
-    duration: "3 Hari / 2 Malam",
-    price: "Rp 4.100.000",
-    badge: "Baru",
-    badgeColor: "#1434A4",
-    gradient: "from-[#1434A4] to-[#0d2280]",
-  },
-];
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function DestinationsSection() {
+  const t = useTranslations("landing.destinations");
+
+  const DESTINATIONS = [
+    {
+      id: 1,
+      name: t("1.name"),
+      location: t("1.location"),
+      category: t("1.category"),
+      duration: t("1.duration"),
+      price: t("1.price"),
+      badge: t("1.badge"),
+      badgeColor: "#1434A4",
+      gradient: "from-[#1434A4] to-[#3d52c6]",
+    },
+    {
+      id: 2,
+      name: t("2.name"),
+      location: t("2.location"),
+      category: t("2.category"),
+      duration: t("2.duration"),
+      price: t("2.price"),
+      badge: t("2.badge"),
+      badgeColor: "#0d2280",
+      gradient: "from-[#0d2280] to-[#1434A4]",
+    },
+    {
+      id: 3,
+      name: t("3.name"),
+      location: t("3.location"),
+      category: t("3.category"),
+      duration: t("3.duration"),
+      price: t("3.price"),
+      badge: t("3.badge"),
+      badgeColor: "#3d52c6",
+      gradient: "from-[#3d52c6] to-[#5c6fd4]",
+    },
+    {
+      id: 4,
+      name: t("4.name"),
+      location: t("4.location"),
+      category: t("4.category"),
+      duration: t("4.duration"),
+      price: t("4.price"),
+      badge: t("4.badge"),
+      badgeColor: "#1434A4",
+      gradient: "from-[#1434A4] to-[#0d2280]",
+    },
+  ];
+
   return (
     <section
       className="py-20 lg:py-28"
@@ -61,14 +66,14 @@ export default function DestinationsSection() {
               className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.25em]"
               style={{ color: "var(--brand-accent-500)" }}
             >
-              Destinasi Populer
+              {t("sectionLabel")}
             </span>
             <h2
               className="text-3xl sm:text-4xl font-extrabold"
               style={{ color: "var(--brand-text-light)" }}
             >
-              Jelajahi Destinasi&nbsp;
-              <span style={{ color: "var(--brand-accent-400)" }}>Favorit</span>
+              {t("sectionTitle1")}&nbsp;
+              <span style={{ color: "var(--brand-accent-400)" }}>{t("sectionTitle2")}</span>
             </h2>
           </div>
           <Link
@@ -76,7 +81,7 @@ export default function DestinationsSection() {
             className="shrink-0 text-sm font-semibold underline underline-offset-4 transition-colors"
             style={{ color: "var(--brand-accent-500)" }}
           >
-            Lihat semua destinasi →
+            {t("viewAll")}
           </Link>
         </div>
 
@@ -147,10 +152,10 @@ export default function DestinationsSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[11px]" style={{ color: "var(--brand-text-muted)" }}>Mulai dari</p>
+                    <p className="text-[11px]" style={{ color: "var(--brand-text-muted)" }}>{t("priceLabel")}</p>
                     <p className="text-base font-extrabold" style={{ color: "var(--brand-accent-500)" }}>
                       {dest.price}
-                      <span className="text-[11px] font-normal ml-1" style={{ color: "var(--brand-text-muted)" }}>/orang</span>
+                      <span className="text-[11px] font-normal ml-1" style={{ color: "var(--brand-text-muted)" }}>{t("priceUnit")}</span>
                     </p>
                   </div>
                   <Link
@@ -161,7 +166,7 @@ export default function DestinationsSection() {
                       color: "white",
                     }}
                   >
-                    Pesan
+                    {t("bookButton")}
                   </Link>
                 </div>
               </div>
